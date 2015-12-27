@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<devices>
+<sensors>
+	<sensor name="LightSensor" /> 
+	<sensor name="TemperatureSensor" /> 
+</sensors>
+<controllers>
+	
+	<controller name="LightController" />
+	<controller name="ConditionerController" />
+</controllers>
+<triggers>
+	<trigger  name="LightTrigger" sensor="LightSensor" controller="LightController" condition="500" />
+	<trigger  name="ConditionerTrigger" sensor="TemperatureSensor" controller="ConditionerController" condition="30" />
+</triggers>
+</devices>

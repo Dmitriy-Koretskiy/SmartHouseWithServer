@@ -1,0 +1,6 @@
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWithServer\bin\Debug\SmartHouseWithServer.exe.config
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWithServer\bin\Debug\SmartHouseWithServer.exe
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWithServer\bin\Debug\SmartHouseWithServer.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWithServer\obj\Debug\SmartHouseWithServer.csprojResolveAssemblyReference.cache
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWithServer\obj\Debug\SmartHouseWithServer.exe
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWithServer\obj\Debug\SmartHouseWithServer.pdb
