@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace Devices
 {
-    class ConditionerTrigger: ITrigger
+    class ConditionerTrigger: Trigger, ITrigger
     {
-        ISensor sensor;
-        IController controller;
-        private readonly int condition;
-        private bool alreadyWork = false;
+      
 
-        public  ConditionerTrigger(ISensor sensor, IController controller, int condition) 
+        public ConditionerTrigger(ISensor sensor, IController controller, int condition) : base(sensor, controller, condition)
         {
-            this.sensor = sensor;
-            this.controller = controller;
-            this.condition = condition;
+            
         }
 
-        public void CheckSensor() 
+
+        public override void CheckSensor() 
         {
-            if (sensor.GenerateValue() < condition)
+            if ( sensor.GenerateValue() > condition)
             {
                 if (!alreadyWork) 
                 {

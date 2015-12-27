@@ -6,38 +6,13 @@ using System.Threading.Tasks;
 
 namespace Devices
 {
-    class LightTrigger: ITrigger
+    class LightTrigger: Trigger, ITrigger
     {
-        ISensor sensor;
-        IController controller;
-        private readonly int condition;
-        private bool alreadyWork = false;
-
-        public  LightTrigger(LightSensor sensor, LightController controller, int condition) 
+      
+        public  LightTrigger(LightSensor sensor, LightController controller, int condition) : base(sensor, controller, condition) 
         {
-            this.sensor = sensor;
-            this.controller = controller;
-            this.condition = condition;
         }
 
-        public void CheckSensor() 
-        {
-            if (sensor.GenerateValue() < condition)
-            {
-                if (!alreadyWork) 
-                {
-                    controller.On();
-                    alreadyWork = true;
-                }
-            }
-            else 
-            {
-                if (alreadyWork)
-                {
-                    controller.Off();
-                    alreadyWork = false;
-                }
-            }
-        }
+       
     }
 }

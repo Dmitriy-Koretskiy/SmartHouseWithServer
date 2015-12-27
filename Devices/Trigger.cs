@@ -8,11 +8,12 @@ namespace Devices
 {
     class Trigger:ITrigger
     {
-         ISensor sensor;
-        IController controller;
-        private readonly int condition;
+        protected  ISensor sensor;
+        protected  IController controller;
+        protected readonly int condition;
         protected bool alreadyWork = false;
  
+     
         public  Trigger(ISensor sensor, IController controller, int condition) 
         {
             this.sensor = sensor;
