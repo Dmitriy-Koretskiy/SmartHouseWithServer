@@ -12,7 +12,7 @@ namespace Devices
 {
     class ConditionsHandler
     {
-        public bool Evaluate(string expression)
+        private bool EvaluateReturnBool(string expression)
         {
             string xsltExpression = string.Format("number({0})", new Regex(@"([\+\-\*])").Replace(expression, " ${1} ")
                                                                                          .Replace("/", " div ")
@@ -22,27 +22,60 @@ namespace Devices
             return ((double)result) != 0d;
         }
 
-        public bool CheckCondtion(string condition, int value) 
+        private string EvaluateReturnString(string expression)
         {
+            string xsltExpression = string.Format("number({0})", new Regex(@"([\+\-\*])").Replace(expression, " ${1} ")
+                                                                                         .Replace("/", " div ")
+                                                                                         .Replace("%", " mod "));
+            var nav = new XPathDocument(new StringReader("<r/>")).CreateNavigator();
+            return nav.Evaluate(xsltExpression).ToString();
+        }
+
+
+        public bool CheckCondtion(string condition, int value) 
+        {           
             condition = condition.ToLower().Replace("value", value.ToString());
-            Regex reg = new Regex("(or)|(and)");
-            string[] splitedCondition =  reg.Split(condition);
-            splitedCondition[0].Trim();
-            bool result = Evaluate(splitedCondition[0]);
-            for (int i = 1;i<splitedCondition.Length - 1 ; i = i+2 )
+            Regex reg = new Regex("or|and");
+            if (reg.IsMatch(condition))
             {
-                splitedCondition[i].Trim();
-                switch (splitedCondition[i]) {
-                    case "or":
-                        result = result || Evaluate(splitedCondition[i + 1]);
-                        break;
-                    case "and":
-                        result = result && Evaluate(splitedCondition[i + 1]);
-                        break;
-                    default: break;
+                string[] splitedCondition = reg.Split(condition);
+                string unitCondition = "";
+                foreach (string splited in splitedCondition) 
+                {
+                    splited.Trim();
+                    unitCondition = EqualizeBrackets(splited);
+                    condition = condition.Replace(unitCondition,  EvaluateReturnString(unitCondition));
                 }
-            }          
-            return result;
+                condition = condition.Replace("or", "+").Replace("and", "*");
+            }
+            return EvaluateReturnBool(condition);
+        }
+
+        private string EqualizeBrackets(string expression)
+        {
+            int leftBrackets= 0;
+            int rightBrackets = 0;
+            foreach(char exp in expression)
+            {
+                if(exp == '(')
+                {
+                    leftBrackets++;
+                }
+                if (exp == ')')
+                {
+                    rightBrackets++;
+                }
+            }
+            if(leftBrackets > rightBrackets)
+            {
+                expression = expression.Remove(0, leftBrackets - rightBrackets);
+            }
+            if (rightBrackets > leftBrackets)
+            {
+                int delta = rightBrackets - leftBrackets + 1;
+                expression = expression.Remove(expression.Length - delta , delta);
+            }
+            return expression;
         }
     }
 }
