@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace Devices
 {
     class LightTrigger: Trigger, ITrigger
-    {
-      
-        public  LightTrigger(LightSensor sensor, LightController controller, int condition) : base(sensor, controller, condition) 
+    {   
+        public  LightTrigger(ISensor sensor, IController controller, string condition) : base(sensor, controller, condition) 
         {
         }
 

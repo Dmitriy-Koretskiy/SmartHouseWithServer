@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace Devices
 {
@@ -10,11 +12,11 @@ namespace Devices
     {
         protected  ISensor sensor;
         protected  IController controller;
-        protected readonly int condition;
+        protected readonly string condition;
         protected bool alreadyWork = false;
- 
+        protected ConditionsHandler conditionsHandler = new ConditionsHandler();
      
-        public  Trigger(ISensor sensor, IController controller, int condition) 
+        public  Trigger(ISensor sensor, IController controller, string condition) 
         {
             this.sensor = sensor;
             this.controller = controller;
@@ -23,15 +25,15 @@ namespace Devices
 
         public virtual void CheckSensor() 
         {
-            if (sensor.GenerateValue() < condition)
+            if (conditionsHandler.CheckCondtion(condition, sensor.GenerateValue()))
             {
-                if (!alreadyWork) 
+                if (!alreadyWork)
                 {
                     controller.On();
                     alreadyWork = true;
                 }
             }
-            else 
+            else
             {
                 if (alreadyWork)
                 {

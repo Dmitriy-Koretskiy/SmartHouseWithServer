@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseWithServer", "Sma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devices", "Devices\Devices.csproj", "{DA16C894-7356-40A7-AC36-596CED2C27FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{8BB04CEF-3099-4DC5-BB1E-DF645E7B6E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{DA16C894-7356-40A7-AC36-596CED2C27FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA16C894-7356-40A7-AC36-596CED2C27FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA16C894-7356-40A7-AC36-596CED2C27FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB04CEF-3099-4DC5-BB1E-DF645E7B6E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB04CEF-3099-4DC5-BB1E-DF645E7B6E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB04CEF-3099-4DC5-BB1E-DF645E7B6E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB04CEF-3099-4DC5-BB1E-DF645E7B6E43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devices
+namespace Interfaces
 {
-    interface ISensor
+    public interface ISensor
     {
         int GenerateValue();
     }

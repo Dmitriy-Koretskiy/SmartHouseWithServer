@@ -40,16 +40,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConditionerController.cs" />
+    <Compile Include="ConditionsHandler.cs" />
     <Compile Include="TemperatureSensor.cs" />
     <Compile Include="ConditionerTrigger.cs" />
-    <Compile Include="IController.cs" />
-    <Compile Include="ISensor.cs" />
-    <Compile Include="ITrigger.cs" />
     <Compile Include="LightController.cs" />
     <Compile Include="LightSensor.cs" />
     <Compile Include="LightTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trigger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{8bb04cef-3099-4dc5-bb1e-df645e7b6e43}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
