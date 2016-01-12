@@ -1,4 +1,5 @@
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Interfaces\bin\Debug\Interfaces.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Interfaces\bin\Debug\Interfaces.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Interfaces\obj\Debug\Interfaces.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Interfaces\obj\Debug\Interfaces.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Interfaces\obj\Debug\Interfaces.pdb
