@@ -48,21 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\ControllerRepository.cs" />
-    <Compile Include="Repositories\SensorRepository.cs" />
-    <Compile Include="Repositories\SensorsValueRepository.cs" />
-    <Compile Include="Repositories\TriggersActionRepository.cs" />
-    <Compile Include="Repositories\TriggerRepository.cs" />
-    <Compile Include="Tables\Controller.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="DbInitializer.cs" />
-    <Compile Include="Tables\Device.cs" />
-    <Compile Include="Tables\SensorsValue.cs" />
     <Compile Include="SmartHouseContext.cs" />
-    <Compile Include="Tables\Sensor.cs" />
-    <Compile Include="Tables\Trigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tables\TriggersAction.cs" />
-    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

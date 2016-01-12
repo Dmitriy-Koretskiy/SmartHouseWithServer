@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Interfaces;
 using DAL;
-using DAL.Tables;
+using Interfaces.Tables;
+
 
 namespace SmartHouseWithServer
 {
@@ -17,11 +18,11 @@ namespace SmartHouseWithServer
     {
         static void Main(string[] args)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
+            Repository repository = new Repository();
             Assembly asm = Assembly.LoadFrom(@"..\..\..\Devices\bin\Debug\Devices.dll");
-            Dictionary<string, object> sensorsDict = GetSensorsDictionary(unitOfWork, asm);
-            Dictionary<string, object> controllersDict = GetControllersDictionary(unitOfWork, asm);
-            List<object> triggersList = GetTriggersList(unitOfWork, asm, sensorsDict, controllersDict);
+            Dictionary<string, object> sensorsDict = GetSensorsDictionary(repository, asm);
+            Dictionary<string, object> controllersDict = GetControllersDictionary(repository, asm);
+            List<object> triggersList = GetTriggersList(repository, asm, sensorsDict, controllersDict);
             for (; ; )
             {
                 Parallel.ForEach(triggersList, UseTrigger);
@@ -36,11 +37,11 @@ namespace SmartHouseWithServer
         }
 
 
-        private static Dictionary<string, object> GetSensorsDictionary(UnitOfWork unitOfWork, Assembly assembly)
+        private static Dictionary<string, object> GetSensorsDictionary(Repository repository, Assembly assembly)
        {
            Dictionary<string, object> sensorsDict = new Dictionary<string, object>();
            Type type;
-           foreach (Sensor sensorElement in unitOfWork.Sensors.GetAll())
+           foreach (Sensor sensorElement in repository.GetAll<Sensor>())
            {
                type = assembly.GetType("Devices." + sensorElement.Name, true, true);
                sensorsDict.Add(sensorElement.Name, Activator.CreateInstance(type));
@@ -48,11 +49,11 @@ namespace SmartHouseWithServer
            return sensorsDict;
        }
 
-        private static Dictionary<string, object> GetControllersDictionary(UnitOfWork unitOfWork, Assembly assembly)
+        private static Dictionary<string, object> GetControllersDictionary(Repository repository, Assembly assembly)
        {
            Dictionary<string, object> controllersDict = new Dictionary<string, object>();
            Type type;
-           foreach (Controller controllerElement in unitOfWork.Controllers.GetAll())
+           foreach (Controller controllerElement in repository.GetAll<Controller>())
            {
                type = assembly.GetType("Devices." + controllerElement.Name, true, true);
                controllersDict.Add(controllerElement.Name, Activator.CreateInstance(type));
@@ -60,12 +61,12 @@ namespace SmartHouseWithServer
            return controllersDict;
        }
 
-        private static List<object> GetTriggersList(UnitOfWork unitOfWork, Assembly assembly,
+        private static List<object> GetTriggersList(Repository repository, Assembly assembly,
            Dictionary<string, object> sensorsDict, Dictionary<string, object> controllersDict)
        {
            List<object> triggersList = new List<object>();
            Type type;
-           foreach (Trigger triggerElement in unitOfWork.Triggers.GetAll())
+           foreach (Trigger triggerElement in repository.GetAll<Trigger>())
            {
                type = assembly.GetType("Devices." + triggerElement.Name, true, true);
 

@@ -1,4 +1,4 @@
-﻿using DAL.Tables;
+﻿using Interfaces.Tables;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Tables;
+using Interfaces.Tables;
 
 namespace DAL
 {
@@ -16,6 +16,7 @@ namespace DAL
         }
 
         public DbSet<Controller> Controllers { get; set; }
+        public DbSet<Device> Devices { get; set; }
         public DbSet<Sensor> Sensors { get; set; }
         public DbSet<Trigger> Triggers { get; set; }
         public DbSet<SensorsValue> SensorsValues { get; set; }

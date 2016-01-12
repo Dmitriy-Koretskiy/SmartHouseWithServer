@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository: IDisposable
     {
-        IEnumerable<T> GetAll();
-        T Get(int id);
-        void Create(T item);
-        void Update(T item);
-        void Delete(int id);
+        IEnumerable<T> GetAll<T>() where T: class;
+        T Get<T>(int id) where T : class;
+        void Add<T>(T entity) where T : class;
+        void Delete<T>(T entity) where T : class;
+        void Update<T>(T entity) where T : class;
+        void SaveChanges();
     }
 }
