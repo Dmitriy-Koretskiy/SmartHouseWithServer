@@ -3,41 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace Devices
 {
-    class ConditionerTrigger: ITrigger
+    class ConditionerTrigger: Trigger, ITrigger
     {
-        ISensor sensor;
-        IController controller;
-        private readonly int condition;
-        private bool alreadyWork = false;
-
-        public  ConditionerTrigger(ISensor sensor, IController controller, int condition) 
+      
+        public ConditionerTrigger(ISensor sensor, IController controller, string condition) : base(sensor, controller, condition)
         {
-            this.sensor = sensor;
-            this.controller = controller;
-            this.condition = condition;
-        }
-
-        public void CheckSensor() 
-        {
-            if (sensor.GenerateValue() < condition)
-            {
-                if (!alreadyWork) 
-                {
-                    controller.On();
-                    alreadyWork = true;
-                }
-            }
-            else 
-            {
-                if (alreadyWork)
-                {
-                    controller.Off();
-                    alreadyWork = false;
-                }
-            }
+            
         }
     }
 }

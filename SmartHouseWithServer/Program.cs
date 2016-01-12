@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Interfaces;
 
 namespace SmartHouseWithServer
 {
@@ -26,12 +27,11 @@ namespace SmartHouseWithServer
                 Thread.Sleep(1000);
             }
         }
-
+        
         private static void UseTrigger(object obj)
         {
-            Type type = obj.GetType();
-            MethodInfo method = type.GetMethod("CheckSensor");
-            method.Invoke(obj, null);
+            ITrigger trigger = (ITrigger)obj;
+            trigger.CheckSensor();
         }
 
        private static Dictionary<string, object> GetSensorsDictionary(XDocument xdoc, Assembly assembly)
@@ -74,7 +74,7 @@ namespace SmartHouseWithServer
                type = assembly.GetType("Devices." + nameAttribute.Value, true, true);
 
                object obj = Activator.CreateInstance(type, sensorsDict[sensorAttribute.Value],
-                   controllersDict[controllerAttribute.Value], int.Parse(conditionAttribute.Value));
+                   controllersDict[controllerAttribute.Value], conditionAttribute.Value);
                triggersList.Add(obj);
            }
            return triggersList;

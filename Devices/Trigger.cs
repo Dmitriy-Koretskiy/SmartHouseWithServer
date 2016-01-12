@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace Devices
 {
     class Trigger:ITrigger
     {
-         ISensor sensor;
-        IController controller;
-        private readonly int condition;
+        protected  ISensor sensor;
+        protected  IController controller;
+        protected readonly string condition;
         protected bool alreadyWork = false;
- 
-        public  Trigger(ISensor sensor, IController controller, int condition) 
+        protected ConditionsHandler conditionsHandler = new ConditionsHandler();
+     
+        public  Trigger(ISensor sensor, IController controller, string condition) 
         {
             this.sensor = sensor;
             this.controller = controller;
@@ -22,15 +25,15 @@ namespace Devices
 
         public virtual void CheckSensor() 
         {
-            if (sensor.GenerateValue() < condition)
+            if (conditionsHandler.CheckCondtion(condition, sensor.GenerateValue()))
             {
-                if (!alreadyWork) 
+                if (!alreadyWork)
                 {
                     controller.On();
                     alreadyWork = true;
                 }
             }
-            else 
+            else
             {
                 if (alreadyWork)
                 {
