@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Interfaces;
+using DAL;
+using DAL.Tables;
 
 namespace SmartHouseWithServer
 {
@@ -15,12 +17,11 @@ namespace SmartHouseWithServer
     {
         static void Main(string[] args)
         {
-
+            UnitOfWork unitOfWork = new UnitOfWork();
             Assembly asm = Assembly.LoadFrom(@"..\..\..\Devices\bin\Debug\Devices.dll");
-            XDocument xdoc = XDocument.Load("DevicesInHouse.xml");
-            Dictionary<string, object> sensorsDict = GetSensorsDictionary(xdoc, asm);
-            Dictionary<string, object> controllersDict = GetControllersDictionary(xdoc, asm);
-            List<object> triggersList = GetTriggersList(xdoc, asm, sensorsDict, controllersDict);
+            Dictionary<string, object> sensorsDict = GetSensorsDictionary(unitOfWork, asm);
+            Dictionary<string, object> controllersDict = GetControllersDictionary(unitOfWork, asm);
+            List<object> triggersList = GetTriggersList(unitOfWork, asm, sensorsDict, controllersDict);
             for (; ; )
             {
                 Parallel.ForEach(triggersList, UseTrigger);
@@ -34,47 +35,42 @@ namespace SmartHouseWithServer
             trigger.CheckSensor();
         }
 
-       private static Dictionary<string, object> GetSensorsDictionary(XDocument xdoc, Assembly assembly)
+
+        private static Dictionary<string, object> GetSensorsDictionary(UnitOfWork unitOfWork, Assembly assembly)
        {
            Dictionary<string, object> sensorsDict = new Dictionary<string, object>();
            Type type;
-           foreach (XElement sensorElement in xdoc.Element("devices").Element("sensors").Elements("sensor"))
+           foreach (Sensor sensorElement in unitOfWork.Sensors.GetAll())
            {
-               XAttribute nameAttribute = sensorElement.Attribute("name");
-               type = assembly.GetType("Devices." + nameAttribute.Value, true, true);
-               sensorsDict.Add(nameAttribute.Value, Activator.CreateInstance(type));
+               type = assembly.GetType("Devices." + sensorElement.Name, true, true);
+               sensorsDict.Add(sensorElement.Name, Activator.CreateInstance(type));
            }
            return sensorsDict;
        }
 
-       private static Dictionary<string, object> GetControllersDictionary(XDocument xdoc, Assembly assembly)
+        private static Dictionary<string, object> GetControllersDictionary(UnitOfWork unitOfWork, Assembly assembly)
        {
            Dictionary<string, object> controllersDict = new Dictionary<string, object>();
            Type type;
-           foreach (XElement controllerElement in xdoc.Element("devices").Element("controllers").Elements("controller"))
+           foreach (Controller controllerElement in unitOfWork.Controllers.GetAll())
            {
-               XAttribute nameAttribute = controllerElement.Attribute("name");
-               type = assembly.GetType("Devices." + nameAttribute.Value, true, true);
-               controllersDict.Add(nameAttribute.Value, Activator.CreateInstance(type));
+               type = assembly.GetType("Devices." + controllerElement.Name, true, true);
+               controllersDict.Add(controllerElement.Name, Activator.CreateInstance(type));
            }
            return controllersDict;
        }
 
-       private static List<object> GetTriggersList(XDocument xdoc, Assembly assembly,
+        private static List<object> GetTriggersList(UnitOfWork unitOfWork, Assembly assembly,
            Dictionary<string, object> sensorsDict, Dictionary<string, object> controllersDict)
        {
            List<object> triggersList = new List<object>();
            Type type;
-           foreach (XElement triggerElement in xdoc.Element("devices").Element("triggers").Elements("trigger"))
+           foreach (Trigger triggerElement in unitOfWork.Triggers.GetAll())
            {
-               XAttribute nameAttribute = triggerElement.Attribute("name");
-               XAttribute sensorAttribute = triggerElement.Attribute("sensor");
-               XAttribute controllerAttribute = triggerElement.Attribute("controller");
-               XAttribute conditionAttribute = triggerElement.Attribute("condition");
-               type = assembly.GetType("Devices." + nameAttribute.Value, true, true);
+               type = assembly.GetType("Devices." + triggerElement.Name, true, true);
 
-               object obj = Activator.CreateInstance(type, sensorsDict[sensorAttribute.Value],
-                   controllersDict[controllerAttribute.Value], conditionAttribute.Value);
+               object obj = Activator.CreateInstance(type, sensorsDict[triggerElement.Sensor.Name],
+                   controllersDict[triggerElement.Controller.Name], triggerElement.Condition);
                triggersList.Add(obj);
            }
            return triggersList;

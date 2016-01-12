@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IController.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="ISensor.cs" />
     <Compile Include="ITrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
