@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public  class Controller
-    {
-        public int Id { get; set; }
+    public class Controller : ParentIClass
+    {      
         public string Name { get; set; }
         public int? DeviceId { get; set; }
+        public bool Enable { get; set; }
 
         public virtual Device Device { get; set; }
 

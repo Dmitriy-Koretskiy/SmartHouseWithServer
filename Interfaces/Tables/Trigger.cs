@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Trigger
+    public class Trigger : ParentIClass
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Condition { get; set; }
+        public bool Enable { get; set; }
         public int? ControllerId { get; set; }
         public int? SensorId { get; set; }
 

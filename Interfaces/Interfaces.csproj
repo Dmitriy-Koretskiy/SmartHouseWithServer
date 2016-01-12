@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tables\ParentClass.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISensor.cs" />

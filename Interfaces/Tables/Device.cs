@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Device
+    public class Device : ParentIClass
     {
-        public int Id { get; set; }
-        public string Name { get; set; } 
+        public string Name { get; set; }
+        public bool Enable { get; set; }
 
         public virtual ICollection<Controller> Controllers { get; set; }
 
