@@ -1,8 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using SmartHouseWebSite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SmartHouseWithServer.DTO;
+using SmartHouseWithServer.Interfaces;
+using SmartHouseWithServer.Services;
 
 namespace SmartHouseWebSite.Controllers
 {
@@ -10,10 +15,18 @@ namespace SmartHouseWebSite.Controllers
     {
         //
         // GET: /Ctrl/
+        IControllerService ctrlServie { get; set; }
+
+        public CtrlController() //should use IoC
+        {
+            this.ctrlServie = new ControllerService();
+        }
 
         public ActionResult Index()
         {
-            return View();
+            Mapper.CreateMap<ControllerDTO, ControllerViewModel>();
+            var controllers = Mapper.Map<IEnumerable<ControllerDTO>, List<ControllerViewModel>>(ctrlServie.GetControllers());
+            return View(controllers);
         }
 
         //

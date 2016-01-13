@@ -23,7 +23,7 @@ namespace DAL
             return db.Set<T>();
         }
 
-        public T Get<T>(int id) where T: class 
+        public T Get<T>(int? id) where T: class 
         {
             return db.Set<T>().Find(id);
         }

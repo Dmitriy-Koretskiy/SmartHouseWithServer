@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartHouseWithServer.DTO
 {
-    class SensorsValueDTO
+    public class SensorsValueDTO
     {
         public int Id { get; set; }
         public DateTime TimeMeasurement { get; set; }

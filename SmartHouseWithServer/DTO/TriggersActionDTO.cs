@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartHouseWithServer.DTO
 {
-    class TriggersActionDTO
+    public class TriggersActionDTO
     {
         public int Id { get; set; }
         public DateTime TimeChange { get; set; }

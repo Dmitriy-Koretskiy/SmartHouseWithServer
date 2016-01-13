@@ -1,4 +1,6 @@
-﻿@{
+﻿@using SmartHouseWebSite.Models
+@model IEnumerable<ControllerViewModel>
+@{
     Layout = null;
 }
 
@@ -11,7 +13,21 @@
 </head>
 <body>
     <div>
-        
+        <table>
+            <tr>
+                <td><h3>Name</h3></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @foreach (ControllerViewModel ctrl in Model)
+            {
+            <tr>
+                <td>@ctrl.Name</td>
+                <td><p><a>Edit</a></p></td>
+                <td><p><a>Delete</a></p></td>
+            </tr>
+            }
+        </table>
     </div>
 </body>
 </html>

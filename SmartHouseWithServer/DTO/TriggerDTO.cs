@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartHouseWithServer.DTO
 {
-    class TriggerDTO
+    public class TriggerDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
