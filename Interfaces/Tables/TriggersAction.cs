@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class TriggersAction : ParentIClass
+    public class TriggersAction : ParentTable
     {
         public DateTime TimeChange { get; set; }
         public string Description { get; set; }

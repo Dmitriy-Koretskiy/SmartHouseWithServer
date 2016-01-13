@@ -53,7 +53,7 @@ namespace SmartHouseWithServer
        {
            Dictionary<string, object> controllersDict = new Dictionary<string, object>();
            Type type;
-           foreach (Controller controllerElement in repository.GetAll<Controller>())
+           foreach (HouseController controllerElement in repository.GetAll<HouseController>())
            {
                type = assembly.GetType("Devices." + controllerElement.Name, true, true);
                controllersDict.Add(controllerElement.Name, Activator.CreateInstance(type));
@@ -71,7 +71,7 @@ namespace SmartHouseWithServer
                type = assembly.GetType("Devices." + triggerElement.Name, true, true);
 
                object obj = Activator.CreateInstance(type, sensorsDict[triggerElement.Sensor.Name],
-                   controllersDict[triggerElement.Controller.Name], triggerElement.Condition);
+                   controllersDict[triggerElement.HouseController.Name], triggerElement.Condition);
                triggersList.Add(obj);
            }
            return triggersList;

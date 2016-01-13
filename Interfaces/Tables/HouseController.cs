@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Controller : ParentIClass
+    public class HouseController : ParentTable
     {      
         public string Name { get; set; }
         public int? DeviceId { get; set; }
@@ -17,7 +17,7 @@ namespace Interfaces.Tables
 
         public virtual ICollection<Trigger> Triggers { get; set; }
 
-        public Controller()
+        public HouseController()
         { 
             this.Triggers = new List<Trigger>();
         }

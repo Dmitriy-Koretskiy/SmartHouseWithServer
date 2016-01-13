@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartHouseWebSite.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace SmartHouseWebSite
         {
             AreaRegistration.RegisterAllAreas();
 
+            AutoMapperConfig.RegisterMappings();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

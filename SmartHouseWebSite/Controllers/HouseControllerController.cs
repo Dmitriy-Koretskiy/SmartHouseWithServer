@@ -6,26 +6,26 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SmartHouseWithServer.DTO;
-using SmartHouseWithServer.Interfaces;
+using Interfaces.Tables;
 using SmartHouseWithServer.Services;
 
 namespace SmartHouseWebSite.Controllers
 {
-    public class CtrlController : Controller
+    public class HouseControllerController : Controller
     {
         //
         // GET: /Ctrl/
-        IControllerService ctrlServie { get; set; }
+        GenericService genericService { get; set; }
 
-        public CtrlController() //should use IoC
+        public HouseControllerController() //should use IoC
         {
-            this.ctrlServie = new ControllerService();
+            this.genericService = new GenericService();
         }
 
         public ActionResult Index()
         {
-            Mapper.CreateMap<ControllerDTO, ControllerViewModel>();
-            var controllers = Mapper.Map<IEnumerable<ControllerDTO>, List<ControllerViewModel>>(ctrlServie.GetControllers());
+            
+            var controllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericService.GetControllers<HouseControllerDTO,HouseController>());
             return View(controllers);
         }
 

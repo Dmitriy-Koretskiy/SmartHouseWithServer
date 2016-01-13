@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Trigger : ParentIClass
+    public class Trigger : ParentTable
     {
         public string Name { get; set; }
         public string Condition { get; set; }
         public bool Enable { get; set; }
-        public int? ControllerId { get; set; }
+        public int? HouseControllerId { get; set; }
         public int? SensorId { get; set; }
 
-        public virtual Controller Controller { get; set; }
+        public virtual HouseController HouseController { get; set; }
         public virtual Sensor Sensor { get; set; }
 
         public virtual ICollection<TriggersAction> TriggersActions { get; set; }

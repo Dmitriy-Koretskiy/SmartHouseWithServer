@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SmartHouseWebSite.Models
 {
-    public class ControllerViewModel
+    public class HouseControllerViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

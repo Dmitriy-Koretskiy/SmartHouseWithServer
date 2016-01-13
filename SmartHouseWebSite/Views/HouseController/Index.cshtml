@@ -1,5 +1,5 @@
 ﻿@using SmartHouseWebSite.Models
-@model IEnumerable<ControllerViewModel>
+@model IEnumerable<HouseControllerViewModel>
 @{
     Layout = null;
 }
@@ -19,7 +19,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            @foreach (ControllerViewModel ctrl in Model)
+            @foreach (HouseControllerViewModel ctrl in Model)
             {
             <tr>
                 <td>@ctrl.Name</td>

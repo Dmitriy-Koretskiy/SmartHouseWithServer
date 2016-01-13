@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class SensorsValue : ParentIClass
+    public class SensorsValue : ParentTable
     {
         public DateTime TimeMeasurement { get; set; }
         public int Value { get; set; }

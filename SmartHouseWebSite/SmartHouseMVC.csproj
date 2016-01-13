@@ -130,11 +130,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CtrlController.cs" />
+    <Compile Include="Controllers\HouseControllerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SensorController.cs" />
     <Compile Include="Controllers\SensorsValueController.cs" />
@@ -143,7 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ControllerViewModel.cs" />
+    <Compile Include="Models\HouseControllerViewModel.cs" />
     <Compile Include="Models\DeviceViewModel.cs" />
     <Compile Include="Models\SensorsValueViewModel.cs" />
     <Compile Include="Models\SensorViewModel.cs" />
@@ -236,7 +237,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Ctrl\Index.cshtml" />
+    <Content Include="Views\HouseController\Index.cshtml" />
     <Content Include="Views\Sensor\Index.cshtml" />
     <Content Include="Views\SensorsValue\Index.cshtml" />
     <Content Include="Views\Trigger\Index.cshtml" />
@@ -249,6 +250,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{8bb04cef-3099-4dc5-bb1e-df645e7b6e43}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmartHouseWithServer\SmartHouseWithServer.csproj">
       <Project>{52602e53-2121-4f10-84fd-a09d3e4820a8}</Project>
       <Name>SmartHouseWithServer</Name>

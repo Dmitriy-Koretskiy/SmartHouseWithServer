@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Sensor : ParentIClass
+    public class Sensor : ParentTable
     {
         public string Name { get; set; }
         public bool Enable { get; set; }

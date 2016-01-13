@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Device : ParentIClass
+    public class Device : ParentTable
     {
         public string Name { get; set; }
         public bool Enable { get; set; }
 
-        public virtual ICollection<Controller> Controllers { get; set; }
+        public virtual ICollection<HouseController> Controllers { get; set; }
 
         public Device()
         { 
-            this.Controllers = new List<Controller>();
+            this.Controllers = new List<HouseController>();
         }
     }
 }

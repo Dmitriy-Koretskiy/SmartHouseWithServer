@@ -15,7 +15,7 @@ namespace DAL
          Database.SetInitializer<SmartHouseContext>(new DbInitializer());
         }
 
-        public DbSet<Controller> Controllers { get; set; }
+        public DbSet<HouseController> HouseControllers { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Sensor> Sensors { get; set; }
         public DbSet<Trigger> Triggers { get; set; }
