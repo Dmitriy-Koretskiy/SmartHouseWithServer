@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using SmartHouseWithServer.DTO;
 using Interfaces.Tables;
 using SmartHouseWithServer.Services;
+using Interfaces;
 
 namespace SmartHouseWebSite.Controllers
 {
@@ -15,18 +16,18 @@ namespace SmartHouseWebSite.Controllers
     {
         //
         // GET: /Ctrl/
-        GenericService genericService { get; set; }
+        IGenericService genericService { get; set; }
+        IRepository repository { get; set; }
 
-        public HouseControllerController() //should use IoC
+        public HouseControllerController() //should use IoC for service and repository
         {
             this.genericService = new GenericService();
         }
 
         public ActionResult Index()
         {
-            
-            var controllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericService.GetControllers<HouseControllerDTO,HouseController>());
-            return View(controllers);
+            var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericService.MapAll<HouseController,HouseControllerDTO>());
+            return View(houseControllers);
         }
 
         //
@@ -66,21 +67,33 @@ namespace SmartHouseWebSite.Controllers
         //
         // GET: /Ctrl/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            HouseControllerViewModel houseControllerVM = Mapper.Map<HouseControllerDTO, HouseControllerViewModel>(genericService.MapById<HouseController, HouseControllerDTO>(id));
+
+            if (houseControllerVM == null)
+            {
+                return HttpNotFound();
+            }
+            return View(houseControllerVM);
         }
 
         //
         // POST: /Ctrl/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(HouseControllerViewModel houseControllerVM)
         {
             try
             {
                 // TODO: Add update logic here
-
+                var controllerDTO = Mapper.Map<HouseControllerViewModel, HouseControllerDTO>(houseControllerVM);
+                genericService.AddToDB<HouseControllerDTO, HouseController>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch

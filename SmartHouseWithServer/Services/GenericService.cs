@@ -20,19 +20,27 @@ namespace SmartHouseWithServer.Services
             this.repository = new Repository();
         }
 
-        public N GetController<N , O>(int? id) 
+        public N MapById<O,N>(int? id) 
             where O: class
             where N: class 
         {
-            var controller = repository.Get<O>(id);
-            return Mapper.Map<O, N>(controller);
+            var oldObject = repository.Get<O>(id);
+            return Mapper.Map<O, N>(oldObject);
         }
 
-        public IEnumerable<N> GetControllers<N,O>()
+        public IEnumerable<N> MapAll<O,N>()
             where N : class
             where O : class
         {
             return Mapper.Map<IEnumerable<O>, List<N>>(repository.GetAll<O>());
+        }
+
+        public void AddToDB<O, N>(O oldObject)
+            where O : class
+            where N : class
+        {
+            var newObject = Mapper.Map<O, N>(oldObject);
+            repository.Update<N>(newObject);
         }
 
         public void Dispose()

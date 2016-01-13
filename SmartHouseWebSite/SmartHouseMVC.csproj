@@ -242,6 +242,7 @@
     <Content Include="Views\SensorsValue\Index.cshtml" />
     <Content Include="Views\Trigger\Index.cshtml" />
     <Content Include="Views\TriggersAction\Index.cshtml" />
+    <Content Include="Views\HouseController\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

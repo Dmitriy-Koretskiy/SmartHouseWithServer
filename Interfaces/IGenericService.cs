@@ -8,11 +8,15 @@ namespace Interfaces
 {
     public interface IGenericService
     {
-        N GetController<N, O>(int? id)
+        N MapById<O, N>(int? id)
             where N : class
             where O : class;
               
-        IEnumerable<N> GetControllers<N, O>()
+        IEnumerable<N> MapAll<O, N>()
+            where N : class
+            where O : class;
+
+        void AddToDB<O, N>(O oldObject)
             where N : class
             where O : class;
 

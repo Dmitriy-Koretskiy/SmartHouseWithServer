@@ -15,6 +15,8 @@ namespace SmartHouseWebSite.App_Start
         {
             Mapper.CreateMap<HouseControllerDTO, HouseControllerViewModel>();
             Mapper.CreateMap<HouseController, HouseControllerDTO>();
+            Mapper.CreateMap<HouseControllerViewModel, HouseControllerDTO>();
+            Mapper.CreateMap<HouseControllerDTO, HouseController>();
         }
     }
 }
