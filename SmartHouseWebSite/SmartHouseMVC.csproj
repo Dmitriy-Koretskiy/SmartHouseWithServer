@@ -145,7 +145,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HouseControllerViewModel.cs" />
-    <Compile Include="Models\DeviceViewModel.cs" />
     <Compile Include="Models\SensorsValueViewModel.cs" />
     <Compile Include="Models\SensorViewModel.cs" />
     <Compile Include="Models\TriggersActionViewModel.cs" />

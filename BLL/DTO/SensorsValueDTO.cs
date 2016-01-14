@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace BLL.DTO
         public int Id { get; set; }
         public DateTime TimeMeasurement { get; set; }
         public int Value { get; set; }
-        public int? SensorId { get; set; }
+        public string Sensor { get; set; }
     }
 }

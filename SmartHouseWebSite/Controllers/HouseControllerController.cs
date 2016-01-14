@@ -95,7 +95,7 @@ namespace SmartHouseWebSite.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {

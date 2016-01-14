@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace BLL.DTO
         public int Id { get; set; }
         public DateTime TimeChange { get; set; }
         public string Description { get; set; }
-        public int? TriggerId { get; set; }
+        public string Trigger { get; set; }
     }
 }

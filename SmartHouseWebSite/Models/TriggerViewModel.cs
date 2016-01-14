@@ -11,7 +11,7 @@ namespace SmartHouseWebSite.Models
         public string Name { get; set; }
         public string Condition { get; set; }
         public bool Enable { get; set; }
-        public int? HouseControllerId { get; set; }
-        public int? SensorId { get; set; }
+        public string HouseController { get; set; }
+        public string Sensor { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace SmartHouseWebSite.Models
         public int Id { get; set; }
         public DateTime TimeMeasurement { get; set; }
         public int Value { get; set; }
-        public int? SensorId { get; set; }
+        public string Sensor { get; set; }
     }
 }

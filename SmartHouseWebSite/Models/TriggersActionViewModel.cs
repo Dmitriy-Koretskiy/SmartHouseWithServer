@@ -10,6 +10,6 @@ namespace SmartHouseWebSite.Models
         public int Id { get; set; }
         public DateTime TimeChange { get; set; }
         public string Description { get; set; }
-        public int? TriggerId { get; set; }
+        public string Trigger { get; set; }
     }
 }
