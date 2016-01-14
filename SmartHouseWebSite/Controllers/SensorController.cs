@@ -1,4 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using BLL.DTO;
+using BLL.Services;
+using Interfaces;
+using Interfaces.Tables;
+using SmartHouseWebSite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,40 +14,48 @@ namespace SmartHouseWebSite.Controllers
 {
     public class SensorController : Controller
     {
-        //
-        // GET: /Sensor/
+        IGenericMappingService genericMappingService { get; set; }
+        IRepository repository { get; set; }
+
+        public SensorController() //should use IoC for service and repository
+        {
+            this.genericMappingService = new GenericMappingService();
+        }
 
         public ActionResult Index()
         {
-            return View();
+            var houseControllers = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
+            return View(houseControllers);
         }
 
-        //
-        // GET: /Sensor/Details/5
-
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
-        }
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
 
-        //
-        // GET: /Sensor/Create
+            SensorViewModel houseControllerVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
+
+            if (houseControllerVM == null)
+            {
+                return HttpNotFound();
+            }
+            return View(houseControllerVM);
+        }
 
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Sensor/Create
-
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(SensorViewModel houseControllerVM)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(houseControllerVM);
+                genericMappingService.Add<SensorDTO, Sensor>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -50,24 +64,29 @@ namespace SmartHouseWebSite.Controllers
             }
         }
 
-        //
-        // GET: /Sensor/Edit/5
-
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            SensorViewModel houseControllerVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
+
+            if (houseControllerVM == null)
+            {
+                return HttpNotFound();
+            }
+            return View(houseControllerVM);
         }
 
-        //
-        // POST: /Sensor/Edit/5
-
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(SensorViewModel houseControllerVM)
         {
             try
             {
-                // TODO: Add update logic here
-
+                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(houseControllerVM);
+                genericMappingService.Edit<SensorDTO, Sensor>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -75,31 +94,18 @@ namespace SmartHouseWebSite.Controllers
                 return View();
             }
         }
-
-        //
-        // GET: /Sensor/Delete/5
 
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Sensor/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
+            if (id == null)
             {
-                // TODO: Add delete logic here
+                return HttpNotFound();
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            genericMappingService.Delete<Sensor>(id);
+
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -14,8 +14,6 @@ namespace SmartHouseWebSite.Controllers
 {
     public class HouseControllerController : Controller
     {
-        //
-        // GET: /Ctrl/
         IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
 
@@ -29,9 +27,6 @@ namespace SmartHouseWebSite.Controllers
             var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.MapAll<HouseController,HouseControllerDTO>());
             return View(houseControllers);
         }
-
-        //
-        // GET: /Ctrl/Details/5
 
         public ActionResult Details(int? id)
         {
@@ -49,16 +44,10 @@ namespace SmartHouseWebSite.Controllers
             return View(houseControllerVM);
         }
 
-        //
-        // GET: /Ctrl/Create
-
         public ActionResult Create()
         {
             return View();
         }
-
-
-        // POST: /Ctrl/Create
 
         [HttpPost]
         public ActionResult Create(HouseControllerViewModel houseControllerVM)
@@ -74,9 +63,6 @@ namespace SmartHouseWebSite.Controllers
                 return View();
             }
         }
-
-        //
-        // GET: /Ctrl/Edit/5
 
         public ActionResult Edit(int? id)
         {
@@ -94,9 +80,6 @@ namespace SmartHouseWebSite.Controllers
             return View(houseControllerVM);
         }
 
-        //
-        // POST: /Ctrl/Edit/5
-
         [HttpPost]
         public ActionResult Edit(HouseControllerViewModel houseControllerVM)
         {
@@ -112,9 +95,6 @@ namespace SmartHouseWebSite.Controllers
             }
         }
 
-        //
-        // GET: /Ctrl/Delete/5
-
         public ActionResult Delete(int id)
         {
             if (id == null)
@@ -127,8 +107,5 @@ namespace SmartHouseWebSite.Controllers
            
             return RedirectToAction("Index");
         }
-
-        //
-        // POST: /Ctrl/Delete/5      
     }
 }

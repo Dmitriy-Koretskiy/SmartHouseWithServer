@@ -1,17 +1,28 @@
-﻿@{
-    Layout = null;
+﻿@using SmartHouseWebSite.Models
+@model IEnumerable<TriggerViewModel>
+@{
+   ViewBag.Title = "Triggers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 }
 
-<!DOCTYPE html>
+<div>
+    <table>
+        <tr>
+            <td><h3>Name</h3></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (TriggerViewModel ctrl in Model)
+        {
+        <tr>
+            <td>@ctrl.Name</td>
+            <td><p><a href="/Trigger/Details/@ctrl.Id">Details</a></p></td>
+            <td><p><a href="/Trigger/Edit/@ctrl.Id">Edit</a></p></td>
+            <td><p><a href="/Trigger/Delete/@ctrl.Id">Delete</a></p></td>
+            <td><p><a href="/Trigger/Create">Create</a></p></td>
+        </tr>
+        }
+    </table>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        
-    </div>
-</body>
-</html>

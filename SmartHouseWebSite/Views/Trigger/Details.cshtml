@@ -1,0 +1,51 @@
+﻿@model SmartHouseWebSite.Models.TriggerViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TriggerViewModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Condition)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Condition)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Enable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Enable)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ControllerId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ControllerId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SensorId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SensorId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

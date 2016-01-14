@@ -1,11 +1,11 @@
-﻿@model SmartHouseWebSite.Models.HouseControllerViewModel
+﻿@model SmartHouseWebSite.Models.SensorViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <fieldset>
-        <legend>HouseControllerViewModel</legend>
+        <legend>SensorViewModel</legend>
     
         <div class="display-label">
              @Html.DisplayNameFor(model => model.Name)
@@ -20,16 +20,8 @@
         <div class="display-field">
             @Html.DisplayFor(model => model.Enable)
         </div>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.DeviceId)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.DeviceId)
-        </div>
     </fieldset>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-

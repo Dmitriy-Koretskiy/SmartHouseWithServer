@@ -148,7 +148,7 @@
     <Compile Include="Models\DeviceViewModel.cs" />
     <Compile Include="Models\SensorsValueViewModel.cs" />
     <Compile Include="Models\SensorViewModel.cs" />
-    <Compile Include="Models\TriggersAcionViewModel.cs" />
+    <Compile Include="Models\TriggersActionViewModel.cs" />
     <Compile Include="Models\TriggerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -245,6 +245,12 @@
     <Content Include="Views\HouseController\Edit.cshtml" />
     <Content Include="Views\HouseController\Create.cshtml" />
     <Content Include="Views\HouseController\Details.cshtml" />
+    <Content Include="Views\Sensor\Create.cshtml" />
+    <Content Include="Views\Sensor\Details.cshtml" />
+    <Content Include="Views\Trigger\Create.cshtml" />
+    <Content Include="Views\Sensor\Edit.cshtml" />
+    <Content Include="Views\Trigger\Details.cshtml" />
+    <Content Include="Views\Trigger\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

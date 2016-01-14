@@ -1,17 +1,24 @@
-﻿@{
-    Layout = null;
+﻿@using SmartHouseWebSite.Models
+@model IEnumerable<SensorsValueViewModel>
+@{
+    ViewBag.Title = "Sensor's values";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        
-    </div>
-</body>
-</html>
+<div>
+    <table>
+        <tr>
+            <td><h3>Sensor</h3></td>
+            <td>Time</td>
+            <td>Value</td>
+        </tr>
+        @foreach (SensorsValueViewModel ctrl in Model)
+        {
+        <tr>
+            <td></td>
+            <td>@ctrl.TimeMeasurement</td>
+            <td>@ctrl.Value</td>
+        </tr>
+        }
+    </table>
+</div>

@@ -1,17 +1,25 @@
-﻿@{
-    Layout = null;
+﻿@using SmartHouseWebSite.Models
+@model IEnumerable<TriggersActionViewModel>
+@{
+    ViewBag.Title = "Sensors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        
-    </div>
-</body>
-</html>
+<div>
+    <table>
+        <tr>
+            <td><h3>Trigger</h3></td>
+            <td>Time</td>
+            <td>Description</td>
+        </tr>
+        @foreach (TriggersActionViewModel ctrl in Model)
+        {
+        <tr>
+            <td></td>
+            <td>@ctrl.TimeChange</td>
+            <td>@ctrl.Description</td>
+        </tr>
+        }
+    </table>
+</div>

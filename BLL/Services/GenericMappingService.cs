@@ -56,7 +56,8 @@ namespace BLL.Services
         public void Delete<O>(int id)
             where O : class
         {
-            repository.Delete<O>(id);
+            var obj = repository.Get<O>(id);
+            repository.Delete<O>(obj);
             repository.SaveChanges();
         }
 

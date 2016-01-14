@@ -1,17 +1,10 @@
 ﻿@using SmartHouseWebSite.Models
 @model IEnumerable<HouseControllerViewModel>
 @{
-    Layout = null;
+    ViewBag.Title = "House controllers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
     <div>
         <table>
             <tr>
@@ -31,5 +24,3 @@
             }
         </table>
     </div>
-</body>
-</html>

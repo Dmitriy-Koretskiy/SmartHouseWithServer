@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SmartHouseWebSite.Models
 {
-    public class TriggersAcionViewModel
+    public class TriggersActionViewModel
     {
         public int Id { get; set; }
         public DateTime TimeChange { get; set; }
