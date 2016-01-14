@@ -27,9 +27,9 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\obj\Debug\SmartHouseMVC.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\obj\Debug\SmartHouseWebSite.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\obj\Debug\SmartHouseWebSite.pdb
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\SmartHouseWithServer.exe
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\DAL.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\Interfaces.dll
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\SmartHouseWithServer.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\DAL.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\Interfaces.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\BLL.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseWebSite\bin\BLL.pdb

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseWithServer", "SmartHouseWithServer\SmartHouseWithServer.csproj", "{52602E53-2121-4F10-84FD-A09D3E4820A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseConsole", "SmartHouseWithServer\SmartHouseConsole.csproj", "{52602E53-2121-4F10-84FD-A09D3E4820A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devices", "Devices\Devices.csproj", "{DA16C894-7356-40A7-AC36-596CED2C27FB}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{18AA660C-3F84-4A10-B8F4-88440E2732CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseMVC", "SmartHouseWebSite\SmartHouseMVC.csproj", "{2846719D-0FAF-4DDB-B939-13E6FD710C9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{F475314B-513C-4A97-AB4D-A89F89B92AD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{2846719D-0FAF-4DDB-B939-13E6FD710C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2846719D-0FAF-4DDB-B939-13E6FD710C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2846719D-0FAF-4DDB-B939-13E6FD710C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F475314B-513C-4A97-AB4D-A89F89B92AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F475314B-513C-4A97-AB4D-A89F89B92AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F475314B-513C-4A97-AB4D-A89F89B92AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F475314B-513C-4A97-AB4D-A89F89B92AD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGenericService.cs" />
+    <Compile Include="IGenericMappingService.cs" />
     <Compile Include="Tables\ParentTable.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IRepository.cs" />

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Interfaces.Tables;
 using SmartHouseWebSite.Models;
-using SmartHouseWithServer.DTO;
+using BLL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

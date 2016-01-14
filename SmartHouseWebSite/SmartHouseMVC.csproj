@@ -251,13 +251,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{f475314b-513c-4a97-ab4d-a89f89b92ad6}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{8bb04cef-3099-4dc5-bb1e-df645e7b6e43}</Project>
       <Name>Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SmartHouseWithServer\SmartHouseWithServer.csproj">
-      <Project>{52602e53-2121-4f10-84fd-a09d3e4820a8}</Project>
-      <Name>SmartHouseWithServer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
