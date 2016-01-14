@@ -16,9 +16,16 @@ namespace Interfaces
             where N : class
             where O : class;
 
-        void AddToDB<O, N>(O oldObject)
+        void Add<O, N>(O oldObject)
+            where O : class
+            where N : class;
+
+        void Edit<O, N>(O oldObject)
             where N : class
             where O : class;
+
+        void Delete<O>(int id)
+           where O : class;
 
         void Dispose();
     }

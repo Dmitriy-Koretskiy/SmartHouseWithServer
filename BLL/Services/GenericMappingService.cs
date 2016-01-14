@@ -35,12 +35,28 @@ namespace BLL.Services
             return Mapper.Map<IEnumerable<O>, List<N>>(repository.GetAll<O>());
         }
 
-        public void AddToDB<O, N>(O oldObject)
+        public void Add<O, N>(O oldObject)
+            where O : class
+            where N : class
+        {
+            var newObject = Mapper.Map<O, N>(oldObject);
+            repository.Add<N>(newObject);
+            repository.SaveChanges();
+        }
+
+        public void Edit<O, N>(O oldObject)
             where O : class
             where N : class
         {
             var newObject = Mapper.Map<O, N>(oldObject);
             repository.Update<N>(newObject);
+            repository.SaveChanges();
+        }
+
+        public void Delete<O>(int id)
+            where O : class
+        {
+            repository.Delete<O>(id);
             repository.SaveChanges();
         }
 

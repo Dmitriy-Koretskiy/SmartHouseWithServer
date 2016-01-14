@@ -16,26 +16,37 @@ namespace SmartHouseWebSite.Controllers
     {
         //
         // GET: /Ctrl/
-        IGenericMappingService genericService { get; set; }
+        IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
 
         public HouseControllerController() //should use IoC for service and repository
         {
-            this.genericService = new GenericMappingService();
+            this.genericMappingService = new GenericMappingService();
         }
 
         public ActionResult Index()
         {
-            var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericService.MapAll<HouseController,HouseControllerDTO>());
+            var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.MapAll<HouseController,HouseControllerDTO>());
             return View(houseControllers);
         }
 
         //
         // GET: /Ctrl/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            HouseControllerViewModel houseControllerVM = Mapper.Map<HouseControllerDTO, HouseControllerViewModel>(genericMappingService.MapById<HouseController, HouseControllerDTO>(id));
+
+            if (houseControllerVM == null)
+            {
+                return HttpNotFound();
+            }
+            return View(houseControllerVM);
         }
 
         //
@@ -46,16 +57,16 @@ namespace SmartHouseWebSite.Controllers
             return View();
         }
 
-        //
+
         // POST: /Ctrl/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(HouseControllerViewModel houseControllerVM)
         {
             try
-            {
-                // TODO: Add insert logic here
-
+            {            
+                var controllerDTO = Mapper.Map<HouseControllerViewModel, HouseControllerDTO>(houseControllerVM);
+                genericMappingService.Add<HouseControllerDTO, HouseController>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -74,7 +85,7 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            HouseControllerViewModel houseControllerVM = Mapper.Map<HouseControllerDTO, HouseControllerViewModel>(genericService.MapById<HouseController, HouseControllerDTO>(id));
+            HouseControllerViewModel houseControllerVM = Mapper.Map<HouseControllerDTO, HouseControllerViewModel>(genericMappingService.MapById<HouseController, HouseControllerDTO>(id));
 
             if (houseControllerVM == null)
             {
@@ -91,9 +102,8 @@ namespace SmartHouseWebSite.Controllers
         {
             try
             {
-                // TODO: Add update logic here
                 var controllerDTO = Mapper.Map<HouseControllerViewModel, HouseControllerDTO>(houseControllerVM);
-                genericService.AddToDB<HouseControllerDTO, HouseController>(controllerDTO);
+                genericMappingService.Edit<HouseControllerDTO, HouseController>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -107,25 +117,18 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+           genericMappingService.Delete<HouseController>(id);
+
+           
+            return RedirectToAction("Index");
         }
 
         //
-        // POST: /Ctrl/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        // POST: /Ctrl/Delete/5      
     }
 }

@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DTO\DeviceDTO.cs" />
     <Compile Include="DTO\HouseControllerDTO.cs" />
     <Compile Include="DTO\SensorDTO.cs" />

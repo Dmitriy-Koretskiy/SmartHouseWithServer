@@ -31,16 +31,26 @@ namespace DAL
         public void Add<T>(T entity) where T : class
         {
             this.db.Set<T>().Add(entity);
+            this.db.SaveChanges();
         }
 
         public void Delete<T>(T entity) where T : class
         {
             this.db.Set<T>().Remove(entity);
+            this.db.SaveChanges();
+        }
+
+        public void Delete<T>(int id) where T : class
+        {
+            T entity = db.Set<T>().Find(id);
+            db.Entry(entity).State = EntityState.Deleted;
+            this.db.SaveChanges();
         }
 
         public void Update<T>(T entity) where T : class
         {
             db.Entry(entity).State = EntityState.Modified;
+            this.db.SaveChanges();
         }
 
         private bool disposed = false;

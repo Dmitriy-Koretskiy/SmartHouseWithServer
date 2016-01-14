@@ -1,0 +1,44 @@
+﻿@model SmartHouseWebSite.Models.HouseControllerViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>HouseControllerViewModel</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Enable)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Enable)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.DeviceId)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.DeviceId)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
