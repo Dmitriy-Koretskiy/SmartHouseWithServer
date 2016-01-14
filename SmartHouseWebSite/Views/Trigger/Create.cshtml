@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>TriggerViewModel</legend>
+        <legend>Trigger</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -39,11 +39,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ControllerId)
+            @Html.LabelFor(model => model.HouseControllerId)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ControllerId)
-            @Html.ValidationMessageFor(model => model.ControllerId)
+            @Html.EditorFor(model => model.HouseControllerId)
+            @Html.ValidationMessageFor(model => model.HouseControllerId)
         </div>
 
         <div class="editor-label">

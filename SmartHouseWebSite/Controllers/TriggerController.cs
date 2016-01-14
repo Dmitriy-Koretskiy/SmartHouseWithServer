@@ -1,4 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using BLL.DTO;
+using BLL.Services;
+using Interfaces;
+using Interfaces.Tables;
+using SmartHouseWebSite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,40 +14,48 @@ namespace SmartHouseWebSite.Controllers
 {
     public class TriggerController : Controller
     {
-        //
-        // GET: /Trigger/
+        IGenericMappingService genericMappingService { get; set; }
+        IRepository repository { get; set; }
+
+        public TriggerController() //should use IoC for service and repository
+        {
+            this.genericMappingService = new GenericMappingService();
+        }
 
         public ActionResult Index()
         {
-            return View();
+            var houseControllers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(genericMappingService.MapAll<Trigger, TriggerDTO>());
+            return View(houseControllers);
         }
 
-        //
-        // GET: /Trigger/Details/5
-
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
-        }
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
 
-        //
-        // GET: /Trigger/Create
+            TriggerViewModel houseControllerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(genericMappingService.MapById<Trigger, TriggerDTO>(id));
+
+            if (houseControllerVM == null)
+            {
+                return HttpNotFound();
+            }
+            return View(houseControllerVM);
+        }
 
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Trigger/Create
-
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TriggerViewModel houseControllerVM)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(houseControllerVM);
+                genericMappingService.Add<TriggerDTO, Trigger>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -50,24 +64,29 @@ namespace SmartHouseWebSite.Controllers
             }
         }
 
-        //
-        // GET: /Trigger/Edit/5
-
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            TriggerViewModel houseControllerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(genericMappingService.MapById<Trigger, TriggerDTO>(id));
+
+            if (houseControllerVM == null)
+            {
+                return HttpNotFound();
+            }
+            return View(houseControllerVM);
         }
 
-        //
-        // POST: /Trigger/Edit/5
-
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(TriggerViewModel houseControllerVM)
         {
             try
             {
-                // TODO: Add update logic here
-
+                var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(houseControllerVM);
+                genericMappingService.Edit<TriggerDTO, Trigger>(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -76,30 +95,17 @@ namespace SmartHouseWebSite.Controllers
             }
         }
 
-        //
-        // GET: /Trigger/Delete/5
-
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Trigger/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
+            if (id == null)
             {
-                // TODO: Add delete logic here
+                return HttpNotFound();
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            genericMappingService.Delete<Trigger>(id);
+
+
+            return RedirectToAction("Index");
         }
     }
 }

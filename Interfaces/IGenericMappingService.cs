@@ -24,7 +24,7 @@ namespace Interfaces
             where N : class
             where O : class;
 
-        void Delete<O>(int id)
+        void Delete<O>(int? id)
            where O : class;
 
         void Dispose();

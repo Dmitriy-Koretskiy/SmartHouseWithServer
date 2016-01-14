@@ -53,7 +53,7 @@ namespace BLL.Services
             repository.SaveChanges();
         }
 
-        public void Delete<O>(int id)
+        public void Delete<O>(int? id)
             where O : class
         {
             var obj = repository.Get<O>(id);

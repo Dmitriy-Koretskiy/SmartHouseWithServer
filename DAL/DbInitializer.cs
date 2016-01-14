@@ -15,8 +15,8 @@ namespace DAL
             Sensor s1 = new Sensor{Name = "LightSensor"};
             Sensor s2 = new Sensor{Name = "TemperatureSensor"};
         
-            HouseController c1 = new HouseController{Name = "LightController", Device= new Device{Name="Lamp"}};
-            HouseController c2 = new HouseController{Name = "ConditionerController", Device= new Device{Name="Conditioner"}};
+            HouseController c1 = new HouseController{Name = "LightController"};
+            HouseController c2 = new HouseController{Name = "ConditionerController"};
 
             Trigger t1 = new Trigger {Name = "LightTrigger", Sensor = s1, HouseController = c1, Condition = "((value < 475) OR value > 500 ) AND value/10 < 51" };
             Trigger t2 = new Trigger {Name = "ConditionerTrigger", Sensor = s2, HouseController = c2, Condition = "79 / 9 * ( value - 25) < 13" };
