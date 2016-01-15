@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.DTO;
+using Interfaces.DTO;
 using DAL;
 using Interfaces;
 using Interfaces.Tables;

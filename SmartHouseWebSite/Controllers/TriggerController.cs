@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.DTO;
+using Interfaces.DTO;
 using BLL.Services;
 using Interfaces;
 using Interfaces.Tables;
@@ -13,8 +13,8 @@ using System.Web.Mvc;
 namespace SmartHouseWebSite.Controllers
 {
     public class TriggerController : Controller
-    {   //!!!!! change to intarface
-        TriggerMappingService mappingService { get; set; }
+    {   
+        IMappingService mappingService { get; set; }
         IRepository repository { get; set; }
 
         public TriggerController() //should use IoC for service and repository

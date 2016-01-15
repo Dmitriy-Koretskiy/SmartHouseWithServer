@@ -4,14 +4,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
-    @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
+    @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+     <header >
+            <div>            
+                <nav >
+                    <ul class="mainTopMenu">
+                        <li >@Html.ActionLink("HouseControllers", "Index", "HouseController")</li>
+                        <li >@Html.ActionLink("Sensors", "Index", "Sensor")</li>
+                        <li >@Html.ActionLink("Sensor's values", "Index", "SensorsValue")</li>
+                        <li >@Html.ActionLink("Triggers", "Index", "Trigger")</li>
+                        <li >@Html.ActionLink("Trigger's Actions", "Index", "TriggersAction")</li>
+                    </ul>
+                </nav>               
+            </div>
+        </header>
+
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+      <footer>
+            
+      </footer>
 </body>
 </html>

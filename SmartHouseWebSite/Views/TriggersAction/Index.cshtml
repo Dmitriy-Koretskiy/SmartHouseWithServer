@@ -8,14 +8,14 @@
 <div>
     <table>
         <tr>
-            <td><h3>Trigger</h3></td>
-            <td>Time</td>
-            <td>Description</td>
+            <td><h4>Trigger</h4></td>
+            <td><h4>Time</h4></td>
+            <td><h4>Description</h4></td>
         </tr>
         @foreach (TriggersActionViewModel ctrl in Model)
         {
         <tr>
-            <td></td>
+            <td>@ctrl.Trigger</td>
             <td>@ctrl.TimeChange</td>
             <td>@ctrl.Description</td>
         </tr>

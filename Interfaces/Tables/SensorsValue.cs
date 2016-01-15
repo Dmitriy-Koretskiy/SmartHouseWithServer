@@ -12,6 +12,6 @@ namespace Interfaces.Tables
         public int Value { get; set; }
         public int? SensorId { get; set; }
 
-        public Sensor Sensor { get; set; }
+        public virtual Sensor Sensor { get; set; }
     }
 }

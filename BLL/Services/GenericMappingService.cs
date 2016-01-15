@@ -2,7 +2,7 @@
 using DAL;
 using Interfaces;
 using Interfaces.Tables;
-using BLL.DTO;
+using Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

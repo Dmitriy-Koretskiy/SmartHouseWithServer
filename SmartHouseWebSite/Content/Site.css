@@ -29,7 +29,7 @@ textarea {
 
 .editor-label {
     margin: 1em 0 0 0;
-    color : darkgrey;
+    color : #202a3d;
 }
 
 .editor-field {
@@ -59,4 +59,13 @@ textarea {
 
 .validation-summary-valid {
     display: none;
+}
+
+/*------------------------------------*/
+
+.mainTopMenu li{
+    font-size: 1.4em;
+    display: inline;
+    list-style: none;
+    margin: 40px;
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Interfaces.Tables;
 using SmartHouseWebSite.Models;
-using BLL.DTO;
+using Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +25,15 @@ namespace SmartHouseWebSite.App_Start
 
             Mapper.CreateMap<SensorsValueDTO, SensorsValueViewModel>();
             Mapper.CreateMap<SensorsValue, SensorsValueDTO>()
-                .ForMember("Sensor", opt => opt.MapFrom(s => s.Sensor.Name));
+                .ForMember(sv => sv.Sensor, opt => opt.MapFrom(s => s.Sensor.Name));
             Mapper.CreateMap<SensorsValueViewModel, SensorsValueDTO>();
             Mapper.CreateMap<SensorsValueDTO, SensorsValue>()
-                .ForMember("SensorId", opt => opt.Ignore());
+                .ForMember(sv => sv.SensorId, opt => opt.Ignore());
 
             Mapper.CreateMap<TriggerDTO, TriggerViewModel>();
             Mapper.CreateMap<Trigger, TriggerDTO>()
-                .ForMember("Sensor", opt => opt.MapFrom(s => s.Sensor.Name))
-                .ForMember("HouseController", opt => opt.MapFrom(s => s.HouseController.Name));
+                .ForMember(t => t.Sensor, opt => opt.MapFrom(s => s.Sensor.Name))
+                .ForMember(t => t.HouseController, opt => opt.MapFrom(s => s.HouseController.Name));
             Mapper.CreateMap<TriggerViewModel, TriggerDTO>();
             Mapper.CreateMap<TriggerDTO, Trigger>()
                .ForMember(t => t.SensorId, opt => opt.Ignore())
@@ -43,10 +43,10 @@ namespace SmartHouseWebSite.App_Start
 
             Mapper.CreateMap<TriggersActionDTO, TriggersActionViewModel>();
             Mapper.CreateMap<TriggersAction, TriggersActionDTO>()
-                .ForMember("Trigger", opt => opt.MapFrom(s => s.Trigger.Name));
+                .ForMember(ta =>ta.Trigger, opt => opt.MapFrom(s => s.Trigger.Name));
             Mapper.CreateMap<TriggersActionViewModel, TriggersActionDTO>();
             Mapper.CreateMap<TriggersActionDTO, TriggersAction>()
-                .ForMember("TriggerId", opt => opt.Ignore());
+                .ForMember(ta => ta.TriggerId, opt => opt.Ignore());
         }
     }
 }

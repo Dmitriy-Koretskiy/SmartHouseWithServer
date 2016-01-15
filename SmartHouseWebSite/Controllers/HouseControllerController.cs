@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BLL.DTO;
+using Interfaces.DTO;
 using Interfaces.Tables;
 using BLL.Services;
 using Interfaces;

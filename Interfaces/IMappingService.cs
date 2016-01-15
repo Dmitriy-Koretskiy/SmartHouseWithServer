@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,13 @@ namespace Interfaces
 {
     public interface IMappingService
     {
-     //   TriggerDTO GetByIdFromDB(int? id);
+        TriggerDTO GetByIdFromDB(int? id);
 
-      //  IEnumerable<TriggerDTO> GetAllFromDB();
+        IEnumerable<TriggerDTO> GetAllFromDB();
 
-       // void AddToDB(TriggerDTO oldObject);
+        void AddToDB(TriggerDTO oldObject);
 
-       // void Edit(TriggerDTO oldObject);
+        void Edit(TriggerDTO oldObject);
 
         void Delete(int? id);
 
