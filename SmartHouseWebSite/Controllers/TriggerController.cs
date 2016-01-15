@@ -15,17 +15,19 @@ namespace SmartHouseWebSite.Controllers
     public class TriggerController : Controller
     {   
         IMappingService mappingService { get; set; }
+        IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
 
         public TriggerController() //should use IoC for service and repository
         {
             this.mappingService = new TriggerMappingService();
+            this.genericMappingService = new GenericMappingService();
         }
 
         public ActionResult Index()
         {
-            var houseControllers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(mappingService.GetAllFromDB());
-            return View(houseControllers);
+            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(mappingService.GetAllFromDB());
+            return View(triggers);
         }
 
         public ActionResult Details(int? id)
@@ -35,26 +37,29 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            TriggerViewModel houseControllerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(mappingService.GetByIdFromDB(id));
+            TriggerViewModel triggerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(mappingService.GetByIdFromDB(id));
 
-            if (houseControllerVM == null)
+            if (triggerVM == null)
             {
                 return HttpNotFound();
             }
-            return View(houseControllerVM);
+            return View(triggerVM);
         }
 
         public ActionResult Create()
         {
+            ViewBag.houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.MapAll<HouseController, HouseControllerDTO>());
+            ViewBag.sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(TriggerViewModel houseControllerVM)
+        public ActionResult Create(TriggerViewModel triggerVM)
         {
             try
             {
-                var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(houseControllerVM);
+                var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(triggerVM);
                 mappingService.AddToDB(controllerDTO);
                 return RedirectToAction("Index");
             }
@@ -71,21 +76,21 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            TriggerViewModel houseControllerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(mappingService.GetByIdFromDB(id));
+            TriggerViewModel triggerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(mappingService.GetByIdFromDB(id));
 
-            if (houseControllerVM == null)
+            if (triggerVM == null)
             {
                 return HttpNotFound();
             }
-            return View(houseControllerVM);
+            return View(triggerVM);
         }
 
         [HttpPost]
-        public ActionResult Edit(TriggerViewModel houseControllerVM)
+        public ActionResult Edit(TriggerViewModel triggerVM)
         {
             try
             {
-                var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(houseControllerVM);
+                var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(triggerVM);
                 mappingService.Edit(controllerDTO);
                 return RedirectToAction("Index");
             }

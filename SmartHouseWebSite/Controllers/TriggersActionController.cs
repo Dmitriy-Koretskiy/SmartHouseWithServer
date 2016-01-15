@@ -24,8 +24,8 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Index()
         {
-            var houseControllers = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(genericMappingService.MapAll<TriggersAction, TriggersActionDTO>());
-            return View(houseControllers);
+            var triggersActions = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(genericMappingService.MapAll<TriggersAction, TriggersActionDTO>());
+            return View(triggersActions);
         }
     }
 }

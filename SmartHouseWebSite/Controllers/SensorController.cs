@@ -24,8 +24,8 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Index()
         {
-            var houseControllers = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
-            return View(houseControllers);
+            var sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
+            return View(sensors);
         }
 
         public ActionResult Details(int? id)
@@ -35,13 +35,13 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            SensorViewModel houseControllerVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
+            SensorViewModel sensorVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
 
-            if (houseControllerVM == null)
+            if (sensorVM == null)
             {
                 return HttpNotFound();
             }
-            return View(houseControllerVM);
+            return View(sensorVM);
         }
 
         public ActionResult Create()
@@ -50,11 +50,11 @@ namespace SmartHouseWebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(SensorViewModel houseControllerVM)
+        public ActionResult Create(SensorViewModel sensorVM)
         {
             try
             {
-                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(houseControllerVM);
+                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(sensorVM);
                 genericMappingService.Add<SensorDTO, Sensor>(controllerDTO);
                 return RedirectToAction("Index");
             }
@@ -71,21 +71,21 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            SensorViewModel houseControllerVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
+            SensorViewModel sensorVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
 
-            if (houseControllerVM == null)
+            if (sensorVM == null)
             {
                 return HttpNotFound();
             }
-            return View(houseControllerVM);
+            return View(sensorVM);
         }
 
         [HttpPost]
-        public ActionResult Edit(SensorViewModel houseControllerVM)
+        public ActionResult Edit(SensorViewModel sensorVM)
         {
             try
             {
-                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(houseControllerVM);
+                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(sensorVM);
                 genericMappingService.Edit<SensorDTO, Sensor>(controllerDTO);
                 return RedirectToAction("Index");
             }
