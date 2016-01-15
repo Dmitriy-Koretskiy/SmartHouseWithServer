@@ -18,7 +18,7 @@ namespace DAL
             this.db = new SmartHouseContext();
         }
 
-        public IEnumerable<T> GetAll<T>() where T: class
+        public IQueryable<T> GetAll<T>() where T: class
         {
             return db.Set<T>();
         }
