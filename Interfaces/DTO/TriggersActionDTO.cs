@@ -12,6 +12,6 @@ namespace Interfaces.DTO
         public int Id { get; set; }
         public DateTime TimeChange { get; set; }
         public string Description { get; set; }
-        public string Trigger { get; set; }
+        public string TriggerName { get; set; }
     }
 }

@@ -31,7 +31,6 @@ namespace DAL
         public void Add<T>(T entity) where T : class
         {
             this.db.Set<T>().Add(entity);
-            this.db.SaveChanges();
         }
 
         public void Delete<T>(T entity) where T : class

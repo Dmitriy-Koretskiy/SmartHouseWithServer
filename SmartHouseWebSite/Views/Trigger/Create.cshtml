@@ -12,11 +12,9 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-          List<HouseControllerViewModel> listControlers= ViewBag.houseControllers;  
-          List<string> list = new List<string>();
-  
-    
-    
+    List<HouseControllerViewModel> listControlers= ViewBag.houseControllers;
+    List<SensorViewModel> listSensors = ViewBag.sensors;  
+     
     <fieldset>
         <legend>Trigger</legend>
 
@@ -50,12 +48,11 @@
         }*@
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.HouseController)
+            @Html.Label("Controller")
         </div>
 
           <div >
-
-            @Html.DropDownListFor(model => model.HouseController, new SelectList( listControlers, "Id", "Name"))
+            @Html.DropDownListFor(model => model.HouseControllerId, new SelectList( listControlers, "Id", "Name"))
         </div>
       @*  <div class="editor-field">
             @Html.EditorFor(model => model.HouseController)
@@ -63,10 +60,10 @@
         </div>*@
         
         <div class="editor-label">
-            @Html.LabelFor(model => model.Sensor)
+              @Html.Label("Sensor")
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.HouseController, new SelectList( listControlers, "Id", "Name"))
+            @Html.DropDownListFor(model => model.SensorId, new SelectList( listSensors, "Id", "Name"))
             @*@Html.ValidationMessageFor(model => model.Sensor)*@
         </div>
 

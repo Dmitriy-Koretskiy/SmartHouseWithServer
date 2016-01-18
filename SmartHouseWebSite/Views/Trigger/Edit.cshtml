@@ -1,4 +1,5 @@
-﻿@model SmartHouseWebSite.Models.TriggerViewModel
+﻿@using SmartHouseWebSite.Models
+@model TriggerViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -10,7 +11,10 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
+   
+    List<HouseControllerViewModel> listControlers = ViewBag.houseControllers;
+    List<SensorViewModel> listSensors = ViewBag.sensors;  
+    
     <fieldset>
         <legend>Trigger</legend>
 
@@ -41,19 +45,18 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.HouseController)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.HouseController)
-            @Html.ValidationMessageFor(model => model.HouseController)
+            @Html.Label("Controller")
         </div>
 
+          <div >
+            @Html.DropDownListFor(model => model.HouseControllerId, new SelectList( listControlers, "Id", "Name"))
+        </div>
+    
         <div class="editor-label">
-            @Html.LabelFor(model => model.Sensor)
+              @Html.Label("Sensor")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Sensor)
-            @Html.ValidationMessageFor(model => model.Sensor)
+            @Html.DropDownListFor(model => model.SensorId, new SelectList( listSensors, "Id", "Name"))
         </div>
 
         <p>

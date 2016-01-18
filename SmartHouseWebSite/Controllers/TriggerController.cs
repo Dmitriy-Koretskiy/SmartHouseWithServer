@@ -82,6 +82,10 @@ namespace SmartHouseWebSite.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.MapAll<HouseController, HouseControllerDTO>());
+            ViewBag.sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
+
             return View(triggerVM);
         }
 

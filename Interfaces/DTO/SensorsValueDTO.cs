@@ -12,6 +12,6 @@ namespace Interfaces.DTO
         public int Id { get; set; }
         public DateTime TimeMeasurement { get; set; }
         public int Value { get; set; }
-        public string Sensor { get; set; }
+        public string SensorName { get; set; }
     }
 }

@@ -33,10 +33,10 @@ namespace BLL.Services
         public void AddToDB(TriggerDTO oldObject)
         {
             Trigger newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
-            Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);
-            HouseController houseController = repository.GetAll<HouseController>().First(opt => opt.Name == oldObject.HouseController);
-            newObject.HouseControllerId = houseController.Id;
-            newObject.SensorId = sensor.Id;
+            //Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);
+            //HouseController houseController = repository.GetAll<HouseController>().First(opt => opt.Name == oldObject.HouseController);
+            //newObject.HouseControllerId = houseController.Id;
+            //newObject.SensorId = sensor.Id;
             repository.Add<Trigger>(newObject);
             repository.SaveChanges();
         }
@@ -44,10 +44,10 @@ namespace BLL.Services
         public void Edit(TriggerDTO oldObject)
         {
             var newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
-            Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);
-            HouseController houseController = repository.GetAll<HouseController>().First(opt => opt.Name == oldObject.HouseController);
-            newObject.HouseControllerId = houseController.Id;
-            newObject.SensorId = sensor.Id;
+            //Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);
+            //HouseController houseController = repository.GetAll<HouseController>().First(opt => opt.Name == oldObject.HouseController);
+            //newObject.HouseControllerId = houseController.Id;
+            //newObject.SensorId = sensor.Id;
             repository.Update<Trigger>(newObject);
             repository.SaveChanges();
         }

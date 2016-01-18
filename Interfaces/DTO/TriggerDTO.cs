@@ -13,7 +13,9 @@ namespace Interfaces.DTO
         public string Name { get; set; }
         public string Condition { get; set; }
         public bool Enable { get; set; }
-        public string HouseController { get; set; }
-        public string Sensor { get; set; }
+        public int? HouseControllerId { get; set; }
+        public int? SensorId { get; set; }
+        public string HouseControllerName { get; set; }
+        public string SensorName { get; set; }
     }
 }
