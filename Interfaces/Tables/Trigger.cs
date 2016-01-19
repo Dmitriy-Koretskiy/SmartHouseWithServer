@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class Trigger : ParentTable
+    public class Trigger : BaseEntity
     {
         public string Name { get; set; }
         public string Condition { get; set; }

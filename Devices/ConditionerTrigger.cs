@@ -7,10 +7,11 @@ using Interfaces;
 
 namespace Devices
 {
-    class ConditionerTrigger: Trigger, ITrigger
+    class ConditionerTrigger: BaseTrigger, ITrigger
     {
-      
-        public ConditionerTrigger(ISensor sensor, IController controller, string condition) : base(sensor, controller, condition)
+
+        public ConditionerTrigger(int id, ISensor sensor, IController controller, string condition)
+            : base(id, sensor, controller, condition) 
         {
             
         }

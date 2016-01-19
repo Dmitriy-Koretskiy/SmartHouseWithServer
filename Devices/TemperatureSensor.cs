@@ -7,12 +7,17 @@ using Interfaces;
 
 namespace Devices
 {
-    class TemperatureSensor : ISensor
+    class TemperatureSensor : BaseSensor
     {
+        public TemperatureSensor (int id)
+            :base (id)
+        {
+        }
+
         private Random random = new Random();
         private int currentState = 28;
 
-        public int GenerateValue()
+        public override int GenerateValue()
         {
             currentState = currentState - 3 + random.Next(0, 7);
             if (currentState < 20)

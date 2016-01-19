@@ -7,14 +7,19 @@ using Interfaces;
 
 namespace Devices
 {
-    class LightController: IController
+    class LightController: BaseController
     {
-        public void On()
+         public LightController(int id)
+            : base(id)
+        {
+        }
+
+         public override void On()
         {
             Console.WriteLine("Lamp ON");
         }
 
-        public void Off()
+         public override void Off()
         {
             Console.WriteLine("Lamp OFF");
         }

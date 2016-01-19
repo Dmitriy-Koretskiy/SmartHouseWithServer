@@ -259,6 +259,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{b1a22560-fbd1-419a-b691-1ab3e92e3799}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{f475314b-513c-4a97-ab4d-a89f89b92ad6}</Project>
       <Name>DTO</Name>

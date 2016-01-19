@@ -7,14 +7,19 @@ using Interfaces;
 
 namespace Devices
 {
-    class ConditionerController: IController
+    class ConditionerController: BaseController
     {
-        public void On()
+        public ConditionerController(int id)
+            : base(id)
+        {
+        }
+
+        public override void On()
         {
             Console.WriteLine("Conditioner ON");
         }
 
-        public void Off()
+        public override void Off()
         {
             Console.WriteLine("Conditioner OFF");
         }

@@ -7,12 +7,18 @@ using Interfaces;
 
 namespace Devices
 {
-    class LightSensor: ISensor
+    class LightSensor: BaseSensor
     {
+        public LightSensor (int id)
+            :base (id)
+        {
+        }
+
         private Random random = new Random();
         private int currentState = 495;
 
-        public int GenerateValue() {
+        public override int GenerateValue()
+        {
             currentState = currentState - 10 + random.Next(0,21);
             if (currentState < 440)
             {

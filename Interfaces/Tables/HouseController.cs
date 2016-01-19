@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Tables
 {
-    public class HouseController : ParentTable
+    public class HouseController : BaseEntity
     {      
         public string Name { get; set; }
         public bool Enable { get; set; }
