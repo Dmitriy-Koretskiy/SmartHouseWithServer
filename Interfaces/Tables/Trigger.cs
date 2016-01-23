@@ -14,9 +14,13 @@ namespace Interfaces.Tables
         public bool Enable { get; set; }
         public int? HouseControllerId { get; set; }
         public int? SensorId { get; set; }
+        public int? TriggersTypeId { get; set; }
+        public int? RoomId { get; set; }
 
         public virtual HouseController HouseController { get; set; }
         public virtual Sensor Sensor { get; set; }
+        public virtual TriggersType TriggerType { get; set; }
+        public virtual Room Room { get; set; }
 
         public virtual ICollection<TriggersAction> TriggersActions { get; set; }
 

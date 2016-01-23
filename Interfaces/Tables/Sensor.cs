@@ -11,14 +11,19 @@ namespace Interfaces.Tables
     {
         public string Name { get; set; }
         public bool Enable { get; set; }
+        public int? SensorsTypeId { get; set; }
+        public int? RoomId { get; set; }
 
-        public virtual ICollection<Trigger> Triggers { get; set; }
-        public virtual ICollection<SensorsValue> SensorValues { get; set; }
+        public virtual SensorsType SensorsType { get; set; }
+        public virtual Room Room { get; set; }
+
+      //  public virtual ICollection<Trigger> Triggers { get; set; }
+      //  public virtual ICollection<SensorsValue> SensorValues { get; set; }
 
         public Sensor()
         { 
-            this.Triggers = new List<Trigger>();
-            this.SensorValues = new List<SensorsValue>();
+      //      this.Triggers = new List<Trigger>();
+        //    this.SensorValues = new List<SensorsValue>();
         }
     }
 }

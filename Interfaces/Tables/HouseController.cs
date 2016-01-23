@@ -11,6 +11,11 @@ namespace Interfaces.Tables
     {      
         public string Name { get; set; }
         public bool Enable { get; set; }
+        public int? HouseControllersTypeId { get; set; }
+        public int? RoomId { get; set; }
+
+        public virtual HouseControllersType HouseControllersType { get; set; }
+        public virtual Room Room { get; set; }
 
         public virtual ICollection<Trigger> Triggers { get; set; }
 

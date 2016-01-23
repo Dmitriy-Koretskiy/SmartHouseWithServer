@@ -145,10 +145,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HouseControllersTypeViewModel.cs" />
     <Compile Include="Models\HouseControllerViewModel.cs" />
+    <Compile Include="Models\RoomViewModel.cs" />
+    <Compile Include="Models\SensorsTypeViewModel.cs" />
     <Compile Include="Models\SensorsValueViewModel.cs" />
     <Compile Include="Models\SensorViewModel.cs" />
     <Compile Include="Models\TriggersActionViewModel.cs" />
+    <Compile Include="Models\TriggersTypeViewModel.cs" />
     <Compile Include="Models\TriggerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
