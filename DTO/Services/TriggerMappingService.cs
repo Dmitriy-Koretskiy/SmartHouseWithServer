@@ -20,17 +20,17 @@ namespace DTO.Services
             this.repository = new Repository();
         }
 
-        public TriggerDTO GetByIdFromDB(int? id)  
+        public TriggerDTO GetById(int? id)  
         {
             return Mapper.Map<Trigger, TriggerDTO>(repository.Get<Trigger>(id));
         }
 
-        public IEnumerable<TriggerDTO> GetAllFromDB()
+        public IEnumerable<TriggerDTO> GetAll()
         {
             return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>());
         }
 
-        public void AddToDB(TriggerDTO oldObject)
+        public void Add(TriggerDTO oldObject)
         {
             Trigger newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
             //Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);

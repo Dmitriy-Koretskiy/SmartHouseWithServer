@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    class SensorsTypeDTO
+    public class SensorsTypeDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

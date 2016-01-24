@@ -19,7 +19,7 @@ namespace Interfaces.Tables
 
         public virtual HouseController HouseController { get; set; }
         public virtual Sensor Sensor { get; set; }
-        public virtual TriggersType TriggerType { get; set; }
+        public virtual TriggersType TriggersType { get; set; }
         public virtual Room Room { get; set; }
 
         public virtual ICollection<TriggersAction> TriggersActions { get; set; }

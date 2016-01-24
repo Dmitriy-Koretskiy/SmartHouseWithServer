@@ -14,19 +14,19 @@ namespace SmartHouseWebSite.Controllers
 {
     public class TriggerController : Controller
     {   
-        IMappingService mappingService { get; set; }
+        IMappingService triggerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
 
         public TriggerController() //should use IoC for service and repository
         {
-            this.mappingService = new TriggerMappingService();
+            this.triggerMappingService = new TriggerMappingService();
             this.genericMappingService = new GenericMappingService();
         }
 
         public ActionResult Index()
         {
-            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(mappingService.GetAllFromDB());
+            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetAll());
             return View(triggers);
         }
 
@@ -37,7 +37,7 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            TriggerViewModel triggerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(mappingService.GetByIdFromDB(id));
+            TriggerViewModel triggerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(triggerMappingService.GetById(id));
 
             if (triggerVM == null)
             {
@@ -60,7 +60,7 @@ namespace SmartHouseWebSite.Controllers
             try
             {
                 var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(triggerVM);
-                mappingService.AddToDB(controllerDTO);
+                triggerMappingService.Add(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -76,7 +76,7 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            TriggerViewModel triggerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(mappingService.GetByIdFromDB(id));
+            TriggerViewModel triggerVM = Mapper.Map<TriggerDTO, TriggerViewModel>(triggerMappingService.GetById(id));
 
             if (triggerVM == null)
             {
@@ -95,7 +95,7 @@ namespace SmartHouseWebSite.Controllers
             try
             {
                 var controllerDTO = Mapper.Map<TriggerViewModel, TriggerDTO>(triggerVM);
-                mappingService.Edit(controllerDTO);
+                triggerMappingService.Edit(controllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -113,7 +113,7 @@ namespace SmartHouseWebSite.Controllers
                     return HttpNotFound();
                 }
 
-                mappingService.Delete(id);
+                triggerMappingService.Delete(id);
                 return RedirectToAction("Index");
             }
             catch 

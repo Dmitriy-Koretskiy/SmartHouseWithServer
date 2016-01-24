@@ -20,6 +20,7 @@ namespace SmartHouseWebSite.Controllers
         public SensorsValueController() //should use IoC for service and repository
         {
             this.genericMappingService = new GenericMappingService();
+
         }
 
         public ActionResult Index()

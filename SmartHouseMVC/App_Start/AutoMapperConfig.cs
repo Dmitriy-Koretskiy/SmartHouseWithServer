@@ -18,10 +18,19 @@ namespace SmartHouseWebSite.App_Start
             Mapper.CreateMap<HouseControllerViewModel, HouseControllerDTO>();
             Mapper.CreateMap<HouseControllerDTO, HouseController>();
 
+            Mapper.CreateMap<HouseControllersTypeDTO, HouseControllersTypeViewModel>();
+            Mapper.CreateMap<HouseControllersType, HouseControllersTypeDTO>();
+
+            Mapper.CreateMap<RoomDTO, RoomViewModel>();
+            Mapper.CreateMap<Room, RoomDTO>();
+
             Mapper.CreateMap<SensorDTO, SensorViewModel>();
             Mapper.CreateMap<Sensor, SensorDTO>();
             Mapper.CreateMap<SensorViewModel, SensorDTO>();
             Mapper.CreateMap<SensorDTO, Sensor>();
+
+            Mapper.CreateMap<SensorsTypeDTO, SensorsTypeViewModel>();
+            Mapper.CreateMap<SensorsType, SensorsTypeDTO>();
 
             Mapper.CreateMap<SensorsValueDTO, SensorsValueViewModel>();
             Mapper.CreateMap<SensorsValue, SensorsValueDTO>()
@@ -37,7 +46,9 @@ namespace SmartHouseWebSite.App_Start
             Mapper.CreateMap<TriggerViewModel, TriggerDTO>();
             Mapper.CreateMap<TriggerDTO, Trigger>()
                .ForMember(t => t.Sensor, opt => opt.Ignore())
-               .ForMember(t => t.HouseController, opt => opt.Ignore());
+               .ForMember(t => t.HouseController, opt => opt.Ignore())
+               .ForMember(t => t.Room, opt => opt.Ignore())
+               .ForMember(t => t.TriggersType, opt => opt.Ignore());
 
             Mapper.CreateMap<TriggersActionDTO, TriggersActionViewModel>();
             Mapper.CreateMap<TriggersAction, TriggersActionDTO>()
@@ -45,6 +56,9 @@ namespace SmartHouseWebSite.App_Start
             Mapper.CreateMap<TriggersActionViewModel, TriggersActionDTO>();
             Mapper.CreateMap<TriggersActionDTO, TriggersAction>()
                 .ForMember(ta => ta.TriggerId, opt => opt.Ignore());
+
+            Mapper.CreateMap<TriggersTypeDTO, TriggersTypeViewModel>();
+            Mapper.CreateMap<TriggersType, TriggersTypeDTO>();
         }
     }
 }

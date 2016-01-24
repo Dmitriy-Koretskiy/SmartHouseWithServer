@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    class TriggersTypeDTO
+    public class TriggersTypeDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

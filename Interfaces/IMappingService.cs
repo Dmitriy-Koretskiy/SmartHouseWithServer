@@ -9,11 +9,11 @@ namespace Interfaces
 {
     public interface IMappingService
     {
-        TriggerDTO GetByIdFromDB(int? id);
+        TriggerDTO GetById(int? id);
 
-        IEnumerable<TriggerDTO> GetAllFromDB();
+        IEnumerable<TriggerDTO> GetAll();
 
-        void AddToDB(TriggerDTO oldObject);
+        void Add(TriggerDTO oldObject);
 
         void Edit(TriggerDTO oldObject);
 

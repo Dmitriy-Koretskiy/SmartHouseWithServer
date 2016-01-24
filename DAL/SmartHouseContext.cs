@@ -16,8 +16,12 @@ namespace DAL
         }
 
         public DbSet<HouseController> HouseControllers { get; set; }
+        public DbSet<HouseControllersType> HouseControllersTypes { get; set; }
+        public DbSet<Room> Rooms { get; set; }
         public DbSet<Sensor> Sensors { get; set; }
+        public DbSet<SensorsType> SensorsTypes { get; set; }
         public DbSet<Trigger> Triggers { get; set; }
+        public DbSet<TriggersType> TriggersTypes { get; set; }
         public DbSet<SensorsValue> SensorsValues { get; set; }
         public DbSet<TriggersAction> TriggersActions { get; set; }
     }

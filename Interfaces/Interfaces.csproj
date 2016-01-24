@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\HouseControllerDTO.cs" />
-    <Compile Include="DTO\HouseControlllersTypeDTO.cs" />
+    <Compile Include="DTO\HouseControllersTypeDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
     <Compile Include="DTO\SensorDTO.cs" />
     <Compile Include="DTO\SensorsTypeDTO.cs" />
