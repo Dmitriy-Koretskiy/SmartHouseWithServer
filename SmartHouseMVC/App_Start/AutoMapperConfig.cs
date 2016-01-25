@@ -14,9 +14,13 @@ namespace SmartHouseWebSite.App_Start
         public static void RegisterMappings()
         {
             Mapper.CreateMap<HouseControllerDTO, HouseControllerViewModel>();
-            Mapper.CreateMap<HouseController, HouseControllerDTO>();
+            Mapper.CreateMap<HouseController, HouseControllerDTO>()
+                .ForMember(t => t.RoomName, opt => opt.MapFrom(s => s.Room.Name))
+                .ForMember(t => t.HouseControllersTypeName, opt => opt.MapFrom(s => s.HouseControllersType.Name));
             Mapper.CreateMap<HouseControllerViewModel, HouseControllerDTO>();
-            Mapper.CreateMap<HouseControllerDTO, HouseController>();
+            Mapper.CreateMap<HouseControllerDTO, HouseController>()
+               .ForMember(t => t.Room, opt => opt.Ignore())
+               .ForMember(t => t.HouseControllersType, opt => opt.Ignore());
 
             Mapper.CreateMap<HouseControllersTypeDTO, HouseControllersTypeViewModel>();
             Mapper.CreateMap<HouseControllersType, HouseControllersTypeDTO>();
@@ -25,9 +29,13 @@ namespace SmartHouseWebSite.App_Start
             Mapper.CreateMap<Room, RoomDTO>();
 
             Mapper.CreateMap<SensorDTO, SensorViewModel>();
-            Mapper.CreateMap<Sensor, SensorDTO>();
+            Mapper.CreateMap<Sensor, SensorDTO>()
+                .ForMember(t => t.RoomName, opt => opt.MapFrom(s => s.Room.Name))
+                .ForMember(t => t.SensorsTypeName, opt => opt.MapFrom(s => s.SensorsType.Name));
             Mapper.CreateMap<SensorViewModel, SensorDTO>();
-            Mapper.CreateMap<SensorDTO, Sensor>();
+            Mapper.CreateMap<SensorDTO, Sensor>()
+               .ForMember(t => t.Room, opt => opt.Ignore())
+               .ForMember(t => t.SensorsType, opt => opt.Ignore());
 
             Mapper.CreateMap<SensorsTypeDTO, SensorsTypeViewModel>();
             Mapper.CreateMap<SensorsType, SensorsTypeDTO>();
@@ -42,7 +50,9 @@ namespace SmartHouseWebSite.App_Start
             Mapper.CreateMap<TriggerDTO, TriggerViewModel>();
             Mapper.CreateMap<Trigger, TriggerDTO>()
                 .ForMember(t => t.SensorName, opt => opt.MapFrom(s => s.Sensor.Name))
-                .ForMember(t => t.HouseControllerName, opt => opt.MapFrom(s => s.HouseController.Name));
+                .ForMember(t => t.HouseControllerName, opt => opt.MapFrom(s => s.HouseController.Name))
+                .ForMember(t => t.RoomName, opt => opt.MapFrom(s => s.Room.Name))
+                .ForMember(t => t.TriggersTypeName, opt => opt.MapFrom(s => s.TriggersType.Name));
             Mapper.CreateMap<TriggerViewModel, TriggerDTO>();
             Mapper.CreateMap<TriggerDTO, Trigger>()
                .ForMember(t => t.Sensor, opt => opt.Ignore())
