@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using DTO.Services;
+﻿using DTO.Services;
 using Interfaces;
-using Interfaces.DTO;
-using Interfaces.Tables;
-using SmartHouseWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,29 +8,33 @@ using System.Web.Mvc;
 
 namespace SmartHouseWebSite.Controllers
 {
-    public class HomeController : Controller
+    public class RoomController : Controller
     {
-        IGenericMappingService genericMappingService { get; set; }
+         IGenericMappingService genericMappingService { get; set; }
+       // IRepository repository { get; set; }
 
-
-        public HomeController() //should use IoC for service and repository
+        public RoomController() //should use IoC for service and repository
         {
             this.genericMappingService = new GenericMappingService();
         }
         //
-        // GET: /Home/
+        // GET: /Room/
 
-        public ActionResult Index()
+        public ActionResult Index(int RoomId)
         {
-            var rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
-            return View(rooms);
- 
+            return View();
         }
 
-       
+        //
+        // GET: /Room/Details/5
+
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
 
         //
-        // GET: /Home/Create
+        // GET: /Room/Create
 
         public ActionResult Create()
         {
@@ -42,7 +42,7 @@ namespace SmartHouseWebSite.Controllers
         }
 
         //
-        // POST: /Home/Create
+        // POST: /Room/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -60,7 +60,7 @@ namespace SmartHouseWebSite.Controllers
         }
 
         //
-        // GET: /Home/Edit/5
+        // GET: /Room/Edit/5
 
         public ActionResult Edit(int id)
         {
@@ -68,7 +68,7 @@ namespace SmartHouseWebSite.Controllers
         }
 
         //
-        // POST: /Home/Edit/5
+        // POST: /Room/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -86,7 +86,7 @@ namespace SmartHouseWebSite.Controllers
         }
 
         //
-        // GET: /Home/Delete/5
+        // GET: /Room/Delete/5
 
         public ActionResult Delete(int id)
         {
@@ -94,7 +94,7 @@ namespace SmartHouseWebSite.Controllers
         }
 
         //
-        // POST: /Home/Delete/5
+        // POST: /Room/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

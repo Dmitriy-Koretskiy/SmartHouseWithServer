@@ -138,6 +138,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HouseControllerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\SensorController.cs" />
     <Compile Include="Controllers\SensorsValueController.cs" />
     <Compile Include="Controllers\TriggerController.cs" />
@@ -255,6 +256,7 @@
     <Content Include="Views\Sensor\Edit.cshtml" />
     <Content Include="Views\Trigger\Details.cshtml" />
     <Content Include="Views\Trigger\Edit.cshtml" />
+    <Content Include="Views\Room\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

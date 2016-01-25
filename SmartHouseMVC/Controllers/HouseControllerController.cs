@@ -15,7 +15,7 @@ namespace SmartHouseWebSite.Controllers
     public class HouseControllerController : Controller
     {
         IGenericMappingService genericMappingService { get; set; }
-        IRepository repository { get; set; }
+       // IRepository repository { get; set; }
 
         public HouseControllerController() //should use IoC for service and repository
         {

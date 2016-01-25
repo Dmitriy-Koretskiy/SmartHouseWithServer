@@ -12,8 +12,8 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
    
-    List<HouseControllerViewModel> listControlers = ViewBag.houseControllers;
-    List<SensorViewModel> listSensors = ViewBag.sensors;  
+   // List<HouseControllerViewModel> listControlers = ViewBag.houseControllers;
+  //  List<SensorViewModel> listSensors = ViewBag.sensors;  
     
     <fieldset>
         <legend>Trigger</legend>
@@ -49,14 +49,14 @@
         </div>
 
           <div >
-            @Html.DropDownListFor(model => model.HouseControllerId, new SelectList( listControlers, "Id", "Name"))
+            @Html.DropDownListFor(model => model.HouseControllerId, new SelectList( ViewBag.houseControllers, "Id", "Name"))
         </div>
     
         <div class="editor-label">
               @Html.Label("Sensor")
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.SensorId, new SelectList( listSensors, "Id", "Name"))
+            @Html.DropDownListFor(model => model.SensorId, new SelectList( ViewBag.sensors, "Id", "Name"))
         </div>
 
         <p>

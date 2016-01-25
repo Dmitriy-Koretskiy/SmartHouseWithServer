@@ -1,26 +1,17 @@
-﻿@{
+﻿@using SmartHouseWebSite.Models
+@model IEnumerable<RoomViewModel>
+
+@{
     ViewBag.Title = "Tables";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    @*<div>
-        <h3>Tables</h3>
-        <table>
-            <tr>
-                <td><p><a href="/HouseController">Controllers</a></p></td>
-            </tr>
-             <tr>
-                <td><p><a href="/Sensor">Sensors</a></p></td>
-            </tr>
-             <tr>
-                <td><p><a href="/SensorsValue">Sensor's values</a></p></td>
-            </tr>
-             <tr>
-                <td><p><a href="/Trigger">Triggers</a></p></td>
-            </tr>
-             <tr>
-                <td><p><a href="/TriggersAction">Trigger's actions</a></p></td>
-            </tr>
-        </table>
-    </div>*@
+    <div>
+       @foreach(RoomViewModel room in Model){
+         using(Html.BeginForm("Index", "Room", FormMethod.Post)){
+              @Html.Hidden("RoomId", room.Id)
+              <p><input type="submit" value="@room.Name" /></p>
+         }         
+       }
+    </div>
 

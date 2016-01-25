@@ -18,9 +18,9 @@ namespace DAL
             SensorsType st1 = new SensorsType { Name = "LightSensor" };
             SensorsType st2 = new SensorsType { Name = "TemperatureSensor" };
 
-            Sensor s1 = new Sensor { Name = "light sensor", Enable = true, Room = r1, SensorsType = st1 };
-            Sensor s2 = new Sensor { Name = "temperature sensor", Enable = true, Room = r1, SensorsType = st2 };
-            Sensor s3 = new Sensor { Name = "light sensor", Enable = true, Room = r2, SensorsType = st1 };
+            Sensor s1 = new Sensor { Name = "Living room light sensor", Enable = true, Room = r1, SensorsType = st1 };
+            Sensor s2 = new Sensor { Name = "Living room temperature sensor", Enable = true, Room = r1, SensorsType = st2 };
+            Sensor s3 = new Sensor { Name = "Kitchen light sensor", Enable = true, Room = r2, SensorsType = st1 };
 
             HouseControllersType ct1 = new HouseControllersType { Name = "LightController" };
             HouseControllersType ct2 = new HouseControllersType { Name = "ConditionerController" };
