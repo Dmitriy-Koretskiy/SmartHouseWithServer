@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div>
+ <div>
        @foreach(RoomViewModel room in Model){
          using(Html.BeginForm("Index", "Room", FormMethod.Post)){
               @Html.Hidden("RoomId", room.Id)

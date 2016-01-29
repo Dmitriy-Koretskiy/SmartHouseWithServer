@@ -20,6 +20,20 @@
         <div class="display-field">
             @Html.DisplayFor(model => model.Enable)
         </div>
+
+          <div class="display-label">
+             @Html.DisplayName("Type of sensor")
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.SensorsTypeName)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayName("Name of the room")
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.RoomName)
+        </div>
     </fieldset>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |

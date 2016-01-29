@@ -42,30 +42,37 @@
             @Html.ValidationMessageFor(model => model.Enable)
         </div>
 
-       @* @foreach (HouseControllerViewModel hc in ViewBag.houseControllers)
-        {
-            <div>@hc.Name</div>
-        }*@
-
         <div class="editor-label">
             @Html.Label("Controller")
         </div>
 
           <div >
-            @Html.DropDownListFor(model => model.HouseControllerId, new SelectList( listControlers, "Id", "Name"))
+            @Html.DropDownListFor(model => model.HouseControllerId, new SelectList( ViewBag.houseControllers, "Id", "Name"))
         </div>
-      @*  <div class="editor-field">
-            @Html.EditorFor(model => model.HouseController)
-            @Html.ValidationMessageFor(model => model.HouseController)
-        </div>*@
         
         <div class="editor-label">
               @Html.Label("Sensor")
         </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.SensorId, new SelectList( listSensors, "Id", "Name"))
-            @*@Html.ValidationMessageFor(model => model.Sensor)*@
+
+         <div class="editor-field">
+            @Html.DropDownListFor(model => model.SensorId, new SelectList( ViewBag.sensors, "Id", "Name"))
         </div>
+
+         <div class="editor-label">
+              @Html.Label("Type of trigger")
+        </div>
+
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.TriggersTypeId, new SelectList( ViewBag.triggersTypes, "Id", "Name"))
+        </div>
+
+         <div class="editor-label">
+              @Html.Label("Room")
+        </div>
+
+         <div class="editor-field">
+            @Html.DropDownListFor(model => model.RoomId, new SelectList( ViewBag.rooms, "Id", "Name"))
+        </div>     
 
         <p>
             <input type="submit" value="Create" />

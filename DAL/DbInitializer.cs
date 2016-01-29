@@ -25,16 +25,16 @@ namespace DAL
             HouseControllersType ct1 = new HouseControllersType { Name = "LightController" };
             HouseControllersType ct2 = new HouseControllersType { Name = "ConditionerController" };
 
-            HouseController c1 = new HouseController { Name = "light controller", Enable = true, Room = r1, HouseControllersType = ct1 };
-            HouseController c2 = new HouseController { Name = "conditioner controller", Enable = true, Room = r1, HouseControllersType = ct2 };
-            HouseController c3 = new HouseController { Name = "light controller", Enable = true, Room = r2, HouseControllersType = ct1 };
+            HouseController c1 = new HouseController { Name = "Living room light controller", Enable = true, Room = r1, HouseControllersType = ct1 };
+            HouseController c2 = new HouseController { Name = "Living room conditioner controller", Enable = true, Room = r1, HouseControllersType = ct2 };
+            HouseController c3 = new HouseController { Name = "Kitchen light controller", Enable = true, Room = r2, HouseControllersType = ct1 };
 
             TriggersType tt1 = new TriggersType { Name = "LightTrigger" };
             TriggersType tt2 = new TriggersType { Name = "ConditionerTrigger" };
 
             Trigger t1 = new Trigger
             {
-                Name = "LightTrigger",
+                Name = "Living room light trigger",
                 Sensor = s1,
                 HouseController = c1,
                 Enable = true,
@@ -44,7 +44,7 @@ namespace DAL
             };
             Trigger t2 = new Trigger
             {
-                Name = "ConditionerTrigger",
+                Name = "Living room conditioner trigger",
                 Sensor = s2,
                 HouseController = c2,
                 Enable = true,
@@ -54,7 +54,7 @@ namespace DAL
             };
             Trigger t3 = new Trigger
             {
-                Name = "LightTrigger",
+                Name = "Kitchen light trigger",
                 Sensor = s3,
                 HouseController = c3,
                 Enable = true,

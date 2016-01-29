@@ -12,6 +12,7 @@ namespace Interfaces
         TriggerDTO GetById(int? id);
 
         IEnumerable<TriggerDTO> GetAll();
+        IEnumerable<TriggerDTO> GetAll(int roomId);
 
         void Add(TriggerDTO oldObject);
 

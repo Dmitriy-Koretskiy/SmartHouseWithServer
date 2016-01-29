@@ -14,7 +14,7 @@ namespace SmartHouseWebSite.Models
         public int? HouseControllerId { get; set; }
         public int? SensorId { get; set; }
         public int? RoomId { get; set; }
-        public int? TriggersNameId { get; set; }
+        public int? TriggersTypeId { get; set; }
         public string HouseControllerName { get; set; }
         public string RoomName { get; set; }
         public string SensorName { get; set; }

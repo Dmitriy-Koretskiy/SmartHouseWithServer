@@ -46,6 +46,8 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.houseControllersTypes = Mapper.Map<IEnumerable<HouseControllersTypeDTO>, List<HouseControllersTypeViewModel>>(genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>());
+            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
             return View();
         }
 
@@ -77,6 +79,10 @@ namespace SmartHouseWebSite.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.houseControllersTypes = Mapper.Map<IEnumerable<HouseControllersTypeDTO>, List<HouseControllersTypeViewModel>>(genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>());
+            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
+
             return View(houseControllerVM);
         }
 

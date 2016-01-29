@@ -24,9 +24,17 @@ namespace SmartHouseWebSite.Controllers
             this.genericMappingService = new GenericMappingService();
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetAll());
+            return View(triggers);
+        }
+
+        [HttpPost]
+        public ActionResult Index(int roomId)
+        {
+            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetAll(roomId));
             return View(triggers);
         }
 
@@ -50,7 +58,8 @@ namespace SmartHouseWebSite.Controllers
         {
             ViewBag.houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.MapAll<HouseController, HouseControllerDTO>());
             ViewBag.sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
-
+            ViewBag.triggersTypes = Mapper.Map<IEnumerable<TriggersTypeDTO>, List<TriggersTypeViewModel>>(genericMappingService.MapAll<TriggersType, TriggersTypeDTO>());
+            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
             return View();
         }
 
@@ -85,6 +94,8 @@ namespace SmartHouseWebSite.Controllers
 
             ViewBag.houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.MapAll<HouseController, HouseControllerDTO>());
             ViewBag.sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
+            ViewBag.triggersTypes = Mapper.Map<IEnumerable<TriggersTypeDTO>, List<TriggersTypeViewModel>>(genericMappingService.MapAll<TriggersType, TriggersTypeDTO>());
+            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
 
             return View(triggerVM);
         }

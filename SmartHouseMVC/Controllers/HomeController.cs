@@ -28,7 +28,6 @@ namespace SmartHouseWebSite.Controllers
         {
             var rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
             return View(rooms);
- 
         }
 
        

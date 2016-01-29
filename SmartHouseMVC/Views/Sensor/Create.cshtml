@@ -5,35 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
     
-        <fieldset>
-            <legend>Sensor</legend>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Enable)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Enable)
-                @Html.ValidationMessageFor(model => model.Enable)
-            </div>
-    
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    <fieldset>
+        <legend>Sensor</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Enable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Enable)
+            @Html.ValidationMessageFor(model => model.Enable)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Type of sensor")
+        </div>
+
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SensorsTypeId, new SelectList(ViewBag.sensorsTypes, "Id", "Name"))
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Room")
+        </div>
+
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.RoomId, new SelectList(ViewBag.rooms, "Id", "Name"))
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

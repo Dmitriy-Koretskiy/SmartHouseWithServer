@@ -30,6 +30,12 @@ namespace DTO.Services
             return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>());
         }
 
+        public IEnumerable<TriggerDTO> GetAll(int roomId)
+        {
+            return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>().Where(t => t.RoomId == roomId));
+        }
+
+
         public void Add(TriggerDTO oldObject)
         {
             Trigger newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
