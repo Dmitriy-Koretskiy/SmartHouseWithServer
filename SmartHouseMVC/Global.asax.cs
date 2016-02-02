@@ -1,4 +1,7 @@
-﻿using SmartHouseWebSite.App_Start;
+﻿using Castle.Windsor;
+using Castle.Windsor.Installer;
+using SmartHouseWebSite.App_Start;
+using SmartHouseWebSite.CastleWindsor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +18,16 @@ namespace SmartHouseWebSite
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static IWindsorContainer container;
+
+        private static void BootstrapContainer()
+        {
+            container = new WindsorContainer().Install(FromAssembly.This());
+
+            var controllerFactory = new WindsorControllerFactory(container.Kernel);
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -24,6 +37,12 @@ namespace SmartHouseWebSite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MvcApplication.BootstrapContainer();
+        }
+
+        protected void Application_End()
+        {
+            container.Dispose();
         }
     }
 }

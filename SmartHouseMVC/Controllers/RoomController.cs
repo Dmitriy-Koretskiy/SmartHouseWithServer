@@ -14,6 +14,8 @@ namespace SmartHouseWebSite.Controllers
        // IRepository repository { get; set; }
         int roomId = 0;
 
+        int test = 0;
+
         public RoomController() //should use IoC for service and repository
         {
             this.genericMappingService = new GenericMappingService();
@@ -23,6 +25,7 @@ namespace SmartHouseWebSite.Controllers
     
         public ActionResult Index(int roomId)
         {
+            test++;
             this.roomId = roomId;
             return View();
         }
