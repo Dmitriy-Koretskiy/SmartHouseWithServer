@@ -16,7 +16,7 @@ namespace SmartHouseWebSite.Controllers
     {
         IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
-        public int test;
+        public string test;
 
         public SensorController() //should use IoC for service and repository
         {
@@ -25,15 +25,16 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Index()
         {
-            test++;
             var sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(genericMappingService.MapAll<Sensor, SensorDTO>());
             return View(sensors);
         }
 
         public ActionResult Details(int? id)
         {
-            test++;
-
+            if (RouteData.Values["roomId"] != null)
+            {
+            test= RouteData.Values["roomId"].ToString();
+            }
             if (id == null)
             {
                 return HttpNotFound();

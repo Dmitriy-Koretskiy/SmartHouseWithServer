@@ -40,8 +40,8 @@ namespace BLL
            Type type;
            foreach (Sensor sensorElement in repository.GetAll<Sensor>())
            {
-               type = assembly.GetType("Devices." + sensorElement.Name, true, true);
-               sensorsDict.Add(sensorElement.Name, Activator.CreateInstance(type, sensorElement.Id));
+               type = assembly.GetType("Devices." + sensorElement.SensorsType.Name, true, true);
+               sensorsDict.Add(sensorElement.Id.ToString(), Activator.CreateInstance(type, sensorElement.Id));
            }
            return sensorsDict;
        }
@@ -52,8 +52,8 @@ namespace BLL
            Type type;
            foreach (HouseController controllerElement in repository.GetAll<HouseController>())
            {
-               type = assembly.GetType("Devices." + controllerElement.Name, true, true);
-               controllersDict.Add(controllerElement.Name, Activator.CreateInstance(type, controllerElement.Id));
+               type = assembly.GetType("Devices." + controllerElement.HouseControllersType.Name, true, true);
+               controllersDict.Add(controllerElement.Id.ToString(), Activator.CreateInstance(type, controllerElement.Id));
            }
            return controllersDict;
        }
@@ -65,10 +65,10 @@ namespace BLL
            Type type;
            foreach (Trigger triggerElement in repository.GetAll<Trigger>())
            {
-               type = assembly.GetType("Devices." + triggerElement.Name, true, true);
+               type = assembly.GetType("Devices." + triggerElement.TriggersType.Name, true, true);
 
-               object obj = Activator.CreateInstance(type, triggerElement.Id ,sensorsDict[triggerElement.Sensor.Name],
-                   controllersDict[triggerElement.HouseController.Name], triggerElement.Condition);
+               object obj = Activator.CreateInstance(type, triggerElement.Id ,sensorsDict[triggerElement.Sensor.Id.ToString()],
+                   controllersDict[triggerElement.HouseController.Id.ToString()], triggerElement.Condition);
                triggersList.Add(obj);
            }
            return triggersList;

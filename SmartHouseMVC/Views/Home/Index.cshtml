@@ -8,7 +8,7 @@
 
  <div>
        @foreach(RoomViewModel room in Model){
-         using(Html.BeginForm("Index", "Room", FormMethod.Post)){
+         using(Html.BeginForm("Index", "Room", FormMethod.Get)){
               @Html.Hidden("RoomId", room.Id)
               <p><input type="submit" value="@room.Name" /></p>
          }         

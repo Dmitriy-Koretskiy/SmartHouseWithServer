@@ -36,7 +36,6 @@ namespace Devices
                     controller.On();
                     alreadyWork = true;
                     TriggersActionDTO ta = new TriggersActionDTO() {TimeChange = DateTime.Now, Description = "On"};
-
                 }
             }
             else

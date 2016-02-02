@@ -40,7 +40,7 @@ namespace DAL
                 Enable = true,
                 Room = r1,
                 TriggersType = tt1,
-                Condition = "((value < 475) OR value > 500 ) AND value/10 < 51"
+                Condition = "value < 475 "
             };
             Trigger t2 = new Trigger
             {
@@ -50,7 +50,7 @@ namespace DAL
                 Enable = true,
                 Room = r1,
                 TriggersType = tt1,
-                Condition = "79 / 9 * ( value - 25) < 13"
+                Condition = "value > 27"
             };
             Trigger t3 = new Trigger
             {
@@ -60,7 +60,7 @@ namespace DAL
                 Enable = true,
                 Room = r2,
                 TriggersType = tt1,
-                Condition = "((value < 475) OR value > 490 ) AND value/10 < 52"
+                Condition = "value< 465"
             };
 
             SensorsValue sv1 = new SensorsValue { Sensor = s1, TimeMeasurement = DateTime.Now, Value = 470 };
