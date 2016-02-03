@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using Interfaces.Tables;
 
 namespace Devices
 {
@@ -19,6 +20,7 @@ namespace Devices
 
         public override int GenerateValue()
         {
+            currentTact++;
             currentState = currentState - 10 + random.Next(0,21);
             if (currentState < 440)
             {
@@ -27,6 +29,15 @@ namespace Devices
             if (currentState > 550)
             {
                 currentState = 510;
+            }
+
+            if (currentTact >= amountTactsToWriteToDB)
+            {
+                SensorsValue sensorsValue = new SensorsValue() { SensorId = id, TimeMeasurement = DateTime.Now, Value = currentState };
+
+                repository.Add(sensorsValue);
+                repository.SaveChanges();
+                currentTact = 0;
             }
             Console.WriteLine("Light value" + id + " = {0}", currentState);
             return currentState;

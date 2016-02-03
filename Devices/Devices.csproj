@@ -52,6 +52,10 @@
     <Compile Include="BaseTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{18aa660c-3f84-4a10-b8f4-88440e2732cb}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{8bb04cef-3099-4dc5-bb1e-df645e7b6e43}</Project>
       <Name>Interfaces</Name>

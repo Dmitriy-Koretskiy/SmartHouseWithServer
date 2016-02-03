@@ -18,8 +18,7 @@ namespace BLL
         Assembly assembly = Assembly.LoadFrom(@"..\..\..\Devices\bin\Debug\Devices.dll");
 
         public void StartWork()
-        {
-            
+        {      
             Dictionary<string, object> sensorsDict = GetSensorsDictionary();
             Dictionary<string, object> controllersDict = GetControllersDictionary();
             List<object> triggersList = GetTriggersList(sensorsDict, controllersDict);
@@ -36,7 +35,6 @@ namespace BLL
             ITrigger trigger = (ITrigger)obj;
             trigger.CheckSensor();
         }
-
 
         private Dictionary<string, object> GetSensorsDictionary()
         {
@@ -86,7 +84,7 @@ namespace BLL
             {
                 try
                 {
-                    type = assembly.GetType("Devices1." + sensorElement.SensorsType.Name, true, true);
+                    type = assembly.GetType("Devices." + sensorElement.SensorsType.Name, true, true);
                 }
                 catch
                 {
