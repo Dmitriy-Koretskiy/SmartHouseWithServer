@@ -6,14 +6,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
- <div>
-    @foreach(RoomViewModel room in Model){
-         @Html.RouteLink(room.Name, "Room", new {action="Index", controller="Room" ,roomId = room.Id})  
-         
-         @*  using(Html.BeginForm("Index", "Room", FormMethod.Post)){
-              @Html.Hidden("RoomId", room.Id)
-              <p><input type="submit" value="@room.Name" /></p>*  
-         }  *@       
-       }
-    </div>
+<div>
+    @foreach (RoomViewModel room in Model)
+    {   
+         <p>@Html.RouteLink(room.Name, "Room", new { action = "Index", controller = "Room", roomId = room.Id })</p>    
+    }
+</div>
 

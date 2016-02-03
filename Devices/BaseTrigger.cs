@@ -29,7 +29,7 @@ namespace Devices
 
         public virtual void CheckSensor() 
         {
-            if (conditionsHandler.CheckCondtion(condition, sensor.GenerateValue()))
+             if (conditionsHandler.CheckCondtion(condition, sensor.GenerateValue()))
             {
                 if (!alreadyWork)
                 {

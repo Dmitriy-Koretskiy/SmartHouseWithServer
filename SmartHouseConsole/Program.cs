@@ -20,6 +20,15 @@ namespace SmartHouseWithServer
     {
         static void Main(string[] args)
         {
+            for (; ; )
+            {
+                var checkResult = Server.CheckConfiguration();
+                if (!checkResult.errorExist)
+                {
+                    break;
+                }
+                Thread.Sleep(10000);
+            }
             Server.StartWork();
             //SensorDTO s1 = new SensorDTO() { Id = 1, Name = "s1" };
             //SensorDTO s2 = new SensorDTO() { Id = 2, Name = "s2" };

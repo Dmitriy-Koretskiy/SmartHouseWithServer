@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckResults\CheckConfigurationResult.cs" />
     <Compile Include="DTO\BaseEntityDTO.cs" />
     <Compile Include="DTO\HouseControllerDTO.cs" />
     <Compile Include="DTO\HouseControllersTypeDTO.cs" />
