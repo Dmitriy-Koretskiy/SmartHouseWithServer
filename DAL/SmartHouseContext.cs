@@ -12,7 +12,7 @@ namespace DAL
     {
         public SmartHouseContext()
         {
-         Database.SetInitializer<SmartHouseContext>(new DbInitializer());
+        // Database.SetInitializer<SmartHouseContext>(new DbInitializer());
         }
 
         public DbSet<HouseController> HouseControllers { get; set; }

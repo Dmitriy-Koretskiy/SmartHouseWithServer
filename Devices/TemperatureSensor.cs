@@ -28,7 +28,7 @@ namespace Devices
             {
                 currentState = 35;
             }
-            Console.WriteLine("Temperature value = {0}", currentState);
+            Console.WriteLine("Temperature value" + id + " = {0}", currentState);
             return currentState;
         }
     }

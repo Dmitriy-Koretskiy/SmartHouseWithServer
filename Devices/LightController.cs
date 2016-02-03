@@ -16,12 +16,12 @@ namespace Devices
 
          public override void On()
         {
-            Console.WriteLine("Lamp ON");
+            Console.WriteLine("Lamp" + id + " ON");
         }
 
          public override void Off()
         {
-            Console.WriteLine("Lamp OFF");
+            Console.WriteLine("Lamp" + id + " OFF");
         }
     }
 }

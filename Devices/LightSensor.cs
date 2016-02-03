@@ -28,7 +28,7 @@ namespace Devices
             {
                 currentState = 510;
             }
-            Console.WriteLine("Light value = {0}", currentState);
+            Console.WriteLine("Light value" + id + " = {0}", currentState);
             return currentState;
         }
     }

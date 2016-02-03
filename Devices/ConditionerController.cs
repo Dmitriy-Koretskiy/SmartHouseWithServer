@@ -16,12 +16,12 @@ namespace Devices
 
         public override void On()
         {
-            Console.WriteLine("Conditioner ON");
+            Console.WriteLine("Conditioner"+ id + " ON");
         }
 
         public override void Off()
         {
-            Console.WriteLine("Conditioner OFF");
+            Console.WriteLine("Conditioner" + id + " OFF");
         }
     }
 }
