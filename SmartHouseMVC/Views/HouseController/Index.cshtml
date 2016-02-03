@@ -4,22 +4,32 @@
     ViewBag.Title = "House controllers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div>
-        <table>
-            <tr>
-                <td><h4>Name</h4></td>
-                <td></td>
-                <td></td>
-            </tr>
-            @foreach (HouseControllerViewModel ctrl in Model)
-            {
+<div>
+    <table>
+        <tr>
+            <td>
+                <h4>Name</h4>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (HouseControllerViewModel ctrl in Model)
+        {
             <tr>
                 <td>@ctrl.Name</td>
-                <td><p><a href="/HouseController/Details/@ctrl.Id">Details</a></p></td>
-                <td><p><a href="/HouseController/Edit/@ctrl.Id">Edit</a></p></td>
-                <td><p><a href="/HouseController/Delete/@ctrl.Id">Delete</a></p></td>
-                <td><p><a href="/HouseController/Create">Create</a></p></td>
+                <td>
+                    <p>@Html.RouteLink("Details", "Room", new { action = "Details", controller = "HouseController", id = ctrl.Id })</p>
+                </td>
+                <td>
+                    <p>@Html.RouteLink("Edit", "Room", new { action = "Edit", controller = "HouseController", id = ctrl.Id })</p>
+                </td>
+                <td>
+                    <p>@Html.RouteLink("Delete", "Room", new { action = "Delete", controller = "HouseController", id = ctrl.Id })</p>
+                </td>
+                <td>
+                    <p>@Html.RouteLink("Create", "Room", new { action = "Create", controller = "HouseController" })</p>
+                </td>
             </tr>
-            }
-        </table>
-    </div>
+        }
+    </table>
+</div>

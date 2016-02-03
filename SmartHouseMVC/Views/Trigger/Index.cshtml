@@ -1,26 +1,36 @@
 ﻿@using SmartHouseWebSite.Models
 @model IEnumerable<TriggerViewModel>
 @{
-   ViewBag.Title = "Triggers";
+    ViewBag.Title = "Triggers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div>
     <table>
         <tr>
-            <td><h4>Name</h4></td>
+            <td>
+                <h4>Name</h4>
+            </td>
             <td></td>
             <td></td>
         </tr>
         @foreach (TriggerViewModel ctrl in Model)
         {
-        <tr>
-            <td>@ctrl.Name</td>
-            <td><p><a href="/Trigger/Details/@ctrl.Id">Details</a></p></td>
-            <td><p><a href="/Trigger/Edit/@ctrl.Id">Edit</a></p></td>
-            <td><p><a href="/Trigger/Delete/@ctrl.Id">Delete</a></p></td>
-            <td><p><a href="/Trigger/Create">Create</a></p></td>
-        </tr>
+            <tr>
+                <td>@ctrl.Name</td>
+                <td>
+                    <p>@Html.RouteLink("Details", "Room", new { action = "Details", controller = "Trigger", id = ctrl.Id })</p>
+                </td>
+                <td>
+                    <p>@Html.RouteLink("Edit", "Room", new { action = "Edit", controller = "Trigger", id = ctrl.Id })</p>
+                </td>
+                <td>
+                    <p>@Html.RouteLink("Delete", "Room", new { action = "Delete", controller = "Trigger", id = ctrl.Id })</p>
+                </td>
+                <td>
+                    <p>@Html.RouteLink("Create", "Room", new { action = "Create", controller = "Trigger" })</p>
+                </td>
+            </tr>
         }
     </table>
 </div>

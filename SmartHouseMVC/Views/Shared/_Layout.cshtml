@@ -9,26 +9,25 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-     <header >
-            <div>            
-                <nav>
-                    <ul class="mainTopMenu">
-                        <li >@Html.ActionLink("HouseControllers", "Index", "HouseController")</li>
-                        <li >@Html.ActionLink("Sensors", "Index", "Sensor")</li>
-                        <li >@Html.ActionLink("Sensor's values", "Index", "SensorsValue")</li>
-                        <li >@Html.ActionLink("Triggers", "Index", "Trigger")</li>
-                        <li >@Html.ActionLink("Trigger's Actions", "Index", "TriggersAction")</li>
-                    </ul>
-                </nav>               
-            </div>
-        </header>
+    <header>
+        <div>
+            <nav>
+                <ul class="mainTopMenu">
+                    <li>@Html.RouteLink("HouseControllers", "Room", new { action = "Index", controller = "HouseController" })</li>
+                    <li>@Html.RouteLink("Sensors", "Room", new { action = "Index", controller = "Sensor" })</li>
+                    <li>@Html.RouteLink("Sensor's values", "Room", new { action = "Index", controller = "SensorsValue" })</li>
+                    <li>@Html.RouteLink("Triggers", "Room", new { action = "Index", controller = "Trigger" })</li>
+                    <li>@Html.RouteLink("Trigger's Actions", "Room", new { action = "Index", controller = "TriggersAction" })</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-      <footer>
-            
-      </footer>
+    <footer>
+    </footer>
 </body>
 </html>

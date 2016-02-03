@@ -33,7 +33,7 @@ namespace SmartHouseWebSite.Controllers
         {
             if (RouteData.Values["roomId"] != null)
             {
-            test= RouteData.Values["roomId"].ToString();
+                test= RouteData.Values["roomId"].ToString();
             }
             if (id == null)
             {
