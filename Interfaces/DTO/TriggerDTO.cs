@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    public class TriggerDTO
+    public class TriggerDTO : BaseEntityDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Condition { get; set; }
         public bool Enable { get; set; }

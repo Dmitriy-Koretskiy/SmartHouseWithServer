@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    public class SensorDTO
+    public class SensorDTO : BaseEntityDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public bool Enable { get; set; }
         public int? RoomId { get; set; }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\BaseEntityDTO.cs" />
     <Compile Include="DTO\HouseControllerDTO.cs" />
     <Compile Include="DTO\HouseControllersTypeDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
@@ -49,7 +50,7 @@
     <Compile Include="DTO\TriggersActionDTO.cs" />
     <Compile Include="DTO\TriggersTypeDTO.cs" />
     <Compile Include="IGenericMappingService.cs" />
-    <Compile Include="IMappingService.cs" />
+    <Compile Include="ITriggerMappingService.cs" />
     <Compile Include="Tables\BaseEntity.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IRepository.cs" />

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    public class HouseControllersTypeDTO
+    public class HouseControllersTypeDTO : BaseEntityDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

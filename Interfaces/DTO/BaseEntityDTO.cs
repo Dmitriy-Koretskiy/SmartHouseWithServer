@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    public class RoomDTO : BaseEntityDTO
+    public  class BaseEntityDTO
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace SmartHouseWebSite.Controllers
 {
     public class TriggerController : Controller
     {   
-        ITriggerMappingService triggerMappingService { get; set; }
+        IMappingService<TriggerDTO> triggerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
 
@@ -34,7 +34,7 @@ namespace SmartHouseWebSite.Controllers
         [HttpPost]
         public ActionResult Index(int roomId)
         {
-            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetAll(roomId));
+            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetByRoomId(roomId));
             return View(triggers);
         }
 

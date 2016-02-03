@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Services
 {
-    public class TriggerMappingService: ITriggerMappingService
+    public class TriggerMappingService: IMappingService<TriggerDTO>
     {
         IRepository repository { get; set; }
 

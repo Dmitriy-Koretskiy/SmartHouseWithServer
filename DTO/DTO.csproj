@@ -45,7 +45,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GenericMappingService.cs" />
+    <Compile Include="Services\HouseControllerMappingService.cs" />
+    <Compile Include="Services\SensorMappingService.cs" />
+    <Compile Include="Services\SensorsValueMappingService.cs" />
     <Compile Include="Services\TriggerMappingService.cs" />
+    <Compile Include="Services\TriggersActionMappingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

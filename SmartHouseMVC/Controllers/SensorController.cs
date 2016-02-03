@@ -31,10 +31,6 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Details(int? id)
         {
-            if (RouteData.Values["roomId"] != null)
-            {
-                test= RouteData.Values["roomId"].ToString();
-            }
             if (id == null)
             {
                 return HttpNotFound();

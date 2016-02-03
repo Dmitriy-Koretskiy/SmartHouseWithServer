@@ -30,7 +30,7 @@ namespace DTO.Services
 
         public IEnumerable<N> MapAll<O,N>()
             where N : class
-            where O : class
+            where O:  class
         {
             return Mapper.Map<IEnumerable<O>, List<N>>(repository.GetAll<O>());
         }
