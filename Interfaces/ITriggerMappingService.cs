@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IMappingService
+    public interface ITriggerMappingService
     {
         TriggerDTO GetById(int? id);
 
         IEnumerable<TriggerDTO> GetAll();
-        IEnumerable<TriggerDTO> GetAll(int roomId);
+        IEnumerable<TriggerDTO> GetByRoomId(int roomId);
 
         void Add(TriggerDTO oldObject);
 

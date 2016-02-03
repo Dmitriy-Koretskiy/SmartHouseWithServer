@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Services
 {
-    public class TriggerMappingService: IMappingService
+    public class TriggerMappingService: ITriggerMappingService
     {
         IRepository repository { get; set; }
 
@@ -30,19 +30,14 @@ namespace DTO.Services
             return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>());
         }
 
-        public IEnumerable<TriggerDTO> GetAll(int roomId)
+        public IEnumerable<TriggerDTO> GetByRoomId(int roomId)
         {
             return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>().Where(t => t.RoomId == roomId));
         }
 
-
         public void Add(TriggerDTO oldObject)
         {
             Trigger newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
-            //Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);
-            //HouseController houseController = repository.GetAll<HouseController>().First(opt => opt.Name == oldObject.HouseController);
-            //newObject.HouseControllerId = houseController.Id;
-            //newObject.SensorId = sensor.Id;
             repository.Add<Trigger>(newObject);
             repository.SaveChanges();
         }
@@ -50,10 +45,6 @@ namespace DTO.Services
         public void Edit(TriggerDTO oldObject)
         {
             var newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
-            //Sensor sensor = repository.GetAll<Sensor>().First(opt => opt.Name == oldObject.Sensor);
-            //HouseController houseController = repository.GetAll<HouseController>().First(opt => opt.Name == oldObject.HouseController);
-            //newObject.HouseControllerId = houseController.Id;
-            //newObject.SensorId = sensor.Id;
             repository.Update<Trigger>(newObject);
             repository.SaveChanges();
         }

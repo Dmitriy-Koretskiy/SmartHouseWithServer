@@ -14,7 +14,7 @@ namespace SmartHouseWebSite.Controllers
 {
     public class TriggerController : Controller
     {   
-        IMappingService triggerMappingService { get; set; }
+        ITriggerMappingService triggerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
         IRepository repository { get; set; }
 
