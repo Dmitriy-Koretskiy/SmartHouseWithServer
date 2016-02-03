@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Services
 {
-    class SensorsValueMappingService
+    public class SensorsValueMappingService : IMappingService<SensorsValueDTO>
     {
          IRepository repository { get; set; }
 

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DTO.Services
 {
-    class TriggersActionMappingService
+    public class TriggersActionMappingService : IMappingService<TriggersActionDTO>
     {
-         IRepository repository { get; set; }
+        IRepository repository { get; set; }
 
         public TriggersActionMappingService()    // should use IoC
         {

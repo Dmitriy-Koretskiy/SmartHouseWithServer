@@ -16,7 +16,9 @@ namespace SmartHouseWebSite
             routes.MapRoute(
                 name: "Room",
                 url: "Room/{roomId}/{controller}/{action}/{id}",
-                defaults: new { controller = "Room", action = "Index", id = UrlParameter.Optional, roomId = UrlParameter.Optional }
+                defaults: new { controller = "Room", action = "Index", id = UrlParameter.Optional},
+                constraints: new {
+                    roomId = @"\d+" }
             );
 
             routes.MapRoute(

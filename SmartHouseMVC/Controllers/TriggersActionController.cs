@@ -14,18 +14,27 @@ namespace SmartHouseWebSite.Controllers
 {
     public class TriggersActionController : Controller
     {
-        IGenericMappingService genericMappingService { get; set; }
-        IRepository repository { get; set; }
+        IMappingService<TriggersActionDTO> triggersActionMappingService { get; set; }
 
-        public TriggersActionController() //should use IoC for service and repository
+        public TriggersActionController() //should use IoC for service
         {
-            this.genericMappingService = new GenericMappingService();
+            this.triggersActionMappingService = new TriggersActionMappingService();
         }
 
         public ActionResult Index()
         {
-            var triggersActions = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(genericMappingService.MapAll<TriggersAction, TriggersActionDTO>());
-            return View(triggersActions);
+            if (RouteData.Values["roomId"] != null)
+            {
+                int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
+                var triggersActions = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(triggersActionMappingService.
+                    GetByRoomId(roomId));
+                return View(triggersActions);
+            }
+            else
+            {
+                var triggersActions = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(triggersActionMappingService.GetAll());
+                return View(triggersActions);
+            }
         }
     }
 }

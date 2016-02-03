@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DTO.Services
 {
-    class HouseControllerMappingService
+    public class HouseControllerMappingService : IMappingService<HouseControllerDTO>
     {
-         IRepository repository { get; set; }
+        IRepository repository { get; set; }
 
         public HouseControllerMappingService()    // should use IoC
         {

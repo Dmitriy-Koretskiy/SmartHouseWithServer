@@ -50,7 +50,7 @@
     <Compile Include="DTO\TriggersActionDTO.cs" />
     <Compile Include="DTO\TriggersTypeDTO.cs" />
     <Compile Include="IGenericMappingService.cs" />
-    <Compile Include="ITriggerMappingService.cs" />
+    <Compile Include="IMappingService.cs" />
     <Compile Include="Tables\BaseEntity.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IRepository.cs" />

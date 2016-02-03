@@ -16,26 +16,28 @@ namespace SmartHouseWebSite.Controllers
     {   
         IMappingService<TriggerDTO> triggerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
-        IRepository repository { get; set; }
 
-        public TriggerController() //should use IoC for service and repository
+        public TriggerController() //should use IoC for service
         {
             this.triggerMappingService = new TriggerMappingService();
             this.genericMappingService = new GenericMappingService();
         }
 
-        [HttpGet]
+        
         public ActionResult Index()
         {
-            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetAll());
-            return View(triggers);
-        }
-
-        [HttpPost]
-        public ActionResult Index(int roomId)
-        {
-            var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetByRoomId(roomId));
-            return View(triggers);
+            if (RouteData.Values["roomId"] != null)
+            {
+                int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
+                var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.
+                    GetByRoomId(roomId));
+                return View(triggers);
+            }
+            else
+            {
+                var triggers = Mapper.Map<IEnumerable<TriggerDTO>, List<TriggerViewModel>>(triggerMappingService.GetAll());
+                return View(triggers);
+            }
         }
 
         public ActionResult Details(int? id)

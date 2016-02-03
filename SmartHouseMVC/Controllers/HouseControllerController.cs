@@ -14,29 +14,29 @@ namespace SmartHouseWebSite.Controllers
 {
     public class HouseControllerController : Controller
     {
+        IMappingService<HouseControllerDTO> houseControllerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
-        // IRepository repository { get; set; }
 
-        public HouseControllerController() //should use IoC for service and repository
+        public HouseControllerController() //should use IoC for service
         {
+            this.houseControllerMappingService = new HouseControllerMappingService();
             this.genericMappingService = new GenericMappingService();
         }
 
         public ActionResult Index()
         {
-            //if (RouteData.Values["roomId"] != null)
-            //{
-            //    //int roomId = (Int32)RouteData.Values["roomId"];
-                //var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.
-                //    MapByRoomId<HouseController, HouseControllerDTO>(roomId));
-                //return View(houseControllers);
-            //}
-            //else
-            //{
-                var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(genericMappingService.
-                    MapAll<HouseController, HouseControllerDTO>());
+            if (RouteData.Values["roomId"] != null)
+            {
+                int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
+                var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(houseControllerMappingService.
+                    GetByRoomId(roomId));
                 return View(houseControllers);
-            //}
+            }
+            else
+            {
+                var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(houseControllerMappingService.GetAll());
+                return View(houseControllers);
+            }
         }
 
         public ActionResult Details(int? id)
