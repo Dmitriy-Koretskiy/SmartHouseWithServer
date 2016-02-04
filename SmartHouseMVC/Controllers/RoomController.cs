@@ -20,10 +20,14 @@ namespace SmartHouseWebSite.Controllers
         //
         // GET: /Room/
     
-        public ActionResult Index(int roomId)
+        public ActionResult Index(int? roomId)
         {
+            if (roomId == null)
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
             string controller = RouteData.Values["controller"].ToString();
-            this.roomId = roomId;
+            this.roomId = (int)roomId;
             return View();
         }
 
