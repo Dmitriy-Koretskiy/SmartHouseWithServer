@@ -66,7 +66,7 @@ namespace BLL
             Type type;
             foreach (Trigger triggerElement in repository.GetAll<Trigger>().Where(t => t.Enable == true))
             {
-                type = assembly.GetType("Devices." + triggerElement.TriggersType.Name, true, true);
+                type = assembly.GetType("Devices.BaseTrigger" , true, true);
 
                 object obj = Activator.CreateInstance(type, triggerElement.Id, sensorsDict[triggerElement.Sensor.Id.ToString()],
                     controllersDict[triggerElement.HouseController.Id.ToString()], triggerElement.Condition);
