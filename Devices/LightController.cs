@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using Microsoft.SqlServer.Server;
 
 namespace Devices
 {

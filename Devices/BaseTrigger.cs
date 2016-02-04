@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Interfaces;
 using Interfaces.Tables;
 using Interfaces.DTO;
+using DAL;
+
 
 namespace Devices
 {
@@ -18,7 +20,8 @@ namespace Devices
         protected readonly string condition;
         protected bool alreadyWork = false;
         protected ConditionsHandler conditionsHandler = new ConditionsHandler();
-     
+        protected IRepository repository = new Repository();
+
         public  BaseTrigger(int id, ISensor sensor, IController controller, string condition) 
         {
             this.id = id;
@@ -33,6 +36,9 @@ namespace Devices
             {
                 if (!alreadyWork)
                 {
+                    TriggersAction triggerAction = new TriggersAction() { TriggerId = id, TimeChange = DateTime.Now, Description = "On"};
+                    repository.Add(triggerAction);
+                    repository.SaveChanges();
                     controller.On();
                     alreadyWork = true;
                     TriggersActionDTO ta = new TriggersActionDTO() {TimeChange = DateTime.Now, Description = "On"};
@@ -42,6 +48,9 @@ namespace Devices
             {
                 if (alreadyWork)
                 {
+                    TriggersAction triggerAction = new TriggersAction() { TriggerId = id, TimeChange = DateTime.Now, Description = "Off" };
+                    repository.Add(triggerAction);
+                    repository.SaveChanges();
                     controller.Off();
                     alreadyWork = false;
                 }
