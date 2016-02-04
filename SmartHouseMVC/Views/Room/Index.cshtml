@@ -1,6 +1,28 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@using SmartHouseWebSite.Models
+@model IEnumerable<RoomContentViewModel>
+@{
+    ViewBag.Title = "Room";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.RoomName</h2>
+
+<div>
+    <table>
+      
+        @foreach (RoomContentViewModel roomContent in Model)
+        {
+            <tr>
+                <td>
+                    <p>@roomContent.Name</p>
+                </td>
+                <td>
+                    <p>@roomContent.LastState</p>
+                </td>
+                <td>
+                    <p>@roomContent.SensorId</p>
+                </td>          
+            </tr>
+        }
+    </table>
+</div>

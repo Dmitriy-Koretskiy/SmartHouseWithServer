@@ -1,6 +1,8 @@
-﻿using DTO.Services;
+﻿using AutoMapper;
+using DTO.Services;
 using Interfaces;
 using Interfaces.DTO;
+using SmartHouseWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace SmartHouseWebSite.Controllers
     {
         RoomMappingService roomMappingService { get; set; }
         IMappingService<SensorDTO> sensorMappingService { get; set; }
-        IMappingService<TriggerDTO> triggerMappingService { get; set; }
+        //IMappingService<TriggerDTO> triggerMappingService { get; set; }
 
         int roomId = 0;
 
@@ -21,20 +23,21 @@ namespace SmartHouseWebSite.Controllers
         {
             this.roomMappingService = new RoomMappingService();
             this.sensorMappingService = new SensorMappingService();
-            this.triggerMappingService = new TriggerMappingService();
+            //this.triggerMappingService = new TriggerMappingService();
         }
 
-    
+
         public ActionResult Index(int? roomId)
         {
             if (roomId == null)
             {
                 return RedirectToAction("Index", "Home", null);
             }
-
-            string controller = RouteData.Values["controller"].ToString();
-            this.roomId = (int)roomId;
-            return View();
+            var room = Mapper.Map<RoomDTO, RoomViewModel>(roomMappingService.GetRoomById((int)roomId));
+            ViewBag.RoomName = room.Name;
+            var triggersStates = Mapper.Map<IEnumerable<RoomContentDTO>, List<RoomContentViewModel>>(roomMappingService
+                .GetLastStatesOfTriggers((int)roomId));
+            return View(triggersStates);
         }
     }
 }

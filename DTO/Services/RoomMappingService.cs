@@ -20,21 +20,28 @@ namespace DTO.Services
             this.repository = new Repository();
         }
 
+        public RoomDTO GetRoomById(int roomId)
+        {
+            return Mapper.Map<Room, RoomDTO>(repository.Get<Room>(roomId));
+        }
+
         public RoomContentDTO GetLastStateOfTrigger(int roomId, int triggerId)
         {
             return Mapper.Map<TriggersAction, RoomContentDTO>(repository.GetAll<TriggersAction>()
-                .Last(t => t.Trigger.RoomId == roomId && t.Trigger.Id == triggerId));
+                    .OrderByDescending(x => x.TimeChange)
+                    .First(t => t.Trigger.RoomId == roomId && t.Trigger.Id == triggerId));
         }
 
         public IEnumerable<RoomContentDTO> GetLastStatesOfTriggers(int roomId)
         {
             List<RoomContentDTO> roomContentList = new List<RoomContentDTO>();
             List<Trigger> triggerList = repository.GetAll<Trigger>().Where(t => t.RoomId == roomId).ToList();
-            triggerList.Sort();
             foreach (Trigger trigger in triggerList)
             {
                 RoomContentDTO roomContent = Mapper.Map<TriggersAction, RoomContentDTO>(repository.GetAll<TriggersAction>()
-                    .Last(t => t.Trigger.RoomId == roomId && t.Trigger.Id == trigger.Id));
+                    .OrderByDescending(x => x.TimeChange)
+                    .First(t => t.Trigger.RoomId == roomId && t.Trigger.Id == trigger.Id));
+                roomContentList.Add(roomContent);
             }
 
             return roomContentList;
