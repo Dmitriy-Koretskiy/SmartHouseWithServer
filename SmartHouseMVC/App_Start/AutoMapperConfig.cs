@@ -55,20 +55,26 @@ namespace SmartHouseWebSite.App_Start
                 .ForMember(t => t.TriggersTypeName, opt => opt.MapFrom(s => s.TriggersType.Name));
             Mapper.CreateMap<TriggerViewModel, TriggerDTO>();
             Mapper.CreateMap<TriggerDTO, Trigger>()
-               .ForMember(t => t.Sensor, opt => opt.Ignore())
-               .ForMember(t => t.HouseController, opt => opt.Ignore())
-               .ForMember(t => t.Room, opt => opt.Ignore())
-               .ForMember(t => t.TriggersType, opt => opt.Ignore());
+                .ForMember(t => t.Sensor, opt => opt.Ignore())
+                .ForMember(t => t.HouseController, opt => opt.Ignore())
+                .ForMember(t => t.Room, opt => opt.Ignore())
+                .ForMember(t => t.TriggersType, opt => opt.Ignore());
 
             Mapper.CreateMap<TriggersActionDTO, TriggersActionViewModel>();
             Mapper.CreateMap<TriggersAction, TriggersActionDTO>()
-                .ForMember(ta =>ta.TriggerName, opt => opt.MapFrom(s => s.Trigger.Name));
+                .ForMember(ta => ta.TriggerName, opt => opt.MapFrom(s => s.Trigger.Name));
             Mapper.CreateMap<TriggersActionViewModel, TriggersActionDTO>();
             Mapper.CreateMap<TriggersActionDTO, TriggersAction>()
                 .ForMember(ta => ta.TriggerId, opt => opt.Ignore());
 
             Mapper.CreateMap<TriggersTypeDTO, TriggersTypeViewModel>();
             Mapper.CreateMap<TriggersType, TriggersTypeDTO>();
+
+            Mapper.CreateMap<RoomContentDTO, RoomContentViewModel>();
+            Mapper.CreateMap<TriggersAction, RoomContentDTO>()
+                .ForMember(rc => rc.Name, opt => opt.MapFrom(ta => ta.Trigger.Name))
+                .ForMember(rc => rc.LastState, opt => opt.MapFrom(ta => ta.Description))
+                .ForMember(rc => rc.SensorId, opt => opt.MapFrom(ta => ta.Trigger.Sensor.Id));
         }
     }
 }

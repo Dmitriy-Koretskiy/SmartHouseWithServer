@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Models\HouseControllersTypeViewModel.cs" />
     <Compile Include="Models\HouseControllerViewModel.cs" />
+    <Compile Include="Models\RoomContentViewModel.cs" />
     <Compile Include="Models\RoomViewModel.cs" />
     <Compile Include="Models\SensorsTypeViewModel.cs" />
     <Compile Include="Models\SensorsValueViewModel.cs" />

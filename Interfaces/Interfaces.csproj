@@ -43,6 +43,7 @@
     <Compile Include="DTO\BaseEntityDTO.cs" />
     <Compile Include="DTO\HouseControllerDTO.cs" />
     <Compile Include="DTO\HouseControllersTypeDTO.cs" />
+    <Compile Include="DTO\RoomContentDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
     <Compile Include="DTO\SensorDTO.cs" />
     <Compile Include="DTO\SensorsTypeDTO.cs" />

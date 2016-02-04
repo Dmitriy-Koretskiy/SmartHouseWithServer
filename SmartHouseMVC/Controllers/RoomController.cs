@@ -1,5 +1,6 @@
 ﻿using DTO.Services;
 using Interfaces;
+using Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,19 @@ namespace SmartHouseWebSite.Controllers
 {
     public class RoomController : Controller
     {
-        IGenericMappingService genericMappingService { get; set; }
+        RoomMappingService roomMappingService { get; set; }
+        IMappingService<SensorDTO> sensorMappingService { get; set; }
+        IMappingService<TriggerDTO> triggerMappingService { get; set; }
+
         int roomId = 0;
 
-        public RoomController() //should use IoC for service and repository
+        public RoomController() //should use IoC for service
         {
-            this.genericMappingService = new GenericMappingService();
+            this.roomMappingService = new RoomMappingService();
+            this.sensorMappingService = new SensorMappingService();
+            this.triggerMappingService = new TriggerMappingService();
         }
-        //
-        // GET: /Room/
+
     
         public ActionResult Index(int? roomId)
         {
@@ -26,95 +31,10 @@ namespace SmartHouseWebSite.Controllers
             {
                 return RedirectToAction("Index", "Home", null);
             }
+
             string controller = RouteData.Values["controller"].ToString();
             this.roomId = (int)roomId;
             return View();
-        }
-
-        //
-        // GET: /Room/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Room/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Room/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Room/Edit/5
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Room/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Room/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Room/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
