@@ -10,6 +10,7 @@ namespace Interfaces.DTO
     {
         public string Name { get; set; }
         public string LastState { get; set; }
+        public string TriggerId { get; set; }
         public int SensorId { get; set; }
     }
 }

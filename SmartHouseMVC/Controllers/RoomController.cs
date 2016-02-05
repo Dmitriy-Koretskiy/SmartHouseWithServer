@@ -25,8 +25,7 @@ namespace SmartHouseWebSite.Controllers
             this.sensorMappingService = new SensorMappingService();
             //this.triggerMappingService = new TriggerMappingService();
         }
-
-
+    
         public ActionResult Index(int? roomId)
         {
             if (roomId == null)

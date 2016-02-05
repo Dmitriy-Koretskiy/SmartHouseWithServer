@@ -74,6 +74,7 @@ namespace SmartHouseWebSite.App_Start
             Mapper.CreateMap<TriggersAction, RoomContentDTO>()
                 .ForMember(rc => rc.Name, opt => opt.MapFrom(ta => ta.Trigger.Name))
                 .ForMember(rc => rc.LastState, opt => opt.MapFrom(ta => ta.Description))
+                .ForMember(rc => rc.TriggerId, opt => opt.MapFrom(ta => ta.Trigger.Id))
                 .ForMember(rc => rc.SensorId, opt => opt.MapFrom(ta => ta.Trigger.Sensor.Id));
         }
     }
