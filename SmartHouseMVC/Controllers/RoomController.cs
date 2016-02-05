@@ -16,8 +16,6 @@ namespace SmartHouseWebSite.Controllers
         RoomMappingService roomMappingService { get; set; }
         IMappingService<SensorDTO> sensorMappingService { get; set; }
 
-        int roomId = 0;
-
         public RoomController() 
         {
             this.roomMappingService = new RoomMappingService();
@@ -34,6 +32,21 @@ namespace SmartHouseWebSite.Controllers
             ViewBag.RoomName = room.Name;
             var triggersStates = roomMappingService.GetLastStatesOfTriggers((int)roomId);
             return View(triggersStates);
+        }
+
+        public string RefreshTriggerState(int triggerId)
+        {
+             int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
+
+             if (roomId != null)
+             {
+                 return roomMappingService.GetLastStateOfTrigger((int)roomId, triggerId);
+             }
+             else
+             {
+                 return "IncorrectTriggerId";
+             }
+
         }
     }
 }

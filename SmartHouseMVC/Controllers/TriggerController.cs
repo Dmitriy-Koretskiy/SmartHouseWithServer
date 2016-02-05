@@ -129,10 +129,8 @@ namespace SmartHouseWebSite.Controllers
             }
             catch 
             {
-                //TODO: Add Massege Error
                 return RedirectToAction("Index");
-            }
-           
+            }          
         }
     }
 }

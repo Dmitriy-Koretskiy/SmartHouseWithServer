@@ -25,11 +25,12 @@ namespace DTO.Services
             return Mapper.Map<Room, RoomDTO>(repository.Get<Room>(roomId));
         }
 
-        public RoomContentDTO GetLastStateOfTrigger(int roomId, int triggerId)
+        public string GetLastStateOfTrigger(int roomId, int triggerId)
         {
             return Mapper.Map<TriggersAction, RoomContentDTO>(repository.GetAll<TriggersAction>()
                     .OrderByDescending(x => x.TimeChange)
-                    .First(t => t.Trigger.RoomId == roomId && t.Trigger.Id == triggerId));
+                    .First(t => t.Trigger.RoomId == roomId && t.Trigger.Id == triggerId))
+                    .LastState;
         }
 
         public IEnumerable<RoomContentDTO> GetLastStatesOfTriggers(int roomId)
