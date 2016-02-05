@@ -156,6 +156,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Installers\RepositoryInstaller.cs" />
     <Compile Include="Models\HouseControllersTypeViewModel.cs" />
     <Compile Include="Models\HouseControllerViewModel.cs" />
     <Compile Include="Models\RoomContentViewModel.cs" />
@@ -279,6 +280,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{b1a22560-fbd1-419a-b691-1ab3e92e3799}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{18aa660c-3f84-4a10-b8f4-88440e2732cb}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{f475314b-513c-4a97-ab4d-a89f89b92ad6}</Project>
