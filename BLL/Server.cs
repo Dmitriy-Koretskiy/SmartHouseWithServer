@@ -14,16 +14,22 @@ namespace BLL
 {
     public class Server
     {
-        Repository repository = new Repository();
+        IRepository repository = new Repository();
         Assembly assembly = Assembly.LoadFrom(@"..\..\..\Devices\bin\Debug\Devices.dll");
+        private bool systemWork = true; 
 
-        public void StartWork()
+        public void ConfigureSystem()
         {      
             Dictionary<string, object> sensorsDict = GetSensorsDictionary();
             Dictionary<string, object> controllersDict = GetControllersDictionary();
             List<object> triggersList = GetTriggersList(sensorsDict, controllersDict);
            
-            for (; ; )
+            
+        }
+
+        public void StartWork(List<object> triggersList)
+        {
+            while (systemWork)
             {
                 Parallel.ForEach(triggersList, UseTrigger);
                 Thread.Sleep(1000);
@@ -63,16 +69,36 @@ namespace BLL
         private List<object> GetTriggersList(Dictionary<string, object> sensorsDict, Dictionary<string, object> controllersDict)
         {
             List<object> triggersList = new List<object>();
-            Type type;
+            Type type; 
             foreach (Trigger triggerElement in repository.GetAll<Trigger>().Where(t => t.Enable == true))
             {
-                type = assembly.GetType("Devices.BaseTrigger" , true, true);
+                type = GetDeviceTypeTry("BaseTrigger");
 
-                object obj = Activator.CreateInstance(type, triggerElement.Id, sensorsDict[triggerElement.Sensor.Id.ToString()],
-                    controllersDict[triggerElement.HouseController.Id.ToString()], triggerElement.Condition);
-                triggersList.Add(obj);
+                if (type == null)
+                {
+                    
+                }
+                else
+                {
+
+                    object obj = Activator.CreateInstance(type, triggerElement.Id, sensorsDict[triggerElement.Sensor.Id.ToString()],
+                        controllersDict[triggerElement.HouseController.Id.ToString()], triggerElement.Condition);
+                    triggersList.Add(obj);
+                }
             }
             return triggersList;
+        }
+
+        private Type GetDeviceTypeTry(string typeDevice)
+        {
+            try
+            {
+                return assembly.GetType("Devices." + typeDevice, true, true);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public CheckConfigurationResult CheckConfiguration()
