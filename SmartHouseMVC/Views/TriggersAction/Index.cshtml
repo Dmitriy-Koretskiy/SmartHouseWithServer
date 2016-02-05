@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model IEnumerable<TriggersActionViewModel>
+﻿@using Interfaces.DTO
+@model IEnumerable<TriggersActionDTO>
 @{
     ViewBag.Title = "Sensors";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +12,7 @@
             <td><h4>Time</h4></td>
             <td><h4>Description</h4></td>
         </tr>
-        @foreach (TriggersActionViewModel ctrl in Model)
+        @foreach (TriggersActionDTO ctrl in Model)
         {
         <tr>
             <td>@ctrl.TriggerName</td>

@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model TriggerViewModel
+﻿@using Interfaces.DTO
+@model TriggerDTO
 
 @{
     ViewBag.Title = "Create";
@@ -11,9 +11,6 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
-    List<HouseControllerViewModel> listControlers= ViewBag.houseControllers;
-    List<SensorViewModel> listSensors = ViewBag.sensors;  
      
     <fieldset>
         <legend>Trigger</legend>

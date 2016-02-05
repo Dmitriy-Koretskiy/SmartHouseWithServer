@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model IEnumerable<TriggerViewModel>
+﻿@using Interfaces.DTO
+@model IEnumerable<TriggerDTO>
 @{
     ViewBag.Title = "Triggers";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,7 +14,7 @@
             <td></td>
             <td></td>
         </tr>
-        @foreach (TriggerViewModel ctrl in Model)
+        @foreach (TriggerDTO ctrl in Model)
         {
             <tr>
                 <td>@ctrl.Name</td>

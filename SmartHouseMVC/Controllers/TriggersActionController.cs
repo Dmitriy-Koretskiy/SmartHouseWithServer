@@ -16,7 +16,7 @@ namespace SmartHouseWebSite.Controllers
     {
         IMappingService<TriggersActionDTO> triggersActionMappingService { get; set; }
 
-        public TriggersActionController() //should use IoC for service
+        public TriggersActionController() 
         {
             this.triggersActionMappingService = new TriggersActionMappingService();
         }
@@ -26,13 +26,12 @@ namespace SmartHouseWebSite.Controllers
             if (RouteData.Values["roomId"] != null)
             {
                 int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
-                var triggersActions = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(triggersActionMappingService.
-                    GetByRoomId(roomId));
+                var triggersActions = triggersActionMappingService.GetByRoomId(roomId);
                 return View(triggersActions);
             }
             else
             {
-                var triggersActions = Mapper.Map<IEnumerable<TriggersActionDTO>, List<TriggersActionViewModel>>(triggersActionMappingService.GetAll());
+                var triggersActions = triggersActionMappingService.GetAll();
                 return View(triggersActions);
             }
         }

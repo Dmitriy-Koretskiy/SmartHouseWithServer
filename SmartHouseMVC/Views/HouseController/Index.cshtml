@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model IEnumerable<HouseControllerViewModel>
+﻿@using Interfaces.DTO
+@model IEnumerable<HouseControllerDTO>
 @{
     ViewBag.Title = "House controllers";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +13,7 @@
             <td></td>
             <td></td>
         </tr>
-        @foreach (HouseControllerViewModel ctrl in Model)
+        @foreach (HouseControllerDTO ctrl in Model)
         {
             <tr>
                 <td>@ctrl.Name</td>

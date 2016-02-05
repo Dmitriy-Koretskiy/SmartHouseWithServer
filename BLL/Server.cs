@@ -18,22 +18,41 @@ namespace BLL
         Assembly assembly = Assembly.LoadFrom(@"..\..\..\Devices\bin\Debug\Devices.dll");
         private bool systemWork = true; 
 
-        public void ConfigureSystem()
+        private List<object> ConfigureSystem()
         {      
             Dictionary<string, object> sensorsDict = GetSensorsDictionary();
             Dictionary<string, object> controllersDict = GetControllersDictionary();
             List<object> triggersList = GetTriggersList(sensorsDict, controllersDict);
-           
-            
+
+            return triggersList;            
         }
 
-        public void StartWork(List<object> triggersList)
+        public void StartSystemWork(){
+
+            systemWork = true;
+            var triggers = ConfigureSystem();
+
+            if(systemWork == false)
+            {
+                Thread.Sleep(100000);
+                StartSystemWork();
+            }
+
+            StartMainProsses(triggers);
+        }
+
+        private void StartMainProsses(List<object> triggersList)
         {
             while (systemWork)
             {
                 Parallel.ForEach(triggersList, UseTrigger);
                 Thread.Sleep(1000);
             }
+        }
+
+        public void StopWork()
+        {
+            this.systemWork = false;
         }
 
         private void UseTrigger(object obj)
@@ -48,8 +67,17 @@ namespace BLL
             Type type;
             foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
             {
-                type = assembly.GetType("Devices." + sensorElement.SensorsType.Name, true, true);
-                sensorsDict.Add(sensorElement.Id.ToString(), Activator.CreateInstance(type, sensorElement.Id));
+                type = GetDeviceTypeTry(sensorElement.SensorsType.Name);
+
+                if (type == null)
+                {
+                    systemWork = false;
+                    break;
+                }
+                else
+                {
+                    sensorsDict.Add(sensorElement.Id.ToString(), Activator.CreateInstance(type, sensorElement.Id));
+                } 
             }
             return sensorsDict;
         }
@@ -60,8 +88,17 @@ namespace BLL
             Type type;
             foreach (HouseController controllerElement in repository.GetAll<HouseController>().Where(c => c.Enable == true))
             {
-                type = assembly.GetType("Devices." + controllerElement.HouseControllersType.Name, true, true);
-                controllersDict.Add(controllerElement.Id.ToString(), Activator.CreateInstance(type, controllerElement.Id));
+                type = GetDeviceTypeTry(controllerElement.HouseControllersType.Name);
+
+                if (type == null)
+                {
+                    systemWork = false;
+                    break;
+                }
+                else
+                {
+                    controllersDict.Add(controllerElement.Id.ToString(), Activator.CreateInstance(type, controllerElement.Id));
+                }   
             }
             return controllersDict;
         }
@@ -76,11 +113,11 @@ namespace BLL
 
                 if (type == null)
                 {
-                    
+                    systemWork = false;
+                    break;
                 }
                 else
                 {
-
                     object obj = Activator.CreateInstance(type, triggerElement.Id, sensorsDict[triggerElement.Sensor.Id.ToString()],
                         controllersDict[triggerElement.HouseController.Id.ToString()], triggerElement.Condition);
                     triggersList.Add(obj);

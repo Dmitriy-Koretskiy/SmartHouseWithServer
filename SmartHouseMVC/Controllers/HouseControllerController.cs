@@ -17,7 +17,7 @@ namespace SmartHouseWebSite.Controllers
         IMappingService<HouseControllerDTO> houseControllerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
 
-        public HouseControllerController() //should use IoC for service
+        public HouseControllerController() 
         {
             this.houseControllerMappingService = new HouseControllerMappingService();
             this.genericMappingService = new GenericMappingService();
@@ -28,13 +28,12 @@ namespace SmartHouseWebSite.Controllers
             if (RouteData.Values["roomId"] != null)
             {
                 int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
-                var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(houseControllerMappingService.
-                    GetByRoomId(roomId));
+                var houseControllers = houseControllerMappingService.GetByRoomId(roomId);
                 return View(houseControllers);
             }
             else
             {
-                var houseControllers = Mapper.Map<IEnumerable<HouseControllerDTO>, List<HouseControllerViewModel>>(houseControllerMappingService.GetAll());
+                var houseControllers = houseControllerMappingService.GetAll();
                 return View(houseControllers);
             }
         }
@@ -46,29 +45,28 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            HouseControllerViewModel houseControllerVM = Mapper.Map<HouseControllerDTO, HouseControllerViewModel>(genericMappingService.MapById<HouseController, HouseControllerDTO>(id));
+            HouseControllerDTO houseControllerDTO = genericMappingService.MapById<HouseController, HouseControllerDTO>(id);
 
-            if (houseControllerVM == null)
+            if (houseControllerDTO == null)
             {
                 return HttpNotFound();
             }
-            return View(houseControllerVM);
+            return View(houseControllerDTO);
         }
 
         public ActionResult Create()
         {
-            ViewBag.houseControllersTypes = Mapper.Map<IEnumerable<HouseControllersTypeDTO>, List<HouseControllersTypeViewModel>>(genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>());
-            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
+            ViewBag.houseControllersTypes = genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>();
+            ViewBag.rooms = genericMappingService.MapAll<Room, RoomDTO>();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(HouseControllerViewModel houseControllerVM)
+        public ActionResult Create(HouseControllerDTO houseControllerDTO)
         {
             try
             {
-                var controllerDTO = Mapper.Map<HouseControllerViewModel, HouseControllerDTO>(houseControllerVM);
-                genericMappingService.Add<HouseControllerDTO, HouseController>(controllerDTO);
+                genericMappingService.Add<HouseControllerDTO, HouseController>(houseControllerDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -84,26 +82,25 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            HouseControllerViewModel houseControllerVM = Mapper.Map<HouseControllerDTO, HouseControllerViewModel>(genericMappingService.MapById<HouseController, HouseControllerDTO>(id));
+            HouseControllerDTO houseControllerDTO = genericMappingService.MapById<HouseController, HouseControllerDTO>(id);
 
-            if (houseControllerVM == null)
+            if (houseControllerDTO == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.houseControllersTypes = Mapper.Map<IEnumerable<HouseControllersTypeDTO>, List<HouseControllersTypeViewModel>>(genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>());
-            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
+            ViewBag.houseControllersTypes = genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>();
+            ViewBag.rooms = genericMappingService.MapAll<Room, RoomDTO>();
 
-            return View(houseControllerVM);
+            return View(houseControllerDTO);
         }
 
         [HttpPost]
-        public ActionResult Edit(HouseControllerViewModel houseControllerVM)
+        public ActionResult Edit(HouseControllerDTO houseControllerDTO)
         {
             try
             {
-                var controllerDTO = Mapper.Map<HouseControllerViewModel, HouseControllerDTO>(houseControllerVM);
-                genericMappingService.Edit<HouseControllerDTO, HouseController>(controllerDTO);
+                genericMappingService.Edit<HouseControllerDTO, HouseController>(houseControllerDTO);
                 return RedirectToAction("Index");
             }
             catch

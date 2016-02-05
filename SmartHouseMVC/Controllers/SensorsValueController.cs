@@ -16,7 +16,7 @@ namespace SmartHouseWebSite.Controllers
     {
         IMappingService<SensorsValueDTO> sensorsValueMappingService { get; set; }
 
-        public SensorsValueController() //should use IoC for service and repository
+        public SensorsValueController() 
         {
             this.sensorsValueMappingService = new SensorsValueMappingService();
         }
@@ -26,13 +26,12 @@ namespace SmartHouseWebSite.Controllers
             if (RouteData.Values["roomId"] != null)
             {
                 int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
-                var sensorsValues = Mapper.Map<IEnumerable<SensorsValueDTO>, List<SensorsValueViewModel>>(sensorsValueMappingService.
-                    GetByRoomId(roomId));
+                var sensorsValues = sensorsValueMappingService.GetByRoomId(roomId);
                 return View(sensorsValues);
             }
             else
             {
-                var sensorsValues = Mapper.Map<IEnumerable<SensorsValueDTO>, List<SensorsValueViewModel>>(sensorsValueMappingService.GetAll());
+                var sensorsValues = sensorsValueMappingService.GetAll();
                 return View(sensorsValues);
             }
         }

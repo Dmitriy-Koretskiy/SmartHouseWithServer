@@ -18,7 +18,7 @@ namespace SmartHouseWebSite.Controllers
         IGenericMappingService genericMappingService { get; set; }
         public string test;
 
-        public SensorController() //should use IoC for service and repository
+        public SensorController() 
         {
             this.sensorMappingService = new SensorMappingService();
             this.genericMappingService = new GenericMappingService();
@@ -29,13 +29,12 @@ namespace SmartHouseWebSite.Controllers
             if (RouteData.Values["roomId"] != null)
             {
                 int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
-                var sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(sensorMappingService.
-                    GetByRoomId(roomId));
+                var sensors = sensorMappingService.GetByRoomId(roomId);
                 return View(sensors);
             }
             else
             {
-                var sensors = Mapper.Map<IEnumerable<SensorDTO>, List<SensorViewModel>>(sensorMappingService.GetAll());
+                var sensors = sensorMappingService.GetAll();
                 return View(sensors);
             }
         }
@@ -47,7 +46,7 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            SensorViewModel sensorVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
+            SensorDTO sensorVM = genericMappingService.MapById<Sensor, SensorDTO>(id);
 
             if (sensorVM == null)
             {
@@ -58,18 +57,17 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.sensorsTypes = Mapper.Map<IEnumerable<SensorsTypeDTO>, List<SensorsTypeViewModel>>(genericMappingService.MapAll<SensorsType, SensorsTypeDTO>());
-            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
+            ViewBag.sensorsTypes = genericMappingService.MapAll<SensorsType, SensorsTypeDTO>();
+            ViewBag.rooms = genericMappingService.MapAll<Room, RoomDTO>();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(SensorViewModel sensorVM)
+        public ActionResult Create(SensorDTO sensorDTO)
         {
             try
             {
-                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(sensorVM);
-                genericMappingService.Add<SensorDTO, Sensor>(controllerDTO);
+                genericMappingService.Add<SensorDTO, Sensor>(sensorDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -85,26 +83,25 @@ namespace SmartHouseWebSite.Controllers
                 return HttpNotFound();
             }
 
-            SensorViewModel sensorVM = Mapper.Map<SensorDTO, SensorViewModel>(genericMappingService.MapById<Sensor, SensorDTO>(id));
+            SensorDTO sensorDTO = genericMappingService.MapById<Sensor, SensorDTO>(id);
 
-            if (sensorVM == null)
+            if (sensorDTO == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.sensorsTypes = Mapper.Map<IEnumerable<SensorsTypeDTO>, List<SensorsTypeViewModel>>(genericMappingService.MapAll<SensorsType, SensorsTypeDTO>());
-            ViewBag.rooms = Mapper.Map<IEnumerable<RoomDTO>, List<RoomViewModel>>(genericMappingService.MapAll<Room, RoomDTO>());
+            ViewBag.sensorsTypes = genericMappingService.MapAll<SensorsType, SensorsTypeDTO>();
+            ViewBag.rooms = genericMappingService.MapAll<Room, RoomDTO>();
 
-            return View(sensorVM);
+            return View(sensorDTO);
         }
 
         [HttpPost]
-        public ActionResult Edit(SensorViewModel sensorVM)
+        public ActionResult Edit(SensorDTO sensorDTO)
         {
             try
             {
-                var controllerDTO = Mapper.Map<SensorViewModel, SensorDTO>(sensorVM);
-                genericMappingService.Edit<SensorDTO, Sensor>(controllerDTO);
+                genericMappingService.Edit<SensorDTO, Sensor>(sensorDTO);
                 return RedirectToAction("Index");
             }
             catch
@@ -127,7 +124,6 @@ namespace SmartHouseWebSite.Controllers
             }
             catch
             {
-                //TODO: Add Massege Error
                 return RedirectToAction("Index");
             }
         }

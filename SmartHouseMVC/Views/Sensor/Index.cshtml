@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model IEnumerable<SensorViewModel>
+﻿@using Interfaces.DTO
+@model IEnumerable<SensorDTO>
 @{
     ViewBag.Title = "Sensors";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,7 +14,7 @@
             <td></td>
             <td></td>
         </tr>
-        @foreach (SensorViewModel ctrl in Model)
+        @foreach (SensorDTO ctrl in Model)
         {
             <tr>
                 <td>@ctrl.Name</td>

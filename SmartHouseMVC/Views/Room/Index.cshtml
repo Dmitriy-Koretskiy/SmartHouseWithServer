@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model IEnumerable<RoomContentViewModel>
+﻿@using Interfaces.DTO
+@model IEnumerable<RoomContentDTO>
 @{
     ViewBag.Title = "Room";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
 <div>
     <table>
       
-        @foreach (RoomContentViewModel roomContent in Model)
+        @foreach (RoomContentDTO roomContent in Model)
         {
             <tr>
                 <td>

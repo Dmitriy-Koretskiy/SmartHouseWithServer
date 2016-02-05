@@ -15,15 +15,13 @@ namespace SmartHouseWebSite.Controllers
     {
         RoomMappingService roomMappingService { get; set; }
         IMappingService<SensorDTO> sensorMappingService { get; set; }
-        //IMappingService<TriggerDTO> triggerMappingService { get; set; }
 
         int roomId = 0;
 
-        public RoomController() //should use IoC for service
+        public RoomController() 
         {
             this.roomMappingService = new RoomMappingService();
             this.sensorMappingService = new SensorMappingService();
-            //this.triggerMappingService = new TriggerMappingService();
         }
     
         public ActionResult Index(int? roomId)
@@ -32,10 +30,9 @@ namespace SmartHouseWebSite.Controllers
             {
                 return RedirectToAction("Index", "Home", null);
             }
-            var room = Mapper.Map<RoomDTO, RoomViewModel>(roomMappingService.GetRoomById((int)roomId));
+            var room = roomMappingService.GetRoomById((int)roomId);
             ViewBag.RoomName = room.Name;
-            var triggersStates = Mapper.Map<IEnumerable<RoomContentDTO>, List<RoomContentViewModel>>(roomMappingService
-                .GetLastStatesOfTriggers((int)roomId));
+            var triggersStates = roomMappingService.GetLastStatesOfTriggers((int)roomId);
             return View(triggersStates);
         }
     }

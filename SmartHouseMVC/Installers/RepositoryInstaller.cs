@@ -15,8 +15,7 @@ namespace SmartHouseWebSite.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IRepository>().ImplementedBy<Repository>().LifestyleSingleton(),
-                Component.For<DbContext>().ImplementedBy<SmartHouseContext>().LifestyleSingleton());
+            container.Register(Component.For<IRepository>().ImplementedBy<Repository>().LifestylePerWebRequest());
         }
     }
 }

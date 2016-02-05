@@ -1,5 +1,5 @@
-﻿@using SmartHouseWebSite.Models
-@model IEnumerable<RoomViewModel>
+﻿@using Interfaces.DTO
+@model IEnumerable<RoomDTO>
 
 @{
     ViewBag.Title = "Tables";
@@ -7,7 +7,7 @@
 }
 
 <div>
-    @foreach (RoomViewModel room in Model)
+    @foreach (RoomDTO room in Model)
     {   
          <p>@Html.RouteLink(room.Name, "Room", new { action = "Index", controller = "Room", roomId = room.Id })</p>    
     }
