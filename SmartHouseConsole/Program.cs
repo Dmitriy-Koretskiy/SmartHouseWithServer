@@ -31,7 +31,7 @@ namespace SmartHouseWithServer
                 }
                 Thread.Sleep(10000);
             }
-            server.StartWork();
+            server.StartSystemWork();
         }
     }
 }

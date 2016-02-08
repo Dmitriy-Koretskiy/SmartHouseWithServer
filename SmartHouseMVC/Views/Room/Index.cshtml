@@ -5,16 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/jqueryval")
 
+@Scripts.Render("~/bundles/jsfunctions")
+@Scripts.Render("~/bundles/jqueryval")
 
 <h2>@ViewBag.RoomName</h2>
 
-
-
 <div>
     <table>
-
+      
         @foreach (RoomContentDTO roomContent in Model)
         {
             <tr>
@@ -25,33 +24,13 @@
                     <p class ="lastState" id ="@roomContent.TriggerId">@roomContent.LastState</p>
                 </td>
                 <td>
-                    <p class ="sensor">@roomContent.SensorId</p>
+                    <p class="sensor">@roomContent.SensorId</p>
                 </td>
             </tr>
         }
     </table>
 </div>
 
-<script type="text/javascript">
-    function refreshTriggerState(triggerId) {
-        $.ajax({
-            url: "@Url.Action("", "Room", )",
-       type: 'GET', // <-- make a async request by GET
-       dataType: 'html', // <-- to expect an html response
-       success: function (result) {
-           $(".lastState#" + triggerId);
-       }
-   });
-}
+@Scripts.Render("~/bundles/jsfunctions")
 
-$(function () {
-
-    refreshTriggerState(); // first time
-
-    // re-call the function each 5 seconds
-    window.setInterval("loadPartialView()", 5000);
-
-});
-
-</script>
 

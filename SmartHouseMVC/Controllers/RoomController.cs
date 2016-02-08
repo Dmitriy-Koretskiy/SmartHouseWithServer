@@ -34,19 +34,19 @@ namespace SmartHouseWebSite.Controllers
             return View(triggersStates);
         }
 
-        public string RefreshTriggerState(int triggerId)
+        public ActionResult RefreshTriggerState(string triggerId)
         {
-             int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
-
-             if (roomId != null)
-             {
-                 return roomMappingService.GetLastStateOfTrigger((int)roomId, triggerId);
-             }
-             else
-             {
-                 return "IncorrectTriggerId";
-             }
-
+            int triggerIdInt;
+            bool parseResult = Int32.TryParse(triggerId, out triggerIdInt);
+            if (parseResult)
+            {
+                return Json(roomMappingService.GetLastStateOfTrigger( triggerIdInt), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("IncorrectTriggerId", JsonRequestBehavior.AllowGet);
+            }
         }
+     
     }
 }
