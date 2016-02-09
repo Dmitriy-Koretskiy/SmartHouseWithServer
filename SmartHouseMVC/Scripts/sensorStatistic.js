@@ -9,16 +9,15 @@ function drowChart(dataArray) {
         var m = re.exec(point.TimeMeasurement);
         var d = new Date(parseInt(m[0]));
         points.push({
-            //x: d,
+            x: d,
             y: point.Value
         });
     }
 
-
     var chart = new CanvasJS.Chart("chartContainer",
     {
         title: {
-            text: points[1].SensorName
+            text: dataArray[0].SensorName
         },
         axisX: {
             title: "time",

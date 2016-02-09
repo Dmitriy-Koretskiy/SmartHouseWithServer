@@ -20,7 +20,6 @@ namespace Devices
 
         public override int GenerateValue()
         {
-            currentTact++;
             currentState = currentState - 10 + random.Next(0,21);
             if (currentState < 440)
             {
@@ -31,15 +30,7 @@ namespace Devices
                 currentState = 510;
             }
 
-            if (currentTact >= amountTactsToWriteToDB)
-            {
-                SensorsValue sensorsValue = new SensorsValue() { SensorId = id, TimeMeasurement = DateTime.Now, Value = currentState };
-
-                repository.Add(sensorsValue);
-                repository.SaveChanges();
-                currentTact = 0;
-            }
-            Console.WriteLine("Light value" + id + " = {0}", currentState);
+            Console.WriteLine("Light value" + Id + " = {0}", currentState);
             return currentState;
         }
     }

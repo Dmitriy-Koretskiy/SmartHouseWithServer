@@ -14,31 +14,36 @@ namespace Devices
 {
     class BaseTrigger:ITrigger
     {
-        public int id;
+       
         protected  ISensor sensor;
         protected  IController controller;
-        protected readonly string condition;
+        protected string condition;
         protected bool alreadyWork = false;
         protected ConditionsHandler conditionsHandler = new ConditionsHandler();
-        protected IRepository repository = new Repository();
+
+        public int Id { get; set; }
+        public int SensorValue { get;  set; }
+        public string StateAfterChange { get;  set; }
+        public int SensorId { get;  set; }
 
         public  BaseTrigger(int id, ISensor sensor, IController controller, string condition) 
         {
-            this.id = id;
+            this.Id = id;
             this.sensor = sensor;
             this.controller = controller;
             this.condition = condition;
+            this.SensorId = sensor.Id;
         }
 
-        public virtual void CheckSensor() 
+        public void CheckSensor() 
         {
-             if (conditionsHandler.CheckCondtion(condition, sensor.GenerateValue()))
+            StateAfterChange = null;
+            SensorValue = sensor.GenerateValue();
+            if (conditionsHandler.CheckCondtion(condition, SensorValue))
             {
                 if (!alreadyWork)
                 {
-                    TriggersAction triggerAction = new TriggersAction() { TriggerId = id, TimeChange = DateTime.Now, Description = "On"};
-                    repository.Add(triggerAction);
-                    repository.SaveChanges();
+                    StateAfterChange = "On";
                     controller.On();
                     alreadyWork = true;
                     TriggersActionDTO ta = new TriggersActionDTO() {TimeChange = DateTime.Now, Description = "On"};
@@ -48,9 +53,7 @@ namespace Devices
             {
                 if (alreadyWork)
                 {
-                    TriggersAction triggerAction = new TriggersAction() { TriggerId = id, TimeChange = DateTime.Now, Description = "Off" };
-                    repository.Add(triggerAction);
-                    repository.SaveChanges();
+                    StateAfterChange = "Off";
                     controller.Off();
                     alreadyWork = false;
                 }

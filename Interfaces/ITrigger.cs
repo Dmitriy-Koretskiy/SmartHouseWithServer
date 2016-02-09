@@ -8,6 +8,11 @@ namespace Interfaces
 {
     public interface ITrigger
     {
+        int Id { get; set; }
+        int SensorValue { get; set; }
+        string StateAfterChange { get; set; }
+        int SensorId { get; set; }
+
          void CheckSensor();
     }
 }

@@ -10,14 +10,12 @@ namespace Devices
 {
     public abstract class BaseSensor: ISensor
     {
-        public int id;
-        protected int currentTact = 0;
-        protected int amountTactsToWriteToDB = 10;
+        public  int Id { get; set; }
         protected IRepository repository = new Repository();
 
         public BaseSensor(int id) 
         {
-            this.id = id;
+            this.Id = id;
         }
 
         public abstract  int GenerateValue();

@@ -16,7 +16,9 @@ namespace BLL
     {
         IRepository repository = new Repository();
         Assembly assembly = Assembly.LoadFrom(@"..\..\..\Devices\bin\Debug\Devices.dll");
-        private bool systemWork = true; 
+        private bool systemWork = true;
+        private int amountTactsToWriteToDB = 1;
+        private int currentTact = 0;
 
         private List<object> ConfigureSystem()
         {      
@@ -57,8 +59,27 @@ namespace BLL
 
         private void UseTrigger(object obj)
         {
+            Repository repository1 = new Repository();
             ITrigger trigger = (ITrigger)obj;
             trigger.CheckSensor();
+
+            //TODO: Should add to another class. To DAL or BLL?
+            if (trigger.StateAfterChange != null)
+            {
+                TriggersAction triggerAction = new TriggersAction() { TriggerId = trigger.Id, TimeChange = DateTime.Now, Description = trigger.StateAfterChange };
+                repository1.Add(triggerAction);
+            }
+
+            currentTact++;
+            if (currentTact >= amountTactsToWriteToDB)
+            {
+                SensorsValue sensorsValue = new SensorsValue() { SensorId = trigger.SensorId, TimeMeasurement = DateTime.Now, Value = trigger.SensorValue };
+
+                repository1.Add(sensorsValue);
+                currentTact = 0;
+            }
+
+            repository.SaveChanges();
         }
 
         private Dictionary<string, object> GetSensorsDictionary()
