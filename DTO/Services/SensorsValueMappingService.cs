@@ -13,14 +13,14 @@ namespace DTO.Services
 {
     public class SensorsValueMappingService : IMappingService<SensorsValueDTO>
     {
-         IRepository repository { get; set; }
+        IRepository repository { get; set; }
 
         public SensorsValueMappingService()    // should use IoC
         {
             this.repository = new Repository();
         }
 
-        public SensorsValueDTO GetById(int? id)  
+        public SensorsValueDTO GetById(int? id)
         {
             return Mapper.Map<SensorsValue, SensorsValueDTO>(repository.Get<SensorsValue>(id));
         }
@@ -35,9 +35,26 @@ namespace DTO.Services
             return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>().Where(t => t.Sensor.RoomId == roomId));
         }
 
-        public IEnumerable<SensorsValueDTO> GetBySensorId(int sensorId)
+        public IEnumerable<SensorsValueDTO> GetLastHourBySensorId(int sensorId)
         {
-            return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>().Where(t => t.Sensor.Id == sensorId));
+            var currentDate = DateTime.Now;
+            return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>()
+                .Where(t => t.Sensor.Id == sensorId)
+                .Where(t => t.TimeMeasurement.Year == currentDate.Year
+                         && t.TimeMeasurement.Month == currentDate.Month
+                         && t.TimeMeasurement.Day == currentDate.Day
+                         && (t.TimeMeasurement.Hour == currentDate.Hour || t.TimeMeasurement.Hour == currentDate.Hour-1)));
+        }
+
+        public IEnumerable<SensorsValueDTO> GetThisDayBySensorId(int sensorId)
+        {
+            var currentDate = DateTime.Now;
+            return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>()
+                .Where(t => t.Sensor.Id == sensorId  )
+                .Where(t => t.TimeMeasurement.Year == currentDate.Year
+                         && t.TimeMeasurement.Month == currentDate.Month
+                         && (t.TimeMeasurement.Day == currentDate.Day || t.TimeMeasurement.Day == currentDate.Day-1)))
+                ;
         }
 
         public void Add(SensorsValueDTO oldObject)

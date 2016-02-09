@@ -47,12 +47,28 @@ namespace SmartHouseWebSite.Controllers
             }
         }
 
-        public ActionResult GetSensorStatistic(int? sensorId)
+        public ActionResult GetSensorStatisticThisDay(int? sensorId)
         {
 
             if (sensorId != null)
             {
-                return Json(sensorsValueMappingService.GetBySensorId((int)sensorId), JsonRequestBehavior.AllowGet);
+                return Json(sensorsValueMappingService.GetThisDayBySensorId((int)sensorId), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult GetSensorStatisticLastHour(int? sensorId)
+        {
+            var oldDate = sensorsValueMappingService.GetById(1);
+
+            var date = (DateTime.Now - oldDate.TimeMeasurement).Days;
+
+            if (sensorId != null)
+            {
+                return Json(sensorsValueMappingService.GetLastHourBySensorId((int)sensorId), JsonRequestBehavior.AllowGet);
             }
             else
             {

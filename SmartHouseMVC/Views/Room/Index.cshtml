@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/Scripts/canvasjs.min.js"></script>
+
 
 @Scripts.Render("~/bundles/jsfunctions")
 @Scripts.Render("~/bundles/jqueryval")
@@ -15,7 +15,7 @@
 
 <div>
     <table>
-      
+
         @foreach (RoomContentDTO roomContent in Model)
         {
             <tr>
@@ -26,87 +26,21 @@
                     <p class ="lastState" id ="@roomContent.TriggerId">@roomContent.LastState</p>
                 </td>
                 <td>
-                    <p class="sensor">@roomContent.SensorId</p>
+                    <button  data-sensorid="@roomContent.SensorId" class ="displayChartLastHour">Last hour</button>
                 </td>
                 <td>
-                    <button id="@roomContent.SensorId" class ="displayChart">Chart</button>
+                    <button data-sensorid="@roomContent.SensorId" class ="displayChartThisDay">This day</button>
                 </td>
             </tr>
         }
     </table>
 
     <div>
-        <button class="hideChart"></button>
+        <button class="hideChart">Hide chart</button>
     </div>
 
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 </div>
 
-<script type="text/javascript">
-     function drowChart (dataArray) {
 
-        var points = [];
-        
-        for (var i = 0; i < dataArray.length; i++)
-        {
-            var point = dataArray[i];
-            var re = /-?\d+/;
-            var m = re.exec(point.TimeMeasurement);
-            var d = new Date(parseInt(m[0]));
-            points.push({
-                //x: d,
-                y: point.Value
-            });
-        }
-
-
-        var chart = new CanvasJS.Chart("chartContainer",
-        {
-		title: {
-			text: points[1].SensorName
-		},
-		axisX: {
-		    title: "time",
-		    gridThickness: 2,
-		    interval: 2,
-		    //intervalType: "hour",
-		    valueFormatString: "hh mm ss",
-		  //  labelAngle: -20
-		},
-		axisY: {
-		    title: "Value"
-		},
-
-		data: [
-		{
-			type: "splineArea", //change it to line, area, bar, pie, etc
-			dataPoints: points
-		}
-		]
-	});
-
-        chart.render();
-     };
-
-     $(document).ready(function () {
-         $("button.displayChart").click(function(){
-             $.ajax({
-                 url: '/Room/GetSensorStatistic',
-                 type: 'GET',
-                 dataType: 'json',
-                 data: { sensorId: this.id },
-                 success: function (result) {
-                     drowChart(result);
-                 }
-             });
-         
-         });
-
-         $("button.hideChart").click(function () {
-             $("#chartContainer").hide();
-         });
-     });
-
-</script>
-
-
+<script src="~/Scripts/canvasjs.min.js"></script>

@@ -20,7 +20,8 @@ namespace SmartHouseWebSite
             bundles.Add(new ScriptBundle("~/bundles/jsfunctions").Include(
                  //"~/Scripts/canvasjs.min.js"
                  //,
-                 "~/Scripts/refreshTriggerState.js"
+                 "~/Scripts/refreshTriggerState.js",
+                 "~/Scripts/sensorStatistic.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
