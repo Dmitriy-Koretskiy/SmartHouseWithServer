@@ -20,6 +20,8 @@ namespace SmartHouseWithServer
     {
         static void Main(string[] args)
         {
+            CastleWindsorInit.BootstrapContainer();
+
             Server server = new Server();
 
             for (; ; )

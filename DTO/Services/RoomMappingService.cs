@@ -20,6 +20,11 @@ namespace DTO.Services
             this.repository = new Repository();
         }
 
+        public RoomMappingService(IRepository repository)
+        {
+            this.repository = repository;
+        }
+
         public RoomDTO GetRoomById(int roomId)
         {
             return Mapper.Map<Room, RoomDTO>(repository.Get<Room>(roomId));

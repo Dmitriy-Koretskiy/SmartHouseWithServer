@@ -14,12 +14,13 @@ namespace SmartHouseWebSite.Controllers
     public class RoomController : Controller
     {
         RoomMappingService roomMappingService { get; set; }
-        IMappingService<SensorDTO> sensorMappingService { get; set; }
+        SensorsValueMappingService sensorsValueMappingService { get; set; }
+        
 
         public RoomController() 
         {
             this.roomMappingService = new RoomMappingService();
-            this.sensorMappingService = new SensorMappingService();
+            this.sensorsValueMappingService = new SensorsValueMappingService();
         }
     
         public ActionResult Index(int? roomId)
@@ -34,17 +35,28 @@ namespace SmartHouseWebSite.Controllers
             return View(triggersStates);
         }
 
-        public ActionResult RefreshTriggerState(string triggerId)
-        {
-            int triggerIdInt;
-            bool parseResult = Int32.TryParse(triggerId, out triggerIdInt);
-            if (parseResult)
+        public ActionResult RefreshTriggerState(int? triggerId)
+        {     
+            if (triggerId != null)
             {
-                return Json(roomMappingService.GetLastStateOfTrigger( triggerIdInt), JsonRequestBehavior.AllowGet);
+                return Json(roomMappingService.GetLastStateOfTrigger((int)triggerId), JsonRequestBehavior.AllowGet);
             }
             else
             {
                 return Json("IncorrectTriggerId", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult GetSensorStatistic(int? sensorId)
+        {
+
+            if (sensorId != null)
+            {
+                return Json(sensorsValueMappingService.GetBySensorId((int)sensorId), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
             }
         }
      

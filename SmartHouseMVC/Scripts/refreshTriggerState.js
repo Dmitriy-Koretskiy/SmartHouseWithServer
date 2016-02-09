@@ -9,9 +9,9 @@
                 dataType: 'json',
                 data: { triggerId: id },
                 success: function (result) {
-                    $("#" + id +".lastState").html(result);
+                    $("#" + id + ".lastState").html(result);
                 }
-            })
+            });
         });
     }
 

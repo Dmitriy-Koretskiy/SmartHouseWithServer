@@ -35,6 +35,11 @@ namespace DTO.Services
             return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>().Where(t => t.Sensor.RoomId == roomId));
         }
 
+        public IEnumerable<SensorsValueDTO> GetBySensorId(int sensorId)
+        {
+            return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>().Where(t => t.Sensor.Id == sensorId));
+        }
+
         public void Add(SensorsValueDTO oldObject)
         {
             SensorsValue newObject = Mapper.Map<SensorsValueDTO, SensorsValue>(oldObject);

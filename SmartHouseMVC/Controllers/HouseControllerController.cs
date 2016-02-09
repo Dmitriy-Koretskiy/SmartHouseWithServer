@@ -27,7 +27,7 @@ namespace SmartHouseWebSite.Controllers
         {
             int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
 
-            if (roomId != null)
+            if (roomId != 0)
             {
                 var houseControllers = houseControllerMappingService.GetByRoomId(roomId);
                 return View(houseControllers);

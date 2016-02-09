@@ -11,7 +11,7 @@ namespace DAL
 {
     public class Repository: IRepository
     {
-        private readonly SmartHouseContext db;
+        private readonly DbContext db;
 
         public Repository()
         {

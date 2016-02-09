@@ -18,6 +18,8 @@ namespace SmartHouseWebSite
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
             bundles.Add(new ScriptBundle("~/bundles/jsfunctions").Include(
+                 //"~/Scripts/canvasjs.min.js"
+                 //,
                  "~/Scripts/refreshTriggerState.js"
                 ));
 
