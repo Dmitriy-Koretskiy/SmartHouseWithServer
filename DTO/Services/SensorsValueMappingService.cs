@@ -37,24 +37,18 @@ namespace DTO.Services
 
         public IEnumerable<SensorsValueDTO> GetLastHourBySensorId(int sensorId)
         {
-            var currentDate = DateTime.Now;
+            var currentDate = DateTime.Now.AddHours(-1);
             return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>()
                 .Where(t => t.Sensor.Id == sensorId)
-                .Where(t => t.TimeMeasurement.Year == currentDate.Year
-                         && t.TimeMeasurement.Month == currentDate.Month
-                         && t.TimeMeasurement.Day == currentDate.Day
-                         && (t.TimeMeasurement.Hour == currentDate.Hour || t.TimeMeasurement.Hour == currentDate.Hour-1)));
+                .Where(t=>t.TimeMeasurement>= currentDate));
         }
 
         public IEnumerable<SensorsValueDTO> GetThisDayBySensorId(int sensorId)
         {
-            var currentDate = DateTime.Now;
+            var currentDate = DateTime.Now.AddDays(-1);
             return Mapper.Map<IEnumerable<SensorsValue>, List<SensorsValueDTO>>(repository.GetAll<SensorsValue>()
                 .Where(t => t.Sensor.Id == sensorId  )
-                .Where(t => t.TimeMeasurement.Year == currentDate.Year
-                         && t.TimeMeasurement.Month == currentDate.Month
-                         && (t.TimeMeasurement.Day == currentDate.Day || t.TimeMeasurement.Day == currentDate.Day-1)))
-                ;
+                .Where(t => t.TimeMeasurement >= currentDate));
         }
 
         public void Add(SensorsValueDTO oldObject)
