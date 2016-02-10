@@ -8,15 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartHouseWithServer.Installers
 {
-    public class ContextInstaller : IWindsorInstaller
+    public class ServerInstaller : IWindsorInstaller
     {
-        public void Install(IWindsorContainer container, IConfigurationStore store)
+         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<DbContext>().ImplementedBy<SmartHouseContext>().LifestylePerThread());
+            
+              container.Register(Component.For<IServer>().ImplementedBy<Server>().LifestyleSingleton());
         }
     }
 }

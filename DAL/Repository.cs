@@ -18,6 +18,11 @@ namespace DAL
             this.db = new SmartHouseContext();
         }
 
+        //public Repository(DbContext dbCon)
+        //{
+        //    this.db = dbCon;
+        //}
+
         public IQueryable<T> GetAll<T>() where T: class
         {
             return db.Set<T>();

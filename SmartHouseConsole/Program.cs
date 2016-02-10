@@ -14,6 +14,7 @@ using BLL;
 using Interfaces.DTO;
 
 
+
 namespace SmartHouseWithServer
 {
     class Program
@@ -22,7 +23,7 @@ namespace SmartHouseWithServer
         {
             CastleWindsorInit.BootstrapContainer();
 
-            Server server = new Server();
+            var server = CastleWindsorInit.container.Resolve<IServer>();
 
             for (; ; )
             {

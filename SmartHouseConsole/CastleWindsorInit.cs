@@ -10,7 +10,7 @@ namespace SmartHouseWithServer
 {
     public static class CastleWindsorInit
     {
-        private static IWindsorContainer container;
+        public static IWindsorContainer container;
 
         public static void BootstrapContainer()
         {

@@ -9,6 +9,6 @@ namespace Interfaces.CheckResults
     public class CheckConfigurationResult
     {
         public bool errorExist; 
-        public List<string> missingDevice = new List<string>();
+        public List<string> missingDevices = new List<string>();
     }
 }

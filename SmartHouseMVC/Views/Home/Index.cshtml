@@ -18,13 +18,31 @@
 </head>
 <body>
 
+    <div class="errorList"></div>
+
     <div class="homePage">
         @foreach (RoomDTO room in Model)
         {   
              <p>@Html.RouteLink(room.Name, "Room", new { action = "Index", controller = "Room", roomId = room.Id })</p>    
         }
     </div>
- 
+
+<script >
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '/Home/CheckConfiguration',
+            type: 'GET',
+            dataType: 'json',
+            success: function (result) {
+                $(".errorList").html(JSON.stringify(result));
+                var res = result;
+            }
+        });
+
+    })
+</script>
+
     <footer>
     </footer>
 </body>
