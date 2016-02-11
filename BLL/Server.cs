@@ -2,6 +2,7 @@
 using Interfaces;
 using Interfaces.CheckResults;
 using Interfaces.Tables;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,7 +68,7 @@ namespace BLL
             ITrigger trigger = (ITrigger)obj;
             trigger.CheckSensor();
 
-            using (IRepository repository = new Repository())
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
                 //TODO: Should add to another class. To DAL or BLL?
                 if (trigger.StateAfterChange != null)
@@ -97,7 +98,7 @@ namespace BLL
 
             //using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
 
-            using (IRepository repository = new Repository())
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
 
                 foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
@@ -123,7 +124,7 @@ namespace BLL
             Dictionary<string, object> controllersDict = new Dictionary<string, object>();
             Type type;
 
-            using (IRepository repository = new Repository())
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
 
                 foreach (HouseController controllerElement in repository.GetAll<HouseController>().Where(c => c.Enable == true))
@@ -149,7 +150,7 @@ namespace BLL
             List<object> triggersList = new List<object>();
             Type type;
 
-            using (IRepository repository = new Repository())
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
 
                 foreach (Trigger triggerElement in repository.GetAll<Trigger>().Where(t => t.Enable == true))
@@ -189,8 +190,9 @@ namespace BLL
                 
             CheckConfigurationResult checkResult = new CheckConfigurationResult();
             Type type;
-            
-            using(IRepository repository = new Repository()){
+            var con = ServiceLocator.Current.GetInstance<IRepository>();
+            using (IRepository repository = con)
+            {
 
                 foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
                 {
@@ -201,7 +203,9 @@ namespace BLL
                     catch
                     {
                         checkResult.errorExist = true;
-                        checkResult.missingDevices.Add(sensorElement.SensorsType.Name);
+                        var device = new MissingDevice() {RoomName = sensorElement.Room.Name, DeviceName = sensorElement.Name };
+
+                        checkResult.missingDevices.Add(device);
 
                     }
                 }
@@ -215,7 +219,9 @@ namespace BLL
                     catch
                     {
                         checkResult.errorExist = true;
-                        checkResult.missingDevices.Add(controllerElement.HouseControllersType.Name);
+                        var device = new MissingDevice() { RoomName = controllerElement.Room.Name, DeviceName = controllerElement.Name };
+                        
+                        checkResult.missingDevices.Add(device);
                     }
                 }
 
@@ -228,7 +234,9 @@ namespace BLL
                     catch
                     {
                         checkResult.errorExist = true;
-                        checkResult.missingDevices.Add(triggerElement.TriggersType.Name);
+                        var device = new MissingDevice() { RoomName = triggerElement.Room.Name, DeviceName = triggerElement.Name };
+
+                        checkResult.missingDevices.Add(device);
                     }
                 }
             }

@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Interfaces.MappingServices;
+using Interfaces.CheckResults;
 
 namespace SmartHouseWebSite.Controllers
 {
@@ -36,11 +37,11 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult CheckConfiguration()
         {
-            Server server = new Server();
-            var list = server.CheckConfiguration().missingDevices;
-            List<RoomDTO> l = new List<RoomDTO>();
-            RoomDTO r1 = new RoomDTO { Id = 3, Name = "eee" };
-            RoomDTO r2 = new RoomDTO { Id = 4, Name = "bwq" };
+            //Server server = new Server();
+            //var list = server.CheckConfiguration().missingDevices;
+            List<MissingDevice> l = new List<MissingDevice>();
+            MissingDevice r1 = new MissingDevice { RoomName = "Room1", DeviceName = "Conditioner" };
+            MissingDevice r2 = new MissingDevice { RoomName = "Room2", DeviceName = "Lamp" };
             l.Add(r1);
             l.Add(r2);
             return Json(l, JsonRequestBehavior.AllowGet);

@@ -11,7 +11,7 @@ namespace Devices
     public abstract class BaseSensor: ISensor
     {
         public  int Id { get; set; }
-        protected IRepository repository = new Repository();
+      //  protected IRepository repository = new Repository();
 
         public BaseSensor(int id) 
         {

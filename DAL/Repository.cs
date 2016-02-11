@@ -13,9 +13,9 @@ namespace DAL
     {
         private readonly DbContext db;
 
-        public Repository()
+        public Repository(DbContext db)
         {
-            this.db = new SmartHouseContext();
+            this.db = db;
         }
 
         //public Repository(DbContext dbCon)

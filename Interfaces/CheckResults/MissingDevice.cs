@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces.CheckResults
 {
-    public class CheckConfigurationResult
+    public class MissingDevice
     {
-        public bool errorExist; 
-        public List<MissingDevice> missingDevices = new List<MissingDevice>();
+        public string RoomName { get; set; }
+        public string DeviceName { get; set; }
     }
 }

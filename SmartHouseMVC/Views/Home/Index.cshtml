@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/CheckConfiguration.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -28,21 +29,7 @@
     </div>
 
 <script >
-    $(document).ready(function () {
-
-        $.ajax({
-            url: '/Home/CheckConfiguration',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                var jsonResult = JSON.stringify(result);
-                $each(jsonResult, function (key, value) {
-                    $(".errorList").append($("<p></p>").html(value));
-                });
-                }
-        });
-
-    })
+    $(document).ready(checkConfiguration);
 </script>
 
     <footer>
