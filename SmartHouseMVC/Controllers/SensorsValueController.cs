@@ -9,16 +9,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Interfaces.MappingServices;
 
 namespace SmartHouseWebSite.Controllers
 {
     public class SensorsValueController : Controller
     {
-        IMappingService<SensorsValueDTO> sensorsValueMappingService { get; set; }
+        ISensorsValueMappingService sensorsValueMappingService;
 
-        public SensorsValueController() 
+        public SensorsValueController(ISensorsValueMappingService sensorsValueMapService) 
         {
-            this.sensorsValueMappingService = new SensorsValueMappingService();
+            this.sensorsValueMappingService = sensorsValueMapService;
         }
 
         public ActionResult Index()

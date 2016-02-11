@@ -35,9 +35,11 @@
             type: 'GET',
             dataType: 'json',
             success: function (result) {
-                $(".errorList").html(JSON.stringify(result));
-                var res = result;
-            }
+                var jsonResult = JSON.stringify(result);
+                $each(jsonResult, function (key, value) {
+                    $(".errorList").append($("<p></p>").html(value));
+                });
+                }
         });
 
     })

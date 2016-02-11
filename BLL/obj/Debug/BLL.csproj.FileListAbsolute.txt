@@ -15,3 +15,6 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\obj\Debug\BLL.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\obj\Debug\BLL.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.xml

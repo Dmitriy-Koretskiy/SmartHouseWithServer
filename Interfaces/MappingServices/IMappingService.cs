@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interfaces
+namespace Interfaces.MappingServices
 {
     public interface IMappingService<T> : IDisposable where T : BaseEntityDTO
     {

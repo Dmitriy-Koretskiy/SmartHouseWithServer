@@ -8,16 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces.MappingServices;
 
 namespace DTO.Services
 {
     public class TriggersActionMappingService : IMappingService<TriggersActionDTO>
     {
-        IRepository repository { get; set; }
+        IRepository repository;
 
-        public TriggersActionMappingService()    // should use IoC
+        public TriggersActionMappingService(IRepository rep)    // should use IoC
         {
-            this.repository = new Repository();
+            this.repository = rep;
         }
 
         public TriggersActionDTO GetById(int? id)  

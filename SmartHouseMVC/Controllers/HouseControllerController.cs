@@ -9,6 +9,7 @@ using Interfaces.DTO;
 using Interfaces.Tables;
 using DTO.Services;
 using Interfaces;
+using Interfaces.MappingServices;
 
 namespace SmartHouseWebSite.Controllers
 {
@@ -17,10 +18,10 @@ namespace SmartHouseWebSite.Controllers
         IMappingService<HouseControllerDTO> houseControllerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
 
-        public HouseControllerController() 
+        public HouseControllerController(IGenericMappingService genMapService, IMappingService<HouseControllerDTO> houseControllerMapService) 
         {
-            this.houseControllerMappingService = new HouseControllerMappingService();
-            this.genericMappingService = new GenericMappingService();
+            this.houseControllerMappingService = houseControllerMapService;
+            this.genericMappingService = genMapService;
         }
 
         public ActionResult Index()

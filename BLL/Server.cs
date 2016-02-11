@@ -95,6 +95,8 @@ namespace BLL
             Dictionary<string, object> sensorsDict = new Dictionary<string, object>();
             Type type;
 
+            //using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
+
             using (IRepository repository = new Repository())
             {
 

@@ -9,18 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Interfaces.MappingServices;
 
 namespace SmartHouseWebSite.Controllers
 {
     public class TriggerController : Controller
-    {   
-        IMappingService<TriggerDTO> triggerMappingService { get; set; }
-        IGenericMappingService genericMappingService { get; set; }
+    {
+        IMappingService<TriggerDTO> triggerMappingService;
+        IGenericMappingService genericMappingService;
 
-        public TriggerController() 
+        public TriggerController(IGenericMappingService genericMapService, IMappingService<TriggerDTO> triggerMapService) 
         {
-            this.triggerMappingService = new TriggerMappingService();
-            this.genericMappingService = new GenericMappingService();
+            this.triggerMappingService = triggerMapService;
+            this.genericMappingService = genericMapService;
         }
 
         

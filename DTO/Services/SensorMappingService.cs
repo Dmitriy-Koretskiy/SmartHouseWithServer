@@ -2,6 +2,7 @@
 using DAL;
 using Interfaces;
 using Interfaces.DTO;
+using Interfaces.MappingServices;
 using Interfaces.Tables;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace DTO.Services
 {
     public class SensorMappingService : IMappingService<SensorDTO>
     {
-        IRepository repository { get; set; }
+        IRepository repository;
 
-        public SensorMappingService()    // should use IoC
+        public SensorMappingService(IRepository rep)    // should use IoC
         {
-            this.repository = new Repository();
+            this.repository = rep;
         }
 
         public SensorDTO GetById(int? id)  

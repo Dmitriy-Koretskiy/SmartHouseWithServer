@@ -36,3 +36,10 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\obj\Debug\SmartHouseConsole.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\obj\Debug\SmartHouseConsole.exe
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\obj\Debug\SmartHouseConsole.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\Alphacloud.Common.ServiceLocator.Castle.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\CommonServiceLocator.WindsorAdapter.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\Alphacloud.Common.ServiceLocator.Castle.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\CommonServiceLocator.WindsorAdapter.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseConsole\bin\Debug\Microsoft.Practices.ServiceLocation.xml

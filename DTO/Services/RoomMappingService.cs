@@ -2,6 +2,7 @@
 using DAL;
 using Interfaces;
 using Interfaces.DTO;
+using Interfaces.MappingServices;
 using Interfaces.Tables;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,18 @@ using System.Threading.Tasks;
 
 namespace DTO.Services
 {
-    public class RoomMappingService
+    public class RoomMappingService : IRoomMappingService
     {
-        IRepository repository { get; set; }
+        IRepository repository;
 
-        public RoomMappingService()
-        {
-            this.repository = new Repository();
-        }
+        //public RoomMappingService()
+        //{
+        //    this.repository = new Repository();
+        //}
 
-        public RoomMappingService(IRepository repository)
+        public RoomMappingService(IRepository rep)
         {
-            this.repository = repository;
+            this.repository = rep;
         }
 
         public RoomDTO GetRoomById(int roomId)

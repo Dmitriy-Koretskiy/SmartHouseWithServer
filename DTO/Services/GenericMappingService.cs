@@ -8,16 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces.MappingServices;
 
 namespace DTO.Services
 {
     public class GenericMappingService: IGenericMappingService
     {
-        IRepository repository { get; set; }
+        IRepository repository;
 
-        public GenericMappingService()    // should use IoC
+        public GenericMappingService(IRepository rep)    // should use IoC
         {
-            this.repository = new Repository();
+            this.repository = rep;
         }
 
         public N MapById<O,N>(int? id) 

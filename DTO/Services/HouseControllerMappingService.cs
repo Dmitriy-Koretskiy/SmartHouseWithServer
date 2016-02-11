@@ -2,6 +2,7 @@
 using DAL;
 using Interfaces;
 using Interfaces.DTO;
+using Interfaces.MappingServices;
 using Interfaces.Tables;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace DTO.Services
 {
     public class HouseControllerMappingService : IMappingService<HouseControllerDTO>
     {
-        IRepository repository { get; set; }
+        IRepository repository;
 
-        public HouseControllerMappingService()    // should use IoC
+        public HouseControllerMappingService(IRepository rep)    // should use IoC
         {
-            this.repository = new Repository();
+            this.repository = rep;
         }
 
         public HouseControllerDTO GetById(int? id)  

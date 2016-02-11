@@ -2,6 +2,7 @@
 using DTO.Services;
 using Interfaces;
 using Interfaces.DTO;
+using Interfaces.MappingServices;
 using SmartHouseWebSite.Models;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ namespace SmartHouseWebSite.Controllers
 {
     public class RoomController : Controller
     {
-        RoomMappingService roomMappingService { get; set; }
-        SensorsValueMappingService sensorsValueMappingService { get; set; }
-        
+        IRoomMappingService roomMappingService { get; set; }
+        ISensorsValueMappingService sensorsValueMappingService { get; set; }
 
-        public RoomController() 
+
+        public RoomController(IRoomMappingService roomMapService, ISensorsValueMappingService sensorMapService) 
         {
-            this.roomMappingService = new RoomMappingService();
-            this.sensorsValueMappingService = new SensorsValueMappingService();
+            this.roomMappingService = roomMapService;
+            this.sensorsValueMappingService =sensorMapService;
         }
     
         public ActionResult Index(int? roomId)

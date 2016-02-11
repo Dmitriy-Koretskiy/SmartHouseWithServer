@@ -14,17 +14,18 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Interfaces.MappingServices;
 
 namespace SmartHouseWebSite.Controllers
 {
     public class HomeController : Controller
     {
-        IGenericMappingService genericMappingService { get; set; }
+        IGenericMappingService genericMappingService;
 
 
-        public HomeController() 
+        public HomeController(IGenericMappingService mapService) 
         {
-            this.genericMappingService = new GenericMappingService();
+            this.genericMappingService = mapService;
         }
        
         public ActionResult Index()
@@ -36,7 +37,7 @@ namespace SmartHouseWebSite.Controllers
         public ActionResult CheckConfiguration()
         {
             Server server = new Server();
-            var list = server.CheckConfiguration();
+            var list = server.CheckConfiguration().missingDevices;
             List<RoomDTO> l = new List<RoomDTO>();
             RoomDTO r1 = new RoomDTO { Id = 3, Name = "eee" };
             RoomDTO r2 = new RoomDTO { Id = 4, Name = "bwq" };

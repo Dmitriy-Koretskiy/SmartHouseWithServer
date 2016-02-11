@@ -9,19 +9,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Interfaces.MappingServices;
 
 namespace SmartHouseWebSite.Controllers
 {
     public class SensorController : Controller
     {
-        IMappingService<SensorDTO> sensorMappingService { get; set; }
-        IGenericMappingService genericMappingService { get; set; }
+        IMappingService<SensorDTO> sensorMappingService;
+        IGenericMappingService genericMappingService;
         public string test;
 
-        public SensorController() 
+        public SensorController(IMappingService<SensorDTO> sensorMapService, IGenericMappingService genericMapService) 
         {
-            this.sensorMappingService = new SensorMappingService();
-            this.genericMappingService = new GenericMappingService();
+            this.sensorMappingService = sensorMapService;
+            this.genericMappingService = genericMapService;
         }
 
         public ActionResult Index()
