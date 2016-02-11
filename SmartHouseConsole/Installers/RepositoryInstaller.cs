@@ -15,7 +15,7 @@ namespace SmartHouseWithServer.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IRepository>().ImplementedBy<Repository>().LifestylePerThread());
+            container.Register(Component.For<IRepository>().ImplementedBy<Repository>().LifestyleTransient());
         }
     }
 }

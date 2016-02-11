@@ -35,7 +35,6 @@ namespace BLL
 
         public void StartSystemWork()
         {
-
             systemWork = true;
             var triggers = ConfigureSystem();
 
@@ -64,13 +63,12 @@ namespace BLL
 
         private void UseTrigger(object obj)
         {
-            //Repository repository1 = new Repository();
             ITrigger trigger = (ITrigger)obj;
             trigger.CheckSensor();
 
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-                //TODO: Should add to another class. To DAL or BLL?
+
                 if (trigger.StateAfterChange != null)
                 {
                     TriggersAction triggerAction = new TriggersAction() { TriggerId = trigger.Id, TimeChange = DateTime.Now, Description = trigger.StateAfterChange };
@@ -100,7 +98,6 @@ namespace BLL
 
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-
                 foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
                 {
                     type = GetDeviceTypeTry(sensorElement.SensorsType.Name);
@@ -126,7 +123,6 @@ namespace BLL
 
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-
                 foreach (HouseController controllerElement in repository.GetAll<HouseController>().Where(c => c.Enable == true))
                 {
                     type = GetDeviceTypeTry(controllerElement.HouseControllersType.Name);

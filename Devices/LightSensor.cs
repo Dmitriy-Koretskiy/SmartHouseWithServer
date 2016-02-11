@@ -13,25 +13,24 @@ namespace Devices
         public LightSensor (int id)
             :base (id)
         {
+             CurrentValue = 495;
         }
 
         private Random random = new Random();
-        private int currentState = 495;
 
-        public override int GenerateValue()
+        protected override void GenerateValue()
         {
-            currentState = currentState - 10 + random.Next(0,21);
-            if (currentState < 440)
+            CurrentValue = CurrentValue - 10 + random.Next(0,21);
+            if (CurrentValue < 440)
             {
-                currentState = 490;
+                CurrentValue = 490;
             }
-            if (currentState > 550)
+            if (CurrentValue > 550)
             {
-                currentState = 510;
+                CurrentValue = 510;
             }
 
-            Console.WriteLine("Light value" + Id + " = {0}", currentState);
-            return currentState;
+            Console.WriteLine("Light value" + Id + " = {0}", CurrentValue);
         }
     }
 }

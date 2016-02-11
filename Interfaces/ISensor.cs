@@ -9,6 +9,6 @@ namespace Interfaces
     public interface ISensor
     {
         int Id { get; set; }
-        int GenerateValue();
+        int CurrentValue { get; set; }
     }
 }

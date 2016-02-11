@@ -38,7 +38,7 @@ namespace Devices
         public void CheckSensor() 
         {
             StateAfterChange = null;
-            SensorValue = sensor.GenerateValue();
+            SensorValue = sensor.CurrentValue;
             if (conditionsHandler.CheckCondtion(condition, SensorValue))
             {
                 if (!alreadyWork)
@@ -46,7 +46,7 @@ namespace Devices
                     StateAfterChange = "On";
                     controller.On();
                     alreadyWork = true;
-                    TriggersActionDTO ta = new TriggersActionDTO() {TimeChange = DateTime.Now, Description = "On"};
+                    //TriggersActionDTO ta = new TriggersActionDTO() {TimeChange = DateTime.Now, Description = "On"};
                 }
             }
             else

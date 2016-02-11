@@ -13,25 +13,24 @@ namespace Devices
         public TemperatureSensor (int id)
             :base (id)
         {
+            CurrentValue = 28;
         }
 
         private Random random = new Random();
-        private int currentState = 28;
- 
-        public override int GenerateValue()
+
+        protected override void GenerateValue()
         {
-            currentState = currentState - 3 + random.Next(0, 7);
-            if (currentState < 20)
+            CurrentValue = CurrentValue - 3 + random.Next(0, 7);
+            if (CurrentValue < 20)
             {
-                currentState = 25;
+                CurrentValue = 25;
             }
-            if (currentState > 40)
+            if (CurrentValue > 40)
             {
-                currentState = 35;
+                CurrentValue = 35;
             }
         
-            Console.WriteLine("Temperature value" + Id + " = {0}", currentState);
-            return currentState;
+            Console.WriteLine("Temperature value" + Id + " = {0}", CurrentValue);
         }
     }
 }
