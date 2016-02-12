@@ -37,11 +37,7 @@ namespace SmartHouseWebSite.Controllers
         }
 
         public ActionResult CheckConfiguration()
-        {
-            var l = server;
-            Server server1 = new Server();
-            var s = server1.CheckConfiguration();
-            var l1 = l.CheckConfiguration().missingDevices;
+        {   
             var list = server.CheckConfiguration().missingDevices;
             //List<MissingDevice> l = new List<MissingDevice>();
             //MissingDevice r1 = new MissingDevice { RoomName = "Room1", DeviceName = "Conditioner" };

@@ -89,7 +89,7 @@ namespace BLL
 
             //using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
 
-            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
+            using ( IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
                 foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
                 {
@@ -179,14 +179,13 @@ namespace BLL
                 
             CheckConfigurationResult checkResult = new CheckConfigurationResult();
             Type type;
-            IRepository repository1 = ServiceLocator.Current.GetInstance<IRepository>();
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
                 foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
                 {
                     try
                     {
-                        type = assembly.GetType("Devices." + sensorElement.SensorsType.Name, true, true);
+                        type = assembly.GetType("Devices1." + sensorElement.SensorsType.Name, true, true);
                     }
                     catch
                     {
@@ -202,7 +201,7 @@ namespace BLL
                 {
                     try
                     {
-                        type = assembly.GetType("Devices." + controllerElement.HouseControllersType.Name, true, true);
+                        type = assembly.GetType("Devices1." + controllerElement.HouseControllersType.Name, true, true);
                     }
                     catch
                     {
