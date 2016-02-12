@@ -17,18 +17,21 @@ namespace BLL
     public class Server : IServer
     {
         static string path = @"C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Devices\bin\Debug\Devices.dll";
-      static  string p = Path.GetFullPath(path);
-
         Assembly assembly = Assembly.LoadFrom(path);
         private bool systemWork = true;
-        private int amountTactsToWriteToDB = 10;
-        private int currentTact = 0;
 
         private List<object> ConfigureSystem()
         {
             Dictionary<string, object> sensorsDict = GetSensorsDictionary();
             Dictionary<string, object> controllersDict = GetControllersDictionary();
             List<object> triggersList = GetTriggersList(sensorsDict, controllersDict);
+
+            var sensorsList = sensorsDict.Values.ToList();
+            WorkWithThreads workWithThreads= new WorkWithThreads();
+            ChangesOfDB changesOfDB = new ChangesOfDB();
+            Action<List<object>> write;
+            write = sl=>  changesOfDB.WriteSensorsValuesToDB(sl);
+            workWithThreads.Periodic(() => { write(sensorsList); }, TimeSpan.FromSeconds(10), CancellationToken.None);
 
             return triggersList;
         }
@@ -74,16 +77,6 @@ namespace BLL
                     TriggersAction triggerAction = new TriggersAction() { TriggerId = trigger.Id, TimeChange = DateTime.Now, Description = trigger.StateAfterChange };
                     repository.Add(triggerAction);
                 }
-
-                currentTact++;
-                if (currentTact >= amountTactsToWriteToDB)
-                {
-                    SensorsValue sensorsValue = new SensorsValue() { SensorId = trigger.SensorId, TimeMeasurement = DateTime.Now, Value = trigger.SensorValue };
-
-                    repository.Add(sensorsValue);
-                    currentTact = 0;
-                }
-
                 repository.SaveChanges();
             }
         }
@@ -186,10 +179,9 @@ namespace BLL
                 
             CheckConfigurationResult checkResult = new CheckConfigurationResult();
             Type type;
-            var con = ServiceLocator.Current.GetInstance<IRepository>();
-            using (IRepository repository = con)
+            IRepository repository1 = ServiceLocator.Current.GetInstance<IRepository>();
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-
                 foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
                 {
                     try

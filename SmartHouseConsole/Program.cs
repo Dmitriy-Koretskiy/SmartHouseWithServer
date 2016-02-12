@@ -24,16 +24,16 @@ namespace SmartHouseWithServer
             CastleWindsorInit.BootstrapContainer();
 
             var server = CastleWindsorInit.container.Resolve<IServer>();
-
-            for (; ; )
-            {
-                var checkResult = server.CheckConfiguration();
-                if (!checkResult.errorExist)
-                {
-                    break;
-                }
-                Thread.Sleep(10000);
-            }
+//TODO: Delete loop
+            //for (; ; )
+            //{
+            //    var checkResult = server.CheckConfiguration();
+            //    if (!checkResult.errorExist)
+            //    {
+            //        break;
+            //    }
+            //    Thread.Sleep(10000);
+            //}
             server.StartSystemWork();
         }
     }

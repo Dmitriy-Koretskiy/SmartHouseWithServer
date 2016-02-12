@@ -77,3 +77,5 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\CommonServiceLocator.WindsorAdapter.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\CommonServiceLocator.WindsorAdapter.pdb

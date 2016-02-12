@@ -22,11 +22,12 @@ namespace SmartHouseWebSite.Controllers
     public class HomeController : Controller
     {
         IGenericMappingService genericMappingService;
+        IServer server;
 
-
-        public HomeController(IGenericMappingService mapService) 
+        public HomeController(IGenericMappingService mapService, IServer server) 
         {
             this.genericMappingService = mapService;
+            this.server = server;
         }
        
         public ActionResult Index()
@@ -37,14 +38,17 @@ namespace SmartHouseWebSite.Controllers
 
         public ActionResult CheckConfiguration()
         {
-            //Server server = new Server();
-            //var list = server.CheckConfiguration().missingDevices;
-            List<MissingDevice> l = new List<MissingDevice>();
-            MissingDevice r1 = new MissingDevice { RoomName = "Room1", DeviceName = "Conditioner" };
-            MissingDevice r2 = new MissingDevice { RoomName = "Room2", DeviceName = "Lamp" };
-            l.Add(r1);
-            l.Add(r2);
-            return Json(l, JsonRequestBehavior.AllowGet);
+            var l = server;
+            Server server1 = new Server();
+            var s = server1.CheckConfiguration();
+            var l1 = l.CheckConfiguration().missingDevices;
+            var list = server.CheckConfiguration().missingDevices;
+            //List<MissingDevice> l = new List<MissingDevice>();
+            //MissingDevice r1 = new MissingDevice { RoomName = "Room1", DeviceName = "Conditioner" };
+            //MissingDevice r2 = new MissingDevice { RoomName = "Room2", DeviceName = "Lamp" };
+            //l.Add(r1);
+            //l.Add(r2);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }
