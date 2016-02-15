@@ -167,7 +167,7 @@ namespace BLL
         {
             try
             {
-                return assembly.GetType("Devices." + typeDevice, true, true);
+                return assembly.GetType("Devices1." + typeDevice, true, true);
             }
             catch
             {

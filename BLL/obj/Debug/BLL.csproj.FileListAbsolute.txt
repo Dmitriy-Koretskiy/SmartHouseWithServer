@@ -7,7 +7,6 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\EntityFramework.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\AutoMapper.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\DAL.pdb
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Devices.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\DTO.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Interfaces.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\EntityFramework.xml
@@ -18,3 +17,4 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Devices.pdb
