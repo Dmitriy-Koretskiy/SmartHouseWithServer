@@ -4,11 +4,12 @@
         type: 'GET',
         dataType: 'json',
         success: function (result) {
+            $(".errorList").empty();
             $.each(result, function (i, item) {
-                $(".errorList").append($("<p></p>").html(item.RoomName + " " + item.DeviceName));
+                $(".errorList").append($("<p></p>").html("<b>Room name: </b>" + item.RoomName + "  <b>Device:</b> " + item.DeviceName));
             });
         }
     });
 }
 
-$("button.checkConfig").click(checkConfiguration());
+$("#checkConfig").click(function () { checkConfiguration(); });

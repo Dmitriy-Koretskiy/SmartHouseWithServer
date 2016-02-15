@@ -19,6 +19,7 @@ namespace BLL
         static string path = @"C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Devices\bin\Debug\Devices.dll";
         Assembly assembly = Assembly.LoadFrom(path);
         private bool systemWork = true;
+        private int periodicitOfSensorsValuesRecording = 10;
 
         private List<object> ConfigureSystem()
         {
@@ -31,7 +32,7 @@ namespace BLL
             ChangesOfDB changesOfDB = new ChangesOfDB();
             Action<List<object>> write;
             write = sl=>  changesOfDB.WriteSensorsValuesToDB(sl);
-            workWithThreads.Periodic(() => { write(sensorsList); }, TimeSpan.FromSeconds(10), CancellationToken.None);
+            workWithThreads.Periodic(() => { write(sensorsList); }, TimeSpan.FromSeconds(periodicitOfSensorsValuesRecording), CancellationToken.None);
 
             return triggersList;
         }
@@ -144,7 +145,7 @@ namespace BLL
 
                 foreach (Trigger triggerElement in repository.GetAll<Trigger>().Where(t => t.Enable == true))
                 {
-                    type = GetDeviceTypeTry("BaseTrigger");
+                    type = GetDeviceTypeTry("Trigger");
 
                     if (type == null)
                     {

@@ -7,7 +7,7 @@ using Interfaces;
 
 namespace Devices
 {
-    class LightTrigger: BaseTrigger, ITrigger
+    class LightTrigger: Trigger, ITrigger
     {
         public LightTrigger(int id, ISensor sensor, IController controller, string condition)
             : base(id, sensor, controller, condition) 

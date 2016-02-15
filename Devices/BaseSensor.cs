@@ -13,6 +13,7 @@ namespace Devices
     {
         public int Id { get; set; }
         public int CurrentValue { get; set; }
+        private int periodicityOfSensorValueGenerating = 2;
 
         public BaseSensor(int id)
         {
@@ -36,7 +37,7 @@ namespace Devices
 
         private void StartSensor()
         {
-            Periodic(GenerateValue, TimeSpan.FromSeconds(2), CancellationToken.None);
+            Periodic(GenerateValue, TimeSpan.FromSeconds(periodicityOfSensorValueGenerating), CancellationToken.None);
         }
 
         protected abstract void GenerateValue();

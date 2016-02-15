@@ -12,7 +12,7 @@ using DAL;
 
 namespace Devices
 {
-    class BaseTrigger:ITrigger
+    class Trigger:ITrigger
     {
        
         protected  ISensor sensor;
@@ -26,7 +26,7 @@ namespace Devices
         public string StateAfterChange { get;  set; }
         public int SensorId { get;  set; }
 
-        public  BaseTrigger(int id, ISensor sensor, IController controller, string condition) 
+        public  Trigger(int id, ISensor sensor, IController controller, string condition) 
         {
             this.Id = id;
             this.sensor = sensor;
