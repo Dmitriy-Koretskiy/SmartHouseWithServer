@@ -57,7 +57,7 @@ namespace BLL
             systemWork = true;
             var triggers = ConfigureSystem();
 
-            if (systemWork == false)
+            if (triggers == null || systemWork == false)
             {
                 Thread.Sleep(100000);
                 StartSystemWork();
@@ -180,10 +180,11 @@ namespace BLL
             }
         }
 
-        public CheckConfigurationResult CheckConfiguration()
+        public List<MissingDevice> CheckConfiguration()
         {
+            List<MissingDevice> missingDevices = new List<MissingDevice>();
 
-            CheckConfigurationResult checkResult = new CheckConfigurationResult();
+         
             Type type;
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
@@ -194,11 +195,10 @@ namespace BLL
                         type = assembly.GetType("Devices1." + sensorElement.SensorsType.Name, true, true);
                     }
                     catch
-                    {
-                        checkResult.errorExist = true;
+                    {                     
                         var device = new MissingDevice() { RoomName = sensorElement.Room.Name, DeviceName = sensorElement.Name };
 
-                        checkResult.missingDevices.Add(device);
+                        missingDevices.Add(device);
 
                     }
                 }
@@ -211,10 +211,9 @@ namespace BLL
                     }
                     catch
                     {
-                        checkResult.errorExist = true;
                         var device = new MissingDevice() { RoomName = controllerElement.Room.Name, DeviceName = controllerElement.Name };
 
-                        checkResult.missingDevices.Add(device);
+                      missingDevices.Add(device);
                     }
                 }
 
@@ -226,14 +225,13 @@ namespace BLL
                     }
                     catch
                     {
-                        checkResult.errorExist = true;
                         var device = new MissingDevice() { RoomName = triggerElement.Room.Name, DeviceName = triggerElement.Name };
 
-                        checkResult.missingDevices.Add(device);
+                        missingDevices.Add(device);
                     }
                 }
             }
-            return checkResult;
+            return missingDevices;
         }
     }
 }

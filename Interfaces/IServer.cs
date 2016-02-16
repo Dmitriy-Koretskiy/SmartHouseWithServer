@@ -9,7 +9,7 @@ namespace Interfaces
 {
     public interface IServer
     {
-        CheckConfigurationResult CheckConfiguration();
+        List<MissingDevice> CheckConfiguration();
         void StartSystemWork();
         void StopWork();
     }

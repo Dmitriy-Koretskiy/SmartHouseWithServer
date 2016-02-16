@@ -38,13 +38,14 @@ namespace SmartHouseMVC.Controllers
 
         public ActionResult CheckConfiguration()
         {   
-            var list = server.CheckConfiguration().missingDevices;
-            //List<MissingDevice> l = new List<MissingDevice>();
-            //MissingDevice r1 = new MissingDevice { RoomName = "Room1", DeviceName = "Conditioner" };
-            //MissingDevice r2 = new MissingDevice { RoomName = "Room2", DeviceName = "Lamp" };
-            //l.Add(r1);
-            //l.Add(r2);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            var list = server.CheckConfiguration();
+            
+            if(!list.Any())
+            {
+
+            }
+
+            return Json("234567", JsonRequestBehavior.AllowGet);
         }
     }
 }
