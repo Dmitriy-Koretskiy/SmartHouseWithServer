@@ -18,17 +18,17 @@ namespace SmartHouseMVC.Controllers
         IMappingService<TriggerDTO> triggerMappingService;
         IGenericMappingService genericMappingService;
 
-        public TriggerController(IGenericMappingService genericMapService, IMappingService<TriggerDTO> triggerMapService) 
+        public TriggerController(IGenericMappingService genericMapService, IMappingService<TriggerDTO> triggerMapService)
         {
             this.triggerMappingService = triggerMapService;
             this.genericMappingService = genericMapService;
         }
 
-        
+
         public ActionResult Index(int roomId)
         {
             if (roomId != 0)
-            {               
+            {
                 var triggers = triggerMappingService.
                     GetByRoomId(roomId);
                 return View(triggers);
@@ -68,15 +68,13 @@ namespace SmartHouseMVC.Controllers
         [HttpPost]
         public ActionResult Create(TriggerDTO triggerDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
                 triggerMappingService.Add(triggerDTO);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(triggerDTO);
         }
 
         public ActionResult Edit(int? id)
@@ -104,15 +102,13 @@ namespace SmartHouseMVC.Controllers
         [HttpPost]
         public ActionResult Edit(TriggerDTO triggerDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
                 triggerMappingService.Edit(triggerDTO);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(triggerDTO);
         }
 
         public ActionResult Delete(int? id)
@@ -127,10 +123,10 @@ namespace SmartHouseMVC.Controllers
                 triggerMappingService.Delete(id);
                 return RedirectToAction("Index");
             }
-            catch 
+            catch
             {
                 return RedirectToAction("Index");
-            }          
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SmartHouseMVC.Controllers
         IMappingService<HouseControllerDTO> houseControllerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
 
-        public HouseControllerController(IGenericMappingService genMapService, IMappingService<HouseControllerDTO> houseControllerMapService) 
+        public HouseControllerController(IGenericMappingService genMapService, IMappingService<HouseControllerDTO> houseControllerMapService)
         {
             this.houseControllerMappingService = houseControllerMapService;
             this.genericMappingService = genMapService;
@@ -64,15 +64,13 @@ namespace SmartHouseMVC.Controllers
         [HttpPost]
         public ActionResult Create(HouseControllerDTO houseControllerDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
                 genericMappingService.Add<HouseControllerDTO, HouseController>(houseControllerDTO);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(houseControllerDTO);
         }
 
         public ActionResult Edit(int? id)
@@ -98,15 +96,12 @@ namespace SmartHouseMVC.Controllers
         [HttpPost]
         public ActionResult Edit(HouseControllerDTO houseControllerDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
                 genericMappingService.Edit<HouseControllerDTO, HouseController>(houseControllerDTO);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(houseControllerDTO);
         }
 
         public ActionResult Delete(int? id)

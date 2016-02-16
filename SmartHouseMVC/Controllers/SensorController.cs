@@ -19,7 +19,7 @@ namespace SmartHouseMVC.Controllers
         IGenericMappingService genericMappingService;
         public string test;
 
-        public SensorController(IMappingService<SensorDTO> sensorMapService, IGenericMappingService genericMapService) 
+        public SensorController(IMappingService<SensorDTO> sensorMapService, IGenericMappingService genericMapService)
         {
             this.sensorMappingService = sensorMapService;
             this.genericMappingService = genericMapService;
@@ -65,15 +65,14 @@ namespace SmartHouseMVC.Controllers
         [HttpPost]
         public ActionResult Create(SensorDTO sensorDTO)
         {
-            try
+
+            if (ModelState.IsValid)
             {
                 genericMappingService.Add<SensorDTO, Sensor>(sensorDTO);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(sensorDTO);
         }
 
         public ActionResult Edit(int? id)
@@ -99,15 +98,13 @@ namespace SmartHouseMVC.Controllers
         [HttpPost]
         public ActionResult Edit(SensorDTO sensorDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
                 genericMappingService.Edit<SensorDTO, Sensor>(sensorDTO);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(sensorDTO);
         }
 
         public ActionResult Delete(int? id)
