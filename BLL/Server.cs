@@ -24,8 +24,20 @@ namespace BLL
         private List<object> ConfigureSystem()
         {
             Dictionary<string, object> sensorsDict = GetSensorsDictionary();
+            if (sensorsDict == null)
+            {
+                return null;
+            }
             Dictionary<string, object> controllersDict = GetControllersDictionary();
+            if (controllersDict == null)
+            {
+                return null;
+            }
             List<object> triggersList = GetTriggersList(sensorsDict, controllersDict);
+            if (systemWork == false)
+            {
+                return null;
+            }
 
             var sensorsList = sensorsDict.Values.ToList();
             WorkWithThreads workWithThreads= new WorkWithThreads();
@@ -99,7 +111,7 @@ namespace BLL
                     if (type == null)
                     {
                         systemWork = false;
-                        break;
+                        return null;
                     }
                     else
                     {
@@ -124,7 +136,7 @@ namespace BLL
                     if (type == null)
                     {
                         systemWork = false;
-                        break;
+                        return null;
                     }
                     else
                     {
@@ -150,7 +162,7 @@ namespace BLL
                     if (type == null)
                     {
                         systemWork = false;
-                        break;
+                        return null;
                     }
                     else
                     {
