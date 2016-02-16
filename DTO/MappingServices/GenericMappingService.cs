@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Interfaces.MappingServices;
 
-namespace DTO.Services
+namespace Servises.Services
 {
     public class GenericMappingService: IGenericMappingService
     {

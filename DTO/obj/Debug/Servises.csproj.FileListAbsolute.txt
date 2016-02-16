@@ -1,0 +1,17 @@
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\DTO.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\DTO.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\AutoMapper.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Core.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Windsor.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\DAL.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Interfaces.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\EntityFramework.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\DAL.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Interfaces.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\AutoMapper.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Core.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Windsor.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\EntityFramework.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\obj\Debug\Servises.csprojResolveAssemblyReference.cache
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\obj\Debug\DTO.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\obj\Debug\DTO.pdb

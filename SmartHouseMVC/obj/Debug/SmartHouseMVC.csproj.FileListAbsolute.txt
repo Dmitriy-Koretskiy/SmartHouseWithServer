@@ -40,11 +40,13 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\BLL.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Castle.Core.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Castle.Windsor.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\CommonServiceLocator.WindsorAdapter.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\DAL.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\DTO.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\EntityFramework.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\EntityFramework.SqlServer.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Interfaces.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Newtonsoft.Json.dll
@@ -63,8 +65,11 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\AutoMapper.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Castle.Core.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Castle.Windsor.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\CommonServiceLocator.WindsorAdapter.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\EntityFramework.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\EntityFramework.SqlServer.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Newtonsoft.Json.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\System.Web.Mvc.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\System.Web.Razor.xml
@@ -74,8 +79,3 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\obj\Debug\SmartHouseMVC.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\obj\Debug\SmartHouseMVC.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\obj\Debug\SmartHouseMVC.pdb
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.dll
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\Microsoft.Practices.ServiceLocation.xml
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\CommonServiceLocator.WindsorAdapter.dll
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\SmartHouseMVC\bin\CommonServiceLocator.WindsorAdapter.pdb

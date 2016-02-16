@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Interfaces.Tables;
-using SmartHouseWebSite.Models;
+using SmartHouseMVC.Models;
 using Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SmartHouseWebSite.App_Start
+namespace SmartHouseMVC.App_Start
 {
     public class AutoMapperConfig
     {

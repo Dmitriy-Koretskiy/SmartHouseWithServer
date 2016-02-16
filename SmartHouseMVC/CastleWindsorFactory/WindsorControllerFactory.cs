@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SmartHouseWebSite.CastleWindsor
+namespace SmartHouseMVC.CastleWindsor
 {
     public class WindsorControllerFactory : DefaultControllerFactory
     {

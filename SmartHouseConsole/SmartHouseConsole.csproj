@@ -75,14 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastleWindsorInit.cs" />
-    <Compile Include="Installers\ContextInstaller.cs" />
-    <Compile Include="Installers\RepositoryInstaller.cs" />
-    <Compile Include="Installers\ServerInstaller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

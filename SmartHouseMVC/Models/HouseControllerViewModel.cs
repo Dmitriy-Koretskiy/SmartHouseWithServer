@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SmartHouseWebSite.Models
+namespace SmartHouseMVC.Models
 {
     public class HouseControllerViewModel
     {

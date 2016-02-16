@@ -9,7 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace SmartHouseWithServer.Installers
+namespace DAL.Installers
 {
     public class RepositoryInstaller: IWindsorInstaller
     {

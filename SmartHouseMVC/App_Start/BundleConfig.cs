@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace SmartHouseWebSite
+namespace SmartHouseMVC
 {
     public class BundleConfig
     {

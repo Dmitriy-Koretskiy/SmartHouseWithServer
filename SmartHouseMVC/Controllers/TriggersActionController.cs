@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Interfaces.DTO;
-using DTO.Services;
+using Servises.Services;
 using Interfaces;
 using Interfaces.Tables;
-using SmartHouseWebSite.Models;
+using SmartHouseMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using Interfaces.MappingServices;
 
-namespace SmartHouseWebSite.Controllers
+namespace SmartHouseMVC.Controllers
 {
     public class TriggersActionController : Controller
     {
@@ -22,11 +22,10 @@ namespace SmartHouseWebSite.Controllers
             this.triggersActionMappingService = triggersActionMapService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int roomId)
         {
-            if (RouteData.Values["roomId"] != null)
+            if (roomId != 0)
             {
-                int roomId = Convert.ToInt32(RouteData.Values["roomId"]);
                 var triggersActions = triggersActionMappingService.GetByRoomId(roomId);
                 return View(triggersActions);
             }

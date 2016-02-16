@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using DTO.Services;
+using Servises.Services;
 using Interfaces;
 using Interfaces.DTO;
 using Interfaces.MappingServices;
-using SmartHouseWebSite.Models;
+using SmartHouseMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SmartHouseWebSite.Controllers
+namespace SmartHouseMVC.Controllers
 {
     public class RoomController : Controller
     {

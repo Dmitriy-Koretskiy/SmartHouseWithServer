@@ -8,13 +8,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace SmartHouseWebSite.Installers
+namespace DAL.Installers
 {
     public class ContextInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<DbContext>().ImplementedBy<SmartHouseContext>().LifestylePerWebRequest());
+            container.Register(Component.For<DbContext>().ImplementedBy<SmartHouseContext>().LifestyleTransient());
         }
     }
 }

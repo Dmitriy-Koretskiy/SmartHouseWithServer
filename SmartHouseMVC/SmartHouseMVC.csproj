@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmartHouseWebSite</RootNamespace>
+    <RootNamespace>SmartHouseMVC</RootNamespace>
     <AssemblyName>SmartHouseMVC</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -152,7 +152,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Installers\ContextInstaller.cs" />
     <Compile Include="Installers\ControllersInstaller.cs" />
     <Compile Include="CastleWindsorFactory\WindsorControllerFactory.cs" />
     <Compile Include="Controllers\HouseControllerController.cs" />
@@ -165,9 +164,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Installers\RepositoryInstaller.cs" />
-    <Compile Include="Installers\ServerInstaller.cs" />
-    <Compile Include="Installers\ServisesInstallers.cs" />
     <Compile Include="Models\HouseControllersTypeViewModel.cs" />
     <Compile Include="Models\HouseControllerViewModel.cs" />
     <Compile Include="Models\RoomContentViewModel.cs" />
@@ -237,6 +233,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\canvasjs.min.js" />
     <Content Include="Scripts\CheckConfiguration.js" />
@@ -302,9 +299,9 @@
       <Project>{18aa660c-3f84-4a10-b8f4-88440e2732cb}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
+    <ProjectReference Include="..\DTO\Servises.csproj">
       <Project>{f475314b-513c-4a97-ab4d-a89f89b92ad6}</Project>
-      <Name>DTO</Name>
+      <Name>Servises</Name>
     </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{8bb04cef-3099-4dc5-bb1e-df645e7b6e43}</Project>

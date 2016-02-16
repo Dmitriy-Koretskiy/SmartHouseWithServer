@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.Services
+namespace Servises.Services
 {
     public class HouseControllerMappingService : IMappingService<HouseControllerDTO>
     {

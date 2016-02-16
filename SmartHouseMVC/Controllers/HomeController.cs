@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using DTO.Services;
+using Servises.Services;
 using Interfaces;
 using Interfaces.DTO;
 using Interfaces.Tables;
-using SmartHouseWebSite.Models;
+using SmartHouseMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using Interfaces.MappingServices;
 using Interfaces.CheckResults;
 
-namespace SmartHouseWebSite.Controllers
+namespace SmartHouseMVC.Controllers
 {
     public class HomeController : Controller
     {

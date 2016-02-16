@@ -1,4 +1,5 @@
-﻿using Castle.Windsor;
+﻿using BLL.Installers;
+using Castle.Windsor;
 using Castle.Windsor.Installer;
 using CommonServiceLocator.WindsorAdapter;
 using Microsoft.Practices.ServiceLocation;
@@ -16,7 +17,7 @@ namespace SmartHouseWithServer
 
         public static void BootstrapContainer()
         {
-            container = new WindsorContainer().Install(FromAssembly.This());
+            container = new WindsorContainer().Install(FromAssembly.Named("DAL"), FromAssembly.Containing<ServerInstaller>());
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
         }
     }

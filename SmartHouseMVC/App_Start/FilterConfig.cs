@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace SmartHouseWebSite
+namespace SmartHouseMVC
 {
     public class FilterConfig
     {
