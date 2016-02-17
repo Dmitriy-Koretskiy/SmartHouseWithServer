@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangesOfDB.cs" />
+    <Compile Include="DevisesAssembler.cs" />
     <Compile Include="Installers\ServerInstaller.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

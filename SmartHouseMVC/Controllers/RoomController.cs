@@ -17,7 +17,6 @@ namespace SmartHouseMVC.Controllers
         IRoomMappingService roomMappingService { get; set; }
         ISensorsValueMappingService sensorsValueMappingService { get; set; }
 
-
         public RoomController(IRoomMappingService roomMapService, ISensorsValueMappingService sensorMapService) 
         {
             this.roomMappingService = roomMapService;

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Installers\ServisesInstaller.cs" />
+    <Compile Include="InteractionConsoleMVCService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MappingServices\GenericMappingService.cs" />
     <Compile Include="MappingServices\HouseControllerMappingService.cs" />

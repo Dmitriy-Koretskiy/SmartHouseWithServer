@@ -1,6 +1,6 @@
 ﻿using DAL;
 using Interfaces;
-using Interfaces.CheckResults;
+using Interfaces.InteractionWithouyApplications;
 using Interfaces.Tables;
 using Microsoft.Practices.ServiceLocation;
 using System;
@@ -19,51 +19,86 @@ namespace BLL
         static string path = @"C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Devices\bin\Debug\Devices.dll";
         Assembly assembly = Assembly.LoadFrom(path);
         private bool systemWork = true;
-        private int periodicitOfSensorsValuesRecording = 10;
+        private bool recordingSensorsValueToDB = false;
+
+        private int periodicityOfSensorsValuesRecording = 10;
+        private int periodicityOfCheckingWorkStatus = 15;
+
+        public void Initialize()
+        {
+            StartCheckingSystemWorkStatus();
+            StartSystemWork();
+        }
 
         private List<object> ConfigureSystem()
         {
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-                Dictionary<string, object> sensorsDict = GetSensorsDictionary(repository);
+                DevisesAssembler devisesAssembler = new DevisesAssembler(assembly);
+                
+                Dictionary<string, object> sensorsDict = devisesAssembler.GetSensorsDictionary(repository);
                 if (sensorsDict == null)
                 {
+                    RecordWorkStatusToDB("Error");
+                    systemWork = false;
                     return null;
                 }
-                Dictionary<string, object> controllersDict = GetControllersDictionary(repository);
+                Dictionary<string, object> controllersDict = devisesAssembler.GetControllersDictionary(repository);
                 if (controllersDict == null)
                 {
+                    RecordWorkStatusToDB("Error");
+                    systemWork = false;
                     return null;
                 }
-                List<object> triggersList = GetTriggersList(sensorsDict, controllersDict, repository);
-                if (systemWork == false)
+
+                bool triggersAssemblingExeption = false;
+
+                List<object> triggersList = devisesAssembler.GetTriggersList(sensorsDict, controllersDict, repository, out triggersAssemblingExeption);
+                if (!triggersList.Any())
                 {
-                    return null;
+                    if (triggersAssemblingExeption == false)
+                    {
+                        RecordWorkStatusToDB("SensorsWork");
+                        return null;
+                    }
+                    else
+                    {
+                        RecordWorkStatusToDB("Error");
+                    }
                 }
 
                 var sensorsList = sensorsDict.Values.ToList();
-
-                WorkWithThreads workWithThreads = new WorkWithThreads();
-                ChangesOfDB changesOfDB = new ChangesOfDB();
-
-                workWithThreads.Periodic(() => { changesOfDB.WriteSensorsValuesToDB(sensorsList); }, TimeSpan.FromSeconds(periodicitOfSensorsValuesRecording), CancellationToken.None);
+                StartRecordingSensorsValues(sensorsList);
 
                 return triggersList;
             }
         }
 
-        public void StartSystemWork()
+        private void StartSystemWork()
         {
             systemWork = true;
             var triggers = ConfigureSystem();
 
             if (triggers == null || systemWork == false)
-            {
+            {                
                 Thread.Sleep(100000);
                 StartSystemWork();
             }
 
+            RecordWorkStatusToDB("ServerWork");
             StartMainProsses(triggers);
+        }
+
+        private void RecordWorkStatusToDB(string status)
+        {
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
+            {
+                var statusInDB = repository.GetAll<SystemWorkStatus>().First();
+
+                statusInDB.Status = status;
+                repository.Update<SystemWorkStatus>(statusInDB);
+                repository.SaveChanges();
+            }
         }
 
         private void StartMainProsses(List<object> triggersList)
@@ -73,11 +108,46 @@ namespace BLL
                 Parallel.ForEach(triggersList, UseTrigger);
                 Thread.Sleep(1000);
             }
+            StartSystemWork();
+        }
+
+        private void StartRecordingSensorsValues(List<object> sensorsList)
+        {
+            if (this.recordingSensorsValueToDB == false)
+            {
+                WorkWithThreads workWithThreads = new WorkWithThreads();
+                ChangesOfDB changesOfDB = new ChangesOfDB();
+
+                workWithThreads.Periodic(() => { changesOfDB.WriteSensorsValuesToDB(sensorsList); },
+                    TimeSpan.FromSeconds(periodicityOfSensorsValuesRecording), CancellationToken.None);
+
+                recordingSensorsValueToDB = true;
+            }
+        }
+
+        private void StartCheckingSystemWorkStatus()
+        {
+
+            WorkWithThreads workWithThreads = new WorkWithThreads();
+
+            workWithThreads.Periodic(CheckSystemWorkStatus, TimeSpan.FromSeconds(periodicityOfCheckingWorkStatus), CancellationToken.None);
+        }
+
+        private void CheckSystemWorkStatus()
+        {
+            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
+            {
+                if (repository.GetAll<SystemWorkStatus>().First().Status != "ServerWork")
+                {
+                    systemWork = false;
+                }
+            }
         }
 
         public void StopWork()
         {
-            this.systemWork = false;
+            RecordWorkStatusToDB("Error");
+         //   this.systemWork = false;
         }
 
         private void UseTrigger(object obj)
@@ -87,7 +157,6 @@ namespace BLL
 
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-
                 if (trigger.StateAfterChange != null)
                 {
                     TriggersAction triggerAction = new TriggersAction() { TriggerId = trigger.Id, TimeChange = DateTime.Now, Description = trigger.StateAfterChange };
@@ -97,94 +166,11 @@ namespace BLL
             }
         }
 
-        private Dictionary<string, object> GetSensorsDictionary(IRepository repository)
-        {
-
-            Dictionary<string, object> sensorsDict = new Dictionary<string, object>();
-            Type type;
-
-            foreach (Sensor sensorElement in repository.GetAll<Sensor>().Where(s => s.Enable == true))
-            {
-                type = GetDeviceTypeTry(sensorElement.SensorsType.Name);
-
-                if (type == null)
-                {
-                    systemWork = false;
-                    return null;
-                }
-                else
-                {
-                    sensorsDict.Add(sensorElement.Id.ToString(), Activator.CreateInstance(type, sensorElement.Id));
-                }
-            }
-
-            return sensorsDict;
-        }
-
-        private Dictionary<string, object> GetControllersDictionary(IRepository repository)
-        {
-            Dictionary<string, object> controllersDict = new Dictionary<string, object>();
-            Type type;
-
-            foreach (HouseController controllerElement in repository.GetAll<HouseController>().Where(c => c.Enable == true))
-            {
-                type = GetDeviceTypeTry(controllerElement.HouseControllersType.Name);
-
-                if (type == null)
-                {
-                    systemWork = false;
-                    return null;
-                }
-                else
-                {
-                    controllersDict.Add(controllerElement.Id.ToString(), Activator.CreateInstance(type, controllerElement.Id));
-                }
-            }
-
-            return controllersDict;
-        }
-
-        private List<object> GetTriggersList(Dictionary<string, object> sensorsDict, Dictionary<string, object> controllersDict, IRepository repository)
-        {
-            List<object> triggersList = new List<object>();
-            Type type;
-
-            foreach (Trigger triggerElement in repository.GetAll<Trigger>().Where(t => t.Enable == true))
-            {
-                type = GetDeviceTypeTry("Trigger");
-
-                if (type == null)
-                {
-                    systemWork = false;
-                    return null;
-                }
-                else
-                {
-                    object obj = Activator.CreateInstance(type, triggerElement.Id, sensorsDict[triggerElement.Sensor.Id.ToString()],
-                        controllersDict[triggerElement.HouseController.Id.ToString()], triggerElement.Condition);
-                    triggersList.Add(obj);
-                }
-            }
-            return triggersList;
-        }
-
-        private Type GetDeviceTypeTry(string typeDevice)
-        {
-            try
-            {
-                return assembly.GetType("Devices." + typeDevice, true, true);
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
         public List<MissingDevice> CheckConfiguration()
         {
             List<MissingDevice> missingDevices = new List<MissingDevice>();
 
-         
+
             Type type;
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
@@ -195,7 +181,7 @@ namespace BLL
                         type = assembly.GetType("Devices1." + sensorElement.SensorsType.Name, true, true);
                     }
                     catch
-                    {                     
+                    {
                         var device = new MissingDevice() { RoomName = sensorElement.Room.Name, DeviceName = sensorElement.Name };
 
                         missingDevices.Add(device);
@@ -213,7 +199,7 @@ namespace BLL
                     {
                         var device = new MissingDevice() { RoomName = controllerElement.Room.Name, DeviceName = controllerElement.Name };
 
-                      missingDevices.Add(device);
+                        missingDevices.Add(device);
                     }
                 }
 

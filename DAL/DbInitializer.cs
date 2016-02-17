@@ -71,6 +71,8 @@ namespace DAL
             TriggersAction ta2 = new TriggersAction { Trigger = t2, TimeChange = DateTime.Now, Description = "ON" };
             TriggersAction ta3 = new TriggersAction { Trigger = t3, TimeChange = DateTime.Now, Description = "OFF" };
 
+            SystemWorkStatus sws = new SystemWorkStatus { Status = "Init" }; 
+
             db.Rooms.Add(r1);
             db.Rooms.Add(r2);
             db.HouseControllersTypes.Add(ct1);
@@ -94,6 +96,7 @@ namespace DAL
             db.TriggersActions.Add(ta1);
             db.TriggersActions.Add(ta2);
             db.TriggersActions.Add(ta3);
+            db.SystemWorkStatus.Add(sws);
             db.SaveChanges();
         }
     }

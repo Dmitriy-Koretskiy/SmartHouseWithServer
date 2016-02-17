@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/CheckConfiguration.js"></script>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -24,13 +24,18 @@
     <div class="homePage">
         @foreach (RoomDTO room in Model)
         {   
-             <p>@Html.RouteLink(room.Name, "Room", new { action = "Index", controller = "Room", roomId = room.Id })</p>    
+            <p>@Html.RouteLink(room.Name, "Room", new { action = "Index", controller = "Room", roomId = room.Id })</p>    
         }
     </div>
 
-<script >
-    $(document).ready(checkConfiguration);
-</script>
+    <button id="refreshConfig">Refresh configuration</button>
+    <button id="checkConfig">Check configuration</button>
+
+    <script src="~/Scripts/CheckConfiguration.js"></script>
+    <script>
+        $(document).ready(checkConfiguration);
+
+    </script>
 
     <footer>
     </footer>

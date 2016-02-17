@@ -25,7 +25,7 @@ namespace SmartHouseWithServer
 
             var server = CastleWindsorInit.container.Resolve<IServer>();
 
-            server.StartSystemWork();
+            server.Initialize();
         }
     }
 }

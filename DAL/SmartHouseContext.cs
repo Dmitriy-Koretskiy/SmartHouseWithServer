@@ -12,7 +12,7 @@ namespace DAL
     {
         public SmartHouseContext()
         {
-        // Database.SetInitializer<SmartHouseContext>(new DbInitializer());
+         //   Database.SetInitializer<SmartHouseContext>(new DbInitializer());
         }
 
         public DbSet<HouseController> HouseControllers { get; set; }
@@ -24,5 +24,6 @@ namespace DAL
         public DbSet<TriggersType> TriggersTypes { get; set; }
         public DbSet<SensorsValue> SensorsValues { get; set; }
         public DbSet<TriggersAction> TriggersActions { get; set; }
+        public DbSet<SystemWorkStatus> SystemWorkStatus { get; set; }     
     }
 }

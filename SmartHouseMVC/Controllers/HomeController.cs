@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Interfaces.MappingServices;
-using Interfaces.CheckResults;
+using Interfaces.InteractionWithouyApplications;
 
 namespace SmartHouseMVC.Controllers
 {
@@ -39,13 +39,16 @@ namespace SmartHouseMVC.Controllers
         public ActionResult CheckConfiguration()
         {   
             var list = server.CheckConfiguration();
-            
-            if(!list.Any())
-            {
 
-            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
-            return Json("234567", JsonRequestBehavior.AllowGet);
+        public ActionResult RefreshConfiguration()
+        {
+            server.StopWork();
+            var list = server.CheckConfiguration();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

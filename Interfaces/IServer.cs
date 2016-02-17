@@ -1,4 +1,4 @@
-﻿using Interfaces.CheckResults;
+﻿using Interfaces.InteractionWithouyApplications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Interfaces
     public interface IServer
     {
         List<MissingDevice> CheckConfiguration();
-        void StartSystemWork();
+        void Initialize();
         void StopWork();
     }
 }
