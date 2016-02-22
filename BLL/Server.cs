@@ -11,31 +11,46 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace BLL
 {
     public class Server : IServer
     {
         static string path = @"C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\Devices\bin\Debug\Devices.dll";
-        Assembly assembly = Assembly.LoadFrom(path);
-        private bool systemWork = true;
-        private bool recordingSensorsValueToDB = false;
+        static Assembly assembly = Assembly.LoadFrom(path);
+        private static bool systemWork = true;
+        private static bool recordingSensorsValueToDB = false;
+        private static System.Timers.Timer aTimer;
 
-        private int periodicityOfSensorsValuesRecording = 10;
-        private int periodicityOfCheckingWorkStatus = 15;
+        private static int periodicityOfSensorsValuesRecording = 10;
+        private static int periodicityOfCheckingWorkStatus = 15;
+        private static int periodicityOfTimerTick = 7000;
 
         public void Initialize()
         {
             StartCheckingSystemWorkStatus();
-            StartSystemWork();
+            SetTimer();
+            Console.ReadLine();
         }
 
-        private List<object> ConfigureSystem()
+        private static void SetTimer()
+        {
+            // Create a timer with a two second interval.
+            aTimer = new System.Timers.Timer(periodicityOfTimerTick);
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += new ElapsedEventHandler(StartSystemWork);
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+
+
+        private static List<object> ConfigureSystem()
         {
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
                 DevisesAssembler devisesAssembler = new DevisesAssembler(assembly);
-                
+
                 Dictionary<string, object> sensorsDict = devisesAssembler.GetSensorsDictionary(repository);
                 if (sensorsDict == null)
                 {
@@ -74,22 +89,29 @@ namespace BLL
             }
         }
 
-        private void StartSystemWork()
+        private static void StartSystemWork(object source, ElapsedEventArgs e)
         {
             systemWork = true;
             var triggers = ConfigureSystem();
 
             if (triggers == null || systemWork == false)
-            {                
+            {
                 Thread.Sleep(100000);
-                StartSystemWork();
             }
-
-            RecordWorkStatusToDB("ServerWork");
-            StartMainProsses(triggers);
+            else
+            {
+                RecordWorkStatusToDB("ServerWork");
+                aTimer.Stop();
+                while (systemWork)
+                {
+                    Parallel.ForEach(triggers, UseTrigger);
+                    Thread.Sleep(1000);
+                }
+                aTimer.Start();
+            }
         }
 
-        private void RecordWorkStatusToDB(string status)
+        private static void RecordWorkStatusToDB(string status)
         {
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
@@ -101,19 +123,14 @@ namespace BLL
             }
         }
 
-        private void StartMainProsses(List<object> triggersList)
-        {
-            while (systemWork)
-            {
-                Parallel.ForEach(triggersList, UseTrigger);
-                Thread.Sleep(1000);
-            }
-            StartSystemWork();
-        }
+        //private void StartMainProsses(List<object> triggersList)
+        //{
 
-        private void StartRecordingSensorsValues(List<object> sensorsList)
+        //}
+
+        private static void StartRecordingSensorsValues(List<object> sensorsList)
         {
-            if (this.recordingSensorsValueToDB == false)
+            if (recordingSensorsValueToDB == false)
             {
                 WorkWithThreads workWithThreads = new WorkWithThreads();
                 ChangesOfDB changesOfDB = new ChangesOfDB();
@@ -147,10 +164,10 @@ namespace BLL
         public void StopWork()
         {
             RecordWorkStatusToDB("Error");
-         //   this.systemWork = false;
+            //   this.systemWork = false;
         }
 
-        private void UseTrigger(object obj)
+        private static void UseTrigger(object obj)
         {
             ITrigger trigger = (ITrigger)obj;
             trigger.CheckSensor();

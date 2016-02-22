@@ -14,7 +14,7 @@ namespace DAL.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<DbContext>().ImplementedBy<SmartHouseContext>().LifestyleTransient());
+            container.Register(Component.For<DbContext>().ImplementedBy<SmartHouseContext>().LifeStyle.HybridPerWebRequestTransient());
         }
     }
 }

@@ -15,3 +15,6 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\obj\Debug\Servises.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\obj\Debug\DTO.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\obj\Debug\DTO.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Windsor.Lifestyles.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Windsor.Lifestyles.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\DTO\bin\Debug\Castle.Windsor.Lifestyles.xml
