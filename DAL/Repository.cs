@@ -25,6 +25,7 @@ namespace DAL
 
         public IQueryable<T> GetAll<T>() where T: class
         {
+            var v = db.Set<T>();
             return db.Set<T>();
         }
 

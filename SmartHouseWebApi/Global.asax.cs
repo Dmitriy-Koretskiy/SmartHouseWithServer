@@ -1,11 +1,25 @@
-﻿using System;
+﻿using BLL.Installers;
+using Castle.Windsor;
+using Castle.Windsor.Installer;
+using CommonServiceLocator.WindsorAdapter;
+using Microsoft.Practices.ServiceLocation;
+using Servises.Installers;
+using SmartHouseMVC.App_Start;
+using System.Web.Http.Dependencies;
+using System;
+using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Http.WebHost;
+using Castle.MicroKernel.Lifestyle;
+using SmartHouseWebApi.CastleWindsorFactory;
 
 namespace SmartHouseWebApi
 {
@@ -14,14 +28,29 @@ namespace SmartHouseWebApi
 
     public class WebApiApplication : System.Web.HttpApplication
     {
+        private static IWindsorContainer container;
+
+        private static void BootstrapContainer()
+        {
+            container = new WindsorContainer().Install(FromAssembly.This(), FromAssembly.Named("DAL"),
+                FromAssembly.Containing<ServerInstaller>(), FromAssembly.Containing<ServisesInstaller>());
+            ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutoMapperConfig.RegisterMappings();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            WebApiApplication.BootstrapContainer();
+            GlobalConfiguration.Configuration.DependencyResolver = new WindsorDependencyResolver(container.Kernel);
+
         }
+
+               //.Services.Replace(typeof(IHttpControllerActivator), new WindsorCompositionRoot(container));
     }
 }

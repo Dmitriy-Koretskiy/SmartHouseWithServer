@@ -8,6 +8,7 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Interfaces.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\EntityFramework.dll
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Castle.Windsor.Lifestyles.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\AutoMapper.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\DAL.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Devices.pdb
@@ -18,10 +19,9 @@ C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\EntityFramework.xml
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Castle.Windsor.Lifestyles.pdb
+C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Castle.Windsor.Lifestyles.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\AutoMapper.xml
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\obj\Debug\BLL.dll
 C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\obj\Debug\BLL.pdb
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Castle.Windsor.Lifestyles.dll
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Castle.Windsor.Lifestyles.pdb
-C:\Users\пкпк\Documents\Visual Studio 2012\VS_Projects\SmartHouseWithServer\BLL\bin\Debug\Castle.Windsor.Lifestyles.xml

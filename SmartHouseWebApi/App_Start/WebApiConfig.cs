@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.WebHost;
+using System.Net.Http;
+using System.Web.Routing;
 
 namespace SmartHouseWebApi
 {
@@ -9,9 +12,9 @@ namespace SmartHouseWebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Routes.MapHttpRoute(
+            RouteTable.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
