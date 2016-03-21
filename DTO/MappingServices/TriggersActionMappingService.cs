@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Interfaces.MappingServices;
 
-namespace Servises.Services
+namespace Servises.MappingServices
 {
     public class TriggersActionMappingService : IMappingService<TriggersActionDTO>
     {

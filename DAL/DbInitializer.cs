@@ -12,8 +12,8 @@ namespace DAL
     {
         protected override void Seed(SmartHouseContext db)
         {
-            Room r1 = new Room { Name = "Living room" };
-            Room r2 = new Room { Name = "Kitchen" };
+            Room r1 = new Room { Name = "Living room", Image = "assets/images/LivingRoom.jpg" };
+            Room r2 = new Room { Name = "Kitchen", Image = "assets/images/Kitchen.jpg" };
 
             SensorsType st1 = new SensorsType { Name = "LightSensor" };
             SensorsType st2 = new SensorsType { Name = "TemperatureSensor" };
@@ -29,8 +29,8 @@ namespace DAL
             HouseController c2 = new HouseController { Name = "Living room conditioner controller", Enable = true, Room = r1, HouseControllersType = ct2 };
             HouseController c3 = new HouseController { Name = "Kitchen light controller", Enable = true, Room = r2, HouseControllersType = ct1 };
 
-            TriggersType tt1 = new TriggersType { Name = "LightTrigger" };
-            TriggersType tt2 = new TriggersType { Name = "ConditionerTrigger" };
+            TriggersType tt1 = new TriggersType { Name = "LightTrigger", Image = "assets/images/Lamp.bmp" };
+            TriggersType tt2 = new TriggersType { Name = "ConditionerTrigger", Image = "assets/images/Conditioner.bmp" };
 
             Trigger t1 = new Trigger
             {
@@ -40,7 +40,7 @@ namespace DAL
                 Enable = true,
                 Room = r1,
                 TriggersType = tt1,
-                Condition = "value < 475 "
+                Condition = "value < 475 ",
             };
             Trigger t2 = new Trigger
             {
@@ -49,7 +49,7 @@ namespace DAL
                 HouseController = c2,
                 Enable = true,
                 Room = r1,
-                TriggersType = tt1,
+                TriggersType = tt2,
                 Condition = "value > 27"
             };
             Trigger t3 = new Trigger
@@ -67,9 +67,9 @@ namespace DAL
             SensorsValue sv2 = new SensorsValue { Sensor = s2, TimeMeasurement = DateTime.Now, Value = 24 };
             SensorsValue sv3 = new SensorsValue { Sensor = s3, TimeMeasurement = DateTime.Now, Value = 490 };
 
-            TriggersAction ta1 = new TriggersAction { Trigger = t1, TimeChange = DateTime.Now, Description = "OFF" };
-            TriggersAction ta2 = new TriggersAction { Trigger = t2, TimeChange = DateTime.Now, Description = "ON" };
-            TriggersAction ta3 = new TriggersAction { Trigger = t3, TimeChange = DateTime.Now, Description = "OFF" };
+            TriggersAction ta1 = new TriggersAction { Trigger = t1, TimeChange = DateTime.Now, Description = "Off" };
+            TriggersAction ta2 = new TriggersAction { Trigger = t2, TimeChange = DateTime.Now, Description = "On" };
+            TriggersAction ta3 = new TriggersAction { Trigger = t3, TimeChange = DateTime.Now, Description = "Off" };
 
             SystemWorkStatus sws = new SystemWorkStatus { Status = "Init" }; 
 
@@ -87,6 +87,8 @@ namespace DAL
             db.HouseControllers.Add(c1);
             db.HouseControllers.Add(c2);
             db.HouseControllers.Add(c3);
+            db.Triggers.Add(t1);
+            db.Triggers.Add(t2);
             db.Triggers.Add(t1);
             db.Triggers.Add(t2);
             db.Triggers.Add(t3);

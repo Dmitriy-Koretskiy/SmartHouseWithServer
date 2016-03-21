@@ -10,16 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Servises.Services
+namespace Servises.MappingServices
 {
     public class RoomMappingService : IRoomMappingService
     {
         IRepository repository;
-
-        //public RoomMappingService()
-        //{
-        //    this.repository = new Repository();
-        //}
 
         public RoomMappingService(IRepository rep)
         {

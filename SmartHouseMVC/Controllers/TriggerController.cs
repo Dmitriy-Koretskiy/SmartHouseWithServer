@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Interfaces.DTO;
-using Servises.Services;
+using Servises.MappingServices;
 using Interfaces;
 using Interfaces.Tables;
-using SmartHouseMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +14,10 @@ namespace SmartHouseMVC.Controllers
 {
     public class TriggerController : Controller
     {
-        IMappingService<TriggerDTO> triggerMappingService;
+        IMappingService<TriggersSettingDTO> triggerMappingService;
         IGenericMappingService genericMappingService;
 
-        public TriggerController(IGenericMappingService genericMapService, IMappingService<TriggerDTO> triggerMapService)
+        public TriggerController(IGenericMappingService genericMapService, IMappingService<TriggersSettingDTO> triggerMapService)
         {
             this.triggerMappingService = triggerMapService;
             this.genericMappingService = genericMapService;
@@ -47,7 +46,7 @@ namespace SmartHouseMVC.Controllers
                 return HttpNotFound();
             }
 
-            TriggerDTO triggerDTO = triggerMappingService.GetById(id);
+            TriggersSettingDTO triggerDTO = triggerMappingService.GetById(id);
 
             if (triggerDTO == null)
             {
@@ -66,7 +65,7 @@ namespace SmartHouseMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(TriggerDTO triggerDTO)
+        public ActionResult Create(TriggersSettingDTO triggerDTO)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +83,7 @@ namespace SmartHouseMVC.Controllers
                 return HttpNotFound();
             }
 
-            TriggerDTO triggerDTO = triggerMappingService.GetById(id);
+            TriggersSettingDTO triggerDTO = triggerMappingService.GetById(id);
 
             if (triggerDTO == null)
             {
@@ -100,7 +99,7 @@ namespace SmartHouseMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(TriggerDTO triggerDTO)
+        public ActionResult Edit(TriggersSettingDTO triggerDTO)
         {
             if (ModelState.IsValid)
             {

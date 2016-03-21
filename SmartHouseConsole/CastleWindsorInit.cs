@@ -1,7 +1,8 @@
 ﻿using BLL.Installers;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using CommonServiceLocator.WindsorAdapter;
+using CommonServiceLocator.WindsorAdapter.Unofficial;
+//using Alphacloud.Common.ServiceLocator.Castle;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;

@@ -15,6 +15,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using CommonServiceLocator.WindsorAdapter.Unofficial;
 
 namespace SmartHouseMVC
 {
@@ -28,7 +29,7 @@ namespace SmartHouseMVC
         private static void BootstrapContainer()
         {
             container = new WindsorContainer().Install(FromAssembly.This(), FromAssembly.Named("DAL"),
-                FromAssembly.Containing<ServerInstaller>(), FromAssembly.Containing<ServisesInstaller>());
+            FromAssembly.Containing<ServerInstaller>(), FromAssembly.Containing<ServisesInstaller>());
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);

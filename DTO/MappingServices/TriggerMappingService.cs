@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Interfaces.MappingServices;
 
-namespace Servises.Services
+namespace Servises.MappingServices
 {
-    public class TriggerMappingService: IMappingService<TriggerDTO>
+    public class TriggerMappingService : IMappingService<TriggersSettingDTO>
     {
         IRepository repository;
 
@@ -21,31 +21,33 @@ namespace Servises.Services
             this.repository = rep;
         }
 
-        public TriggerDTO GetById(int? id)  
+        public TriggersSettingDTO GetById(int? id)
         {
-            return Mapper.Map<Trigger, TriggerDTO>(repository.Get<Trigger>(id));
+            return Mapper.Map<Trigger, TriggersSettingDTO>(repository.Get<Trigger>(id));
         }
 
-        public IEnumerable<TriggerDTO> GetAll()
+        public IEnumerable<TriggersSettingDTO> GetAll()
         {
-            return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>());
+            return Mapper.Map<IEnumerable<Trigger>, List<TriggersSettingDTO>>(repository.GetAll<Trigger>());
         }
 
-        public IEnumerable<TriggerDTO> GetByRoomId(int roomId)
+        public IEnumerable<TriggersSettingDTO> GetByRoomId(int roomId)
         {
-            return Mapper.Map<IEnumerable<Trigger>, List<TriggerDTO>>(repository.GetAll<Trigger>().Where(t => t.RoomId == roomId));
+            return Mapper.Map<IEnumerable<Trigger>, List<TriggersSettingDTO>>(repository.GetAll<Trigger>().Where(t => t.RoomId == roomId));
         }
 
-        public void Add(TriggerDTO oldObject)
+        public void Add(TriggersSettingDTO oldObject)
         {
-            Trigger newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
+            Trigger newObject = Mapper.Map<TriggersSettingDTO, Trigger>(oldObject);
             repository.Add<Trigger>(newObject);
             repository.SaveChanges();
         }
 
-        public void Edit(TriggerDTO oldObject)
+        
+
+        public void Edit(TriggersSettingDTO oldObject)
         {
-            var newObject = Mapper.Map<TriggerDTO, Trigger>(oldObject);
+            var newObject = Mapper.Map<TriggersSettingDTO, Trigger>(oldObject);
             repository.Update<Trigger>(newObject);
             repository.SaveChanges();
         }

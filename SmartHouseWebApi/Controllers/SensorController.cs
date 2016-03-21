@@ -1,5 +1,6 @@
 ﻿using Interfaces.DTO;
 using Interfaces.MappingServices;
+using Interfaces.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,34 +15,57 @@ namespace SmartHouseWebApi.Controllers
         IMappingService<SensorDTO> sensorMappingService;
         IGenericMappingService genericMappingService;
 
+        public SensorController(IMappingService<SensorDTO> sensorMapService, IGenericMappingService genericMapService)
+        {
+            this.sensorMappingService = sensorMapService;
+            this.genericMappingService = genericMapService;
+        }
+
         // GET api/sensor/5
+         [ActionName("getSensorsByRoomId")]
         public IEnumerable<SensorDTO> Get(int roomId)
         {
-            if (roomId != 0)
+            if (roomId <= 0)
+            {
+                return null;
+            }
+            else
             {
                 var sensors = sensorMappingService.GetByRoomId(roomId);
                 return sensors;
             }
-            else
-            {
-                var sensors = sensorMappingService.GetAll();
-                return sensors;
-            }
+        }
+
+        [ActionName("getSensorById")]
+        public SensorDTO GetSensorById(int sensorId)
+        {
+            return genericMappingService.MapById<Sensor, SensorDTO>(sensorId);
+        }
+
+        [ActionName("getSensorsTypes")]
+        public IEnumerable<SensorsTypeDTO> GetSensorsType()
+        {
+             return genericMappingService.MapAll<SensorsType, SensorsTypeDTO>();
         }
 
         // POST api/sensor
-        public void Post([FromBody]string value)
+
+        [HttpPost]
+        public void Post([FromBody] SensorDTO sensorDTO)
         {
+            genericMappingService.Add<SensorDTO, Sensor>(sensorDTO);
         }
 
-        // PUT api/sensor/5
-        public void Put(int id, [FromBody]string value)
-        {
+ 
+        [HttpPut]
+        public void Put([FromBody] SensorDTO sensorDTO)
+        {     
+             genericMappingService.Edit<SensorDTO, Sensor>(sensorDTO);
         }
 
-        // DELETE api/sensor/5
         public void Delete(int id)
         {
+            genericMappingService.Delete<Sensor>(id);
         }
     }
 }

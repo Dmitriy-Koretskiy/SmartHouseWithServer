@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Interfaces.DTO;
-using Servises.Services;
+using Servises.MappingServices;
 using Interfaces;
 using Interfaces.Tables;
-using SmartHouseMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

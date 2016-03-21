@@ -13,17 +13,20 @@ namespace SmartHouseWebApi.Controllers
     {
         IMappingService<TriggersActionDTO> triggersActionMappingService { get; set; }
 
+        public TriggersActionController(IMappingService<TriggersActionDTO> triggersActionMapService)
+        {
+            this.triggersActionMappingService = triggersActionMapService;
+        }
         // GET api/triggersaction/5
         public IEnumerable<TriggersActionDTO> Get(int roomId)
         {
-            if (roomId != 0)
-            {
-                var triggersActions = triggersActionMappingService.GetByRoomId(roomId);
-                return triggersActions;
+            if (roomId <= 0)
+            {      
+                return null;
             }
             else
             {
-                var triggersActions = triggersActionMappingService.GetAll();
+                var triggersActions = triggersActionMappingService.GetByRoomId(roomId);
                 return triggersActions;
             }
         }

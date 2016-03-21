@@ -3,7 +3,7 @@ using Interfaces;
 using Interfaces.DTO;
 using Interfaces.MappingServices;
 using Interfaces.Tables;
-using Servises.Services;
+using Servises.MappingServices;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,55 +19,19 @@ namespace SmartHouseWebApi.Controllers
         IGenericMappingService genericMappingService;
         IServer server;
 
-        //public StartPageController()
-        //{
-        //    genericMappingService = new GenericMappingService(new Repository(new SmartHouseContext()));
-
-        //}
-
         public StartPageController(IGenericMappingService mapService, IServer server)
         {
             this.genericMappingService = mapService;
             this.server = server;
         }
-        //// GET api/startpage
+        // GET api/startpage
 
-        ////public HttpResponseMessage Get()
-        ////{
-        ////    HttpResponseMessage response = null;
-        ////    var rooms = genericMappingService.MapAll<Room, RoomDTO>();
-        ////    response = Request.CreateResponse<IEnumerable<RoomDTO>>(HttpStatusCode.OK, rooms);
-        ////    return response;
-        ////}
-
-
-        public IEnumerable<RoomDTO> Get()
+        public HttpResponseMessage Get()
         {
             HttpResponseMessage response = null;
             var rooms = genericMappingService.MapAll<Room, RoomDTO>();
             response = Request.CreateResponse<IEnumerable<RoomDTO>>(HttpStatusCode.OK, rooms);
-            return rooms;
-        }
-
-        // GET api/startpage/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/startpage
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/startpage/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/startpage/5
-        public void Delete(int id)
-        {
+            return response;
         }
     }
 }

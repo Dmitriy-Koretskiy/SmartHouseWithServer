@@ -21,6 +21,7 @@ namespace BLL
         static Assembly assembly = Assembly.LoadFrom(path);
         private static bool systemWork = true;
         private static bool recordingSensorsValueToDB = false;
+        private static bool serverDisable = false; 
         private static System.Timers.Timer aTimer;
 
         private static int periodicityOfSensorsValuesRecording = 10;
@@ -31,14 +32,13 @@ namespace BLL
         {
             StartCheckingSystemWorkStatus();
             SetTimer();
+       //     StartSystemWork();
             Console.ReadLine();
         }
 
         private static void SetTimer()
         {
-            // Create a timer with a two second interval.
             aTimer = new System.Timers.Timer(periodicityOfTimerTick);
-            // Hook up the Elapsed event for the timer. 
             aTimer.Elapsed += new ElapsedEventHandler(StartSystemWork);
             aTimer.AutoReset = true;
             aTimer.Enabled = true;
@@ -89,25 +89,29 @@ namespace BLL
             }
         }
 
-        private static void StartSystemWork(object source, ElapsedEventArgs e)
+        private static void StartSystemWork(Object source, ElapsedEventArgs e)
         {
-            systemWork = true;
-            var triggers = ConfigureSystem();
+            if (!serverDisable)
+            {
 
-            if (triggers == null || systemWork == false)
-            {
-                Thread.Sleep(100000);
-            }
-            else
-            {
-                RecordWorkStatusToDB("ServerWork");
-                aTimer.Stop();
-                while (systemWork)
+                systemWork = true;
+                var triggers = ConfigureSystem();
+
+                if (triggers == null || systemWork == false)
                 {
-                    Parallel.ForEach(triggers, UseTrigger);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100000);
                 }
-                aTimer.Start();
+                else
+                {
+                    RecordWorkStatusToDB("ServerWork");
+                         aTimer.Stop();
+                    while (systemWork && !serverDisable)
+                    {
+                        Parallel.ForEach(triggers, UseTrigger);
+                        Thread.Sleep(1000);
+                    }
+                       aTimer.Start();
+                }
             }
         }
 
@@ -154,17 +158,26 @@ namespace BLL
         {
             using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
             {
-                if (repository.GetAll<SystemWorkStatus>().First().Status != "ServerWork")
+                var res =  repository.GetAll<SystemWorkStatus>().First().Status;
+                if (res != "ServerWork")
                 {
                     systemWork = false;
                 }
+                else {
+                    systemWork = true;
+                }
+                 if(res =="ServerDisable"){
+                     serverDisable = true;
+                 }
+                 else{
+                    serverDisable = false;
+                 }  
             }
         }
 
         public void StopWork()
         {
             RecordWorkStatusToDB("Error");
-            //   this.systemWork = false;
         }
 
         private static void UseTrigger(object obj)
@@ -172,15 +185,17 @@ namespace BLL
             ITrigger trigger = (ITrigger)obj;
             trigger.CheckSensor();
 
-            using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
+            if (trigger.StateAfterChange != null)
             {
-                if (trigger.StateAfterChange != null)
-                {
+                using (IRepository repository = ServiceLocator.Current.GetInstance<IRepository>())
+                {    
                     TriggersAction triggerAction = new TriggersAction() { TriggerId = trigger.Id, TimeChange = DateTime.Now, Description = trigger.StateAfterChange };
                     repository.Add(triggerAction);
+                    repository.SaveChanges();
                 }
-                repository.SaveChanges();
+ 
             }
+
         }
 
         public List<MissingDevice> CheckConfiguration()

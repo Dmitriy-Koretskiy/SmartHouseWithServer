@@ -1,5 +1,6 @@
 ﻿using Interfaces.DTO;
 using Interfaces.MappingServices;
+using Interfaces.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,48 +15,73 @@ namespace SmartHouseWebApi.Controllers
         IMappingService<HouseControllerDTO> houseControllerMappingService { get; set; }
         IGenericMappingService genericMappingService { get; set; }
 
+        public HouseControllerController(IGenericMappingService genMapService, IMappingService<HouseControllerDTO> houseControllerMapService)
+        {
+            this.houseControllerMappingService = houseControllerMapService;
+            this.genericMappingService = genMapService;
+        }
+
         // GET api/housecontroller/5
-        public IEnumerable<HouseControllerDTO> GetControllersByRoomId(int roomId)
+        //public IEnumerable<HouseControllerDTO> GetHouseControllersByRoomId(int roomId)
+        //{
+        //    if (roomId != 0)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        return houseControllerMappingService.GetByRoomId(roomId);
+        //    }
+        //}
+
+
+        [ActionName("getHouseControllersByRoomId")]
+        public IEnumerable<HouseControllerDTO> Get(int roomId)
         {
-            if (roomId != 0)
+            if (roomId <= 0)
+            {
+                return null;
+            }
+            else
             {
                 var houseControllers = houseControllerMappingService.GetByRoomId(roomId);
                 return houseControllers;
             }
-            else
-            {
-                var houseControllers = houseControllerMappingService.GetAll();
-                return houseControllers;
-            }
         }
 
-        public IEnumerable<HouseControllerDTO> GetControllersByGroupId(int roomId)
+        [ActionName("getHouseControllerById")]
+        public HouseControllerDTO GetSensorById(int houseControllerId)
         {
-            if (roomId != 0)
-            {
-                var houseControllers = houseControllerMappingService.GetByRoomId(roomId);
-                return houseControllers;
-            }
-            else
-            {
-                var houseControllers = houseControllerMappingService.GetAll();
-                return houseControllers;
-            }
+            return genericMappingService.MapById<HouseController, HouseControllerDTO>(houseControllerId);
         }
 
-        // POST api/housecontroller
-        public void Post([FromBody]string value)
+        [ActionName("getHouseControllersTypes")]
+        public IEnumerable<HouseControllersTypeDTO> GetSensorsType()
         {
+            return genericMappingService.MapAll<HouseControllersType, HouseControllersTypeDTO>();
         }
 
-        // PUT api/housecontroller/5
-        public void Put(int id, [FromBody]string value)
+
+
+
+        public void Post([FromBody] HouseControllerDTO houseControllerDTO)
         {
+            genericMappingService.Add<HouseControllerDTO, HouseController>(houseControllerDTO);
         }
 
-        // DELETE api/housecontroller/5
+ 
+        public void Put([FromBody] HouseControllerDTO houseControllerDTO)
+        {
+            genericMappingService.Edit<HouseControllerDTO, HouseController>(houseControllerDTO);
+        }
+
         public void Delete(int id)
         {
+            genericMappingService.Delete<HouseController>(id);
         }
+
+
+
+  
     }
 }

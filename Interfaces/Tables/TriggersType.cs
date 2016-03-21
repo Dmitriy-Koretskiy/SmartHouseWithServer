@@ -9,5 +9,6 @@ namespace Interfaces.Tables
     public class TriggersType : BaseEntity
     {
         public string Name { get; set; }
+        public string Image { get; set; }  
     }
 }

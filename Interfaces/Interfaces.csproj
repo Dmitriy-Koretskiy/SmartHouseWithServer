@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\TriggersStateDTO.cs" />
+    <Compile Include="DTO\TriggersStateInitDTO.cs" />
     <Compile Include="InteractionWithouyApplications\CheckConfigurationResult.cs" />
     <Compile Include="InteractionWithouyApplications\MissingDevice.cs" />
     <Compile Include="DTO\BaseEntityDTO.cs" />
@@ -50,7 +52,7 @@
     <Compile Include="DTO\SensorDTO.cs" />
     <Compile Include="DTO\SensorsTypeDTO.cs" />
     <Compile Include="DTO\SensorsValueDTO.cs" />
-    <Compile Include="DTO\TriggerDTO.cs" />
+    <Compile Include="DTO\TriggersSettingDTO.cs" />
     <Compile Include="DTO\TriggersActionDTO.cs" />
     <Compile Include="DTO\TriggersTypeDTO.cs" />
     <Compile Include="MappingServices\IGenericMappingService.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="IServer.cs" />
     <Compile Include="MappingServices\IRoomMappingService.cs" />
     <Compile Include="MappingServices\ISensorsValueMappingService.cs" />
+    <Compile Include="MappingServices\ITriggersStateMappingService.cs" />
     <Compile Include="Tables\BaseEntity.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IRepository.cs" />

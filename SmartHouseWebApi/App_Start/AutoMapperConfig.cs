@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SmartHouseMVC.App_Start
+namespace SmartHouseWebApi.App_Start
 {
     public class AutoMapperConfig
     {
         public static void RegisterMappings()
         {
-          
+
             Mapper.CreateMap<HouseController, HouseControllerDTO>()
                 .ForMember(t => t.RoomName, opt => opt.MapFrom(s => s.Room.Name))
                 .ForMember(t => t.HouseControllersTypeName, opt => opt.MapFrom(s => s.HouseControllersType.Name));
@@ -39,12 +39,12 @@ namespace SmartHouseMVC.App_Start
             Mapper.CreateMap<SensorsValueDTO, SensorsValue>()
                 .ForMember(sv => sv.SensorId, opt => opt.Ignore());
 
-            Mapper.CreateMap<Trigger, TriggerDTO>()
+            Mapper.CreateMap<Trigger, TriggersSettingDTO>()
                 .ForMember(t => t.SensorName, opt => opt.MapFrom(s => s.Sensor.Name))
                 .ForMember(t => t.HouseControllerName, opt => opt.MapFrom(s => s.HouseController.Name))
                 .ForMember(t => t.RoomName, opt => opt.MapFrom(s => s.Room.Name))
                 .ForMember(t => t.TriggersTypeName, opt => opt.MapFrom(s => s.TriggersType.Name));
-            Mapper.CreateMap<TriggerDTO, Trigger>()
+            Mapper.CreateMap<TriggersSettingDTO, Trigger>()
                 .ForMember(t => t.Sensor, opt => opt.Ignore())
                 .ForMember(t => t.HouseController, opt => opt.Ignore())
                 .ForMember(t => t.Room, opt => opt.Ignore())
@@ -57,11 +57,21 @@ namespace SmartHouseMVC.App_Start
 
             Mapper.CreateMap<TriggersType, TriggersTypeDTO>();
 
-            Mapper.CreateMap<TriggersAction, RoomContentDTO>()
-                .ForMember(rc => rc.Name, opt => opt.MapFrom(ta => ta.Trigger.Name))
-                .ForMember(rc => rc.LastState, opt => opt.MapFrom(ta => ta.Description))
-                .ForMember(rc => rc.TriggerId, opt => opt.MapFrom(ta => ta.Trigger.Id))
-                .ForMember(rc => rc.SensorId, opt => opt.MapFrom(ta => ta.Trigger.Sensor.Id));
+            Mapper.CreateMap<TriggersAction, TriggersStateDTO>()
+                .ForMember(ts => ts.Id, opt => opt.MapFrom(ta => ta.Trigger.Id))
+                .ForMember(ts => ts.Name, opt => opt.MapFrom(ta => ta.Trigger.Name))
+                .ForMember(ts => ts.LastState, opt => opt.MapFrom(ta => ta.Description));
+            Mapper.CreateMap<TriggersStateDTO, TriggersAction>()
+                .ForMember(ta => ta.TriggerId, opt => opt.MapFrom(ts => ts.Id))
+                .ForMember(ta => ta.Description, opt => opt.MapFrom(ts => ts.LastState))
+                .ForMember(ta => ta.TimeChange, opt => opt.MapFrom(src => DateTime.Now))
+                .ForMember(ta => ta.Trigger, opt => opt.Ignore());
+
+            Mapper.CreateMap<TriggersAction, TriggersStateInitDTO>()
+            .ForMember(ts => ts.Id, opt => opt.MapFrom(ta => ta.Trigger.Id))
+            .ForMember(ts => ts.Name, opt => opt.MapFrom(ta => ta.Trigger.Name))
+            .ForMember(ts => ts.LastState, opt => opt.MapFrom(ta => ta.Description))
+            .ForMember(ts => ts.Image, opt => opt.MapFrom(ta => ta.Trigger.TriggersType.Image));
         }
     }
 }

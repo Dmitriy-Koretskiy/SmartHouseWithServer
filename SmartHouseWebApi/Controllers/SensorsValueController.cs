@@ -13,18 +13,51 @@ namespace SmartHouseWebApi.Controllers
     {
         ISensorsValueMappingService sensorsValueMappingService;
 
+        public SensorsValueController(ISensorsValueMappingService sensorsValueMapService)
+        {
+            this.sensorsValueMappingService = sensorsValueMapService;
+        }
         // GET api/sensorsvalue/5
         public IEnumerable<SensorsValueDTO> Get(int roomId)
         {
-            if (roomId != 0)
+            if (roomId <= 0)
+            {
+                return null;
+            }
+            else
             {
                 var sensorsValues = sensorsValueMappingService.GetByRoomId(roomId);
                 return sensorsValues;
             }
+        }
+
+        [ActionName("forDay")]
+        public object GetSensorStatisticThisDay(int sensorIdForDay)
+        {
+            if (sensorIdForDay >= 0)
+            {
+                return sensorsValueMappingService.GetThisDayBySensorId(sensorIdForDay);
+            }
             else
             {
-                var sensorsValues = sensorsValueMappingService.GetAll();
-                return sensorsValues;
+                return null;
+            }
+        }
+
+        [ActionName("forHour")]
+        public object GetSensorStatisticLastHour(int sensorIdForHour)
+        {
+//            var oldDate = sensorsValueMappingService.GetById(1);
+////???
+//            var date = (DateTime.Now - oldDate.TimeMeasurement).Days;
+
+            if (sensorIdForHour >= 0)
+            {
+                return sensorsValueMappingService.GetLastHourBySensorId(sensorIdForHour);
+            }
+            else
+            {
+                return null;
             }
         }
     }

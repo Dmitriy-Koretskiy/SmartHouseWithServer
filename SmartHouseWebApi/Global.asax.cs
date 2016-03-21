@@ -4,7 +4,7 @@ using Castle.Windsor.Installer;
 using CommonServiceLocator.WindsorAdapter;
 using Microsoft.Practices.ServiceLocation;
 using Servises.Installers;
-using SmartHouseMVC.App_Start;
+using SmartHouseWebApi.App_Start;
 using System.Web.Http.Dependencies;
 using System;
 using System.Net.Http;
@@ -20,6 +20,7 @@ using System.Web.Routing;
 using System.Web.Http.WebHost;
 using Castle.MicroKernel.Lifestyle;
 using SmartHouseWebApi.CastleWindsorFactory;
+using CommonServiceLocator.WindsorAdapter.Unofficial;
 
 namespace SmartHouseWebApi
 {
@@ -48,9 +49,7 @@ namespace SmartHouseWebApi
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             WebApiApplication.BootstrapContainer();
             GlobalConfiguration.Configuration.DependencyResolver = new WindsorDependencyResolver(container.Kernel);
-
         }
-
                //.Services.Replace(typeof(IHttpControllerActivator), new WindsorCompositionRoot(container));
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Interfaces.Tables;
-using SmartHouseMVC.Models;
+
 using Interfaces.DTO;
 using System;
 using System.Collections.Generic;
@@ -40,12 +40,12 @@ namespace SmartHouseMVC.App_Start
             Mapper.CreateMap<SensorsValueDTO, SensorsValue>()
                 .ForMember(sv => sv.SensorId, opt => opt.Ignore());
 
-            Mapper.CreateMap<Trigger, TriggerDTO>()
+            Mapper.CreateMap<Trigger, TriggersSettingDTO>()
                 .ForMember(t => t.SensorName, opt => opt.MapFrom(s => s.Sensor.Name))
                 .ForMember(t => t.HouseControllerName, opt => opt.MapFrom(s => s.HouseController.Name))
                 .ForMember(t => t.RoomName, opt => opt.MapFrom(s => s.Room.Name))
                 .ForMember(t => t.TriggersTypeName, opt => opt.MapFrom(s => s.TriggersType.Name));
-            Mapper.CreateMap<TriggerDTO, Trigger>()
+            Mapper.CreateMap<TriggersSettingDTO, Trigger>()
                 .ForMember(t => t.Sensor, opt => opt.Ignore())
                 .ForMember(t => t.HouseController, opt => opt.Ignore())
                 .ForMember(t => t.Room, opt => opt.Ignore())
